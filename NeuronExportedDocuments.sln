@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuronExportedDocuments", "NeuronExportedDocuments\NeuronExportedDocuments.csproj", "{54686218-4C2B-4C0F-8DD7-C3AAEAE04CCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuronExportedDocuments.Tests", "NeuronExportedDocuments.Tests\NeuronExportedDocuments.Tests.csproj", "{6D9A6F47-F7F6-49AD-A8FA-1BBC45F06E5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuronExportedDocuments.DAL", "NeuronExportedDocuments.DAL\NeuronExportedDocuments.DAL.csproj", "{B54069C2-7C64-4349-BF4B-BC67D373B620}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuronExportedDocuments.Models", "NeuronExportedDocuments.Models\NeuronExportedDocuments.Models.csproj", "{A3F77930-2DC7-4265-A851-9729E21B1D23}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54686218-4C2B-4C0F-8DD7-C3AAEAE04CCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54686218-4C2B-4C0F-8DD7-C3AAEAE04CCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54686218-4C2B-4C0F-8DD7-C3AAEAE04CCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54686218-4C2B-4C0F-8DD7-C3AAEAE04CCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D9A6F47-F7F6-49AD-A8FA-1BBC45F06E5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D9A6F47-F7F6-49AD-A8FA-1BBC45F06E5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D9A6F47-F7F6-49AD-A8FA-1BBC45F06E5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D9A6F47-F7F6-49AD-A8FA-1BBC45F06E5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B54069C2-7C64-4349-BF4B-BC67D373B620}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B54069C2-7C64-4349-BF4B-BC67D373B620}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B54069C2-7C64-4349-BF4B-BC67D373B620}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B54069C2-7C64-4349-BF4B-BC67D373B620}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3F77930-2DC7-4265-A851-9729E21B1D23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3F77930-2DC7-4265-A851-9729E21B1D23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3F77930-2DC7-4265-A851-9729E21B1D23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3F77930-2DC7-4265-A851-9729E21B1D23}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

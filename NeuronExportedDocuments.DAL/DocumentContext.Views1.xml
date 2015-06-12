@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<views MappingHash="15cf5263af26d1e687c5858d73e15a33c641a66d872dd4ab7c27c88048d1922a">
+  <view extent="CodeFirstDatabase.DocumentImage"><![CDATA[
+    SELECT VALUE -- Constructing DocumentImage
+        [CodeFirstDatabaseSchema.DocumentImage](T1.DocumentImage_DocumentImageId, T1.DocumentImage_ServiceDocumentId, T1.DocumentImage_FileName, T1.DocumentImage_MimeType, T1.DocumentImage_ImageData)
+    FROM (
+        SELECT 
+            T.DocumentImageId AS DocumentImage_DocumentImageId, 
+            T.ServiceDocumentId AS DocumentImage_ServiceDocumentId, 
+            T.FileName AS DocumentImage_FileName, 
+            T.MimeType AS DocumentImage_MimeType, 
+            T.ImageData AS DocumentImage_ImageData, 
+            True AS _from0
+        FROM DocumentContext.DocumentImages AS T
+    ) AS T1]]></view>
+  <view extent="CodeFirstDatabase.ServiceDocument"><![CDATA[
+    SELECT VALUE -- Constructing ServiceDocument
+        [CodeFirstDatabaseSchema.ServiceDocument](T1.ServiceDocument_ServiceDocumentId, T1.ServiceDocument_NeuronDbDocumentId, T1.ServiceDocument_Name, T1.ServiceDocument_DeliveryEMail, T1.ServiceDocument_DeliveryPhone, T1.ServiceDocument_CreatDate, T1.ServiceDocument_PdfFileData, T1.ServiceDocument_IsBlocked, T1.ServiceDocument_FailedTimes, T1.ServiceDocument_IsOpened, T1.ServiceDocument_OpenDate)
+    FROM (
+        SELECT 
+            T.ServiceDocumentId AS ServiceDocument_ServiceDocumentId, 
+            T.NeuronDbDocumentId AS ServiceDocument_NeuronDbDocumentId, 
+            T.Name AS ServiceDocument_Name, 
+            T.DeliveryEMail AS ServiceDocument_DeliveryEMail, 
+            T.DeliveryPhone AS ServiceDocument_DeliveryPhone, 
+            T.CreatDate AS ServiceDocument_CreatDate, 
+            T.PdfFileData AS ServiceDocument_PdfFileData, 
+            T.IsBlocked AS ServiceDocument_IsBlocked, 
+            T.FailedTimes AS ServiceDocument_FailedTimes, 
+            T.IsOpened AS ServiceDocument_IsOpened, 
+            T.OpenDate AS ServiceDocument_OpenDate, 
+            True AS _from0
+        FROM DocumentContext.ServiceDocuments AS T
+    ) AS T1]]></view>
+  <view extent="DocumentContext.DocumentImages"><![CDATA[
+    SELECT VALUE -- Constructing DocumentImages
+        [NeuronExportedDocuments.DAL.DocumentImage](T1.DocumentImage_DocumentImageId, T1.DocumentImage_ServiceDocumentId, T1.DocumentImage_FileName, T1.DocumentImage_MimeType, T1.DocumentImage_ImageData)
+    FROM (
+        SELECT 
+            T.DocumentImageId AS DocumentImage_DocumentImageId, 
+            T.ServiceDocumentId AS DocumentImage_ServiceDocumentId, 
+            T.FileName AS DocumentImage_FileName, 
+            T.MimeType AS DocumentImage_MimeType, 
+            T.ImageData AS DocumentImage_ImageData, 
+            True AS _from0
+        FROM CodeFirstDatabase.DocumentImage AS T
+    ) AS T1]]></view>
+  <view extent="DocumentContext.ServiceDocuments"><![CDATA[
+    SELECT VALUE -- Constructing ServiceDocuments
+        [NeuronExportedDocuments.DAL.ServiceDocument](T1.ServiceDocument_ServiceDocumentId, T1.ServiceDocument_NeuronDbDocumentId, T1.ServiceDocument_Name, T1.ServiceDocument_DeliveryEMail, T1.ServiceDocument_DeliveryPhone, T1.ServiceDocument_CreatDate, T1.ServiceDocument_PdfFileData, T1.ServiceDocument_IsBlocked, T1.ServiceDocument_FailedTimes, T1.ServiceDocument_IsOpened, T1.ServiceDocument_OpenDate)
+    FROM (
+        SELECT 
+            T.ServiceDocumentId AS ServiceDocument_ServiceDocumentId, 
+            T.NeuronDbDocumentId AS ServiceDocument_NeuronDbDocumentId, 
+            T.Name AS ServiceDocument_Name, 
+            T.DeliveryEMail AS ServiceDocument_DeliveryEMail, 
+            T.DeliveryPhone AS ServiceDocument_DeliveryPhone, 
+            T.CreatDate AS ServiceDocument_CreatDate, 
+            T.PdfFileData AS ServiceDocument_PdfFileData, 
+            T.IsBlocked AS ServiceDocument_IsBlocked, 
+            T.FailedTimes AS ServiceDocument_FailedTimes, 
+            T.IsOpened AS ServiceDocument_IsOpened, 
+            T.OpenDate AS ServiceDocument_OpenDate, 
+            True AS _from0
+        FROM CodeFirstDatabase.ServiceDocument AS T
+    ) AS T1]]></view>
+</views>
