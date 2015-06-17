@@ -6,7 +6,7 @@ namespace NeuronExportedDocuments.DAL
     public class DocumentContext : DbContext
     {
         public DocumentContext()
-            : base("DbConnection")
+            : base("name=DocumentsDb")
         {
             
         }

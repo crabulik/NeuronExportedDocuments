@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using NeuronExportedDocuments.Models.Enums;
 
 namespace NeuronExportedDocuments.Models
 {
@@ -29,10 +30,16 @@ namespace NeuronExportedDocuments.Models
 
         public DateTime? OpenDate { get; set; }
 
+        public ExportedDocStatus Status { get; set; }
+
+        public string PublishId { get; set; }
+        public string PublishPassword { get; set; }
+
         public ServiceDocument()
         {
             IsBlocked = false;
             IsOpened = false;
+            Status = ExportedDocStatus.Unhandled;
         }
     }
 }

@@ -22,11 +22,6 @@ namespace NeuronExportedDocuments.Controllers
         // POST api/<controller>
         public HttpResponseMessage Post([FromBody]ExportServiceDocument value)
         {
-            if ((value.DeliveryPhone == string.Empty))
-            {
-                return Request.CreateResponse(HttpStatusCode.NotAcceptable, WebApiMessages.NoPhone);
-            }
-
             if((value.ImagesInterpretation.Count == 0) && (value.PdfFileData == null))
             {
                 return Request.CreateResponse(HttpStatusCode.NoContent, WebApiMessages.DataIsEmpty);

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<views MappingHash="b08924084c08993119883ff9ab6a696dd3c7899a22649ef048554dcf955173d6">
+<views MappingHash="f44ecaa87b8a4f3948d30356ed668ea891fd468bb0119a41b0cfaad72154760c">
   <view extent="CodeFirstDatabase.DocumentImage"><![CDATA[
     SELECT VALUE -- Constructing DocumentImage
         [CodeFirstDatabaseSchema.DocumentImage](T1.DocumentImage_DocumentImageId, T1.DocumentImage_ServiceDocumentId, T1.DocumentImage_FileName, T1.DocumentImage_MimeType, T1.DocumentImage_ImageData)
@@ -15,7 +15,7 @@
     ) AS T1]]></view>
   <view extent="CodeFirstDatabase.ServiceDocument"><![CDATA[
     SELECT VALUE -- Constructing ServiceDocument
-        [CodeFirstDatabaseSchema.ServiceDocument](T1.ServiceDocument_ServiceDocumentId, T1.ServiceDocument_NeuronDbDocumentId, T1.ServiceDocument_Name, T1.ServiceDocument_DeliveryEMail, T1.ServiceDocument_DeliveryPhone, T1.ServiceDocument_CreatDate, T1.ServiceDocument_PdfFileData, T1.ServiceDocument_IsBlocked, T1.ServiceDocument_FailedTimes, T1.ServiceDocument_IsOpened, T1.ServiceDocument_OpenDate)
+        [CodeFirstDatabaseSchema.ServiceDocument](T1.ServiceDocument_ServiceDocumentId, T1.ServiceDocument_NeuronDbDocumentId, T1.ServiceDocument_Name, T1.ServiceDocument_DeliveryEMail, T1.ServiceDocument_DeliveryPhone, T1.ServiceDocument_CreatDate, T1.ServiceDocument_PdfFileData, T1.ServiceDocument_IsBlocked, T1.ServiceDocument_FailedTimes, T1.ServiceDocument_IsOpened, T1.ServiceDocument_OpenDate, T1.ServiceDocument_Status, T1.ServiceDocument_PublishId, T1.ServiceDocument_PublishPassword)
     FROM (
         SELECT 
             T.ServiceDocumentId AS ServiceDocument_ServiceDocumentId, 
@@ -29,6 +29,9 @@
             T.FailedTimes AS ServiceDocument_FailedTimes, 
             T.IsOpened AS ServiceDocument_IsOpened, 
             T.OpenDate AS ServiceDocument_OpenDate, 
+            CAST(T.Status AS [Edm.Int32]) AS ServiceDocument_Status, 
+            T.PublishId AS ServiceDocument_PublishId, 
+            T.PublishPassword AS ServiceDocument_PublishPassword, 
             True AS _from0
         FROM DocumentContext.ServiceDocuments AS T
     ) AS T1]]></view>
@@ -47,7 +50,7 @@
     ) AS T1]]></view>
   <view extent="DocumentContext.ServiceDocuments"><![CDATA[
     SELECT VALUE -- Constructing ServiceDocuments
-        [NeuronExportedDocuments.DAL.ServiceDocument](T1.ServiceDocument_ServiceDocumentId, T1.ServiceDocument_NeuronDbDocumentId, T1.ServiceDocument_Name, T1.ServiceDocument_DeliveryEMail, T1.ServiceDocument_DeliveryPhone, T1.ServiceDocument_CreatDate, T1.ServiceDocument_PdfFileData, T1.ServiceDocument_IsBlocked, T1.ServiceDocument_FailedTimes, T1.ServiceDocument_IsOpened, T1.ServiceDocument_OpenDate)
+        [NeuronExportedDocuments.DAL.ServiceDocument](T1.ServiceDocument_ServiceDocumentId, T1.ServiceDocument_NeuronDbDocumentId, T1.ServiceDocument_Name, T1.ServiceDocument_DeliveryEMail, T1.ServiceDocument_DeliveryPhone, T1.ServiceDocument_CreatDate, T1.ServiceDocument_PdfFileData, T1.ServiceDocument_IsBlocked, T1.ServiceDocument_FailedTimes, T1.ServiceDocument_IsOpened, T1.ServiceDocument_OpenDate, T1.ServiceDocument_Status, T1.ServiceDocument_PublishId, T1.ServiceDocument_PublishPassword)
     FROM (
         SELECT 
             T.ServiceDocumentId AS ServiceDocument_ServiceDocumentId, 
@@ -61,6 +64,9 @@
             T.FailedTimes AS ServiceDocument_FailedTimes, 
             T.IsOpened AS ServiceDocument_IsOpened, 
             T.OpenDate AS ServiceDocument_OpenDate, 
+            CAST(T.Status AS [NeuronExportedDocuments.DAL.ExportedDocStatus]) AS ServiceDocument_Status, 
+            T.PublishId AS ServiceDocument_PublishId, 
+            T.PublishPassword AS ServiceDocument_PublishPassword, 
             True AS _from0
         FROM CodeFirstDatabase.ServiceDocument AS T
     ) AS T1]]></view>

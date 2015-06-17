@@ -62,6 +62,10 @@
     <Compile Include="Migrations\201506121309458_OpenDateTypeChanged.Designer.cs">
       <DependentUpon>201506121309458_OpenDateTypeChanged.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506170659212_DocPassAndStatus.cs" />
+    <Compile Include="Migrations\201506170659212_DocPassAndStatus.Designer.cs">
+      <DependentUpon>201506170659212_DocPassAndStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DocumentImageRepository.cs" />
@@ -94,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506121309458_OpenDateTypeChanged.resx">
       <DependentUpon>201506121309458_OpenDateTypeChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506170659212_DocPassAndStatus.resx">
+      <DependentUpon>201506170659212_DocPassAndStatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
