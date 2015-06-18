@@ -7,6 +7,9 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Http;
+using NeuronExportedDocuments.Models.Interfaces;
+using NeuronExportedDocuments.Services.Logging;
+using NLog.Config;
 
 namespace NeuronExportedDocuments
 {
@@ -17,7 +20,18 @@ namespace NeuronExportedDocuments
             // Code that runs on application startup
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);            
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("utc_date", typeof(NeuronExportedDocuments.Services.Logging.NLog.UtcDateRenderer));
+            ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("web_variables", typeof(NeuronExportedDocuments.Services.Logging.NLog.WebVariablesRenderer));
+
+        }
+
+        protected void Application_Error()
+        {
+            Exception lastException = Server.GetLastError();
+            var logger = DependencyResolver.Current.GetService<IWebLogger>();
+            logger.Fatal(lastException);
         }
     }
 }

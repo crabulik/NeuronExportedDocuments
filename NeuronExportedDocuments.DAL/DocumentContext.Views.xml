@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<views MappingHash="f44ecaa87b8a4f3948d30356ed668ea891fd468bb0119a41b0cfaad72154760c">
+<views MappingHash="2dbe8910c3a6d5b850874573780accf1058465d5cc26d68e80d7b6c96f769a03">
   <view extent="CodeFirstDatabase.DocumentImage"><![CDATA[
     SELECT VALUE -- Constructing DocumentImage
         [CodeFirstDatabaseSchema.DocumentImage](T1.DocumentImage_DocumentImageId, T1.DocumentImage_ServiceDocumentId, T1.DocumentImage_FileName, T1.DocumentImage_MimeType, T1.DocumentImage_ImageData)
@@ -69,5 +69,43 @@
             T.PublishPassword AS ServiceDocument_PublishPassword, 
             True AS _from0
         FROM CodeFirstDatabase.ServiceDocument AS T
+    ) AS T1]]></view>
+  <view extent="CodeFirstDatabase.NLogError"><![CDATA[
+    SELECT VALUE -- Constructing NLogError
+        [CodeFirstDatabaseSchema.NLogError](T1.NLogError_Id, T1.NLogError_RecordTime, T1.NLogError_Host, T1.NLogError_Type, T1.NLogError_Source, T1.NLogError_Message, T1.NLogError_Level, T1.NLogError_Logger, T1.NLogError_Stacktrace, T1.NLogError_AllXml, T1.NLogError_TimeStamp)
+    FROM (
+        SELECT 
+            T.Id AS NLogError_Id, 
+            T.RecordTime AS NLogError_RecordTime, 
+            T.Host AS NLogError_Host, 
+            T.Type AS NLogError_Type, 
+            T.Source AS NLogError_Source, 
+            T.Message AS NLogError_Message, 
+            T.Level AS NLogError_Level, 
+            T.Logger AS NLogError_Logger, 
+            T.Stacktrace AS NLogError_Stacktrace, 
+            T.AllXml AS NLogError_AllXml, 
+            T.TimeStamp AS NLogError_TimeStamp, 
+            True AS _from0
+        FROM DocumentContext.NLogErrors AS T
+    ) AS T1]]></view>
+  <view extent="DocumentContext.NLogErrors"><![CDATA[
+    SELECT VALUE -- Constructing NLogErrors
+        [NeuronExportedDocuments.DAL.NLogError](T1.NLogError_Id, T1.NLogError_RecordTime, T1.NLogError_Host, T1.NLogError_Type, T1.NLogError_Source, T1.NLogError_Message, T1.NLogError_Level, T1.NLogError_Logger, T1.NLogError_Stacktrace, T1.NLogError_AllXml, T1.NLogError_TimeStamp)
+    FROM (
+        SELECT 
+            T.Id AS NLogError_Id, 
+            T.RecordTime AS NLogError_RecordTime, 
+            T.Host AS NLogError_Host, 
+            T.Type AS NLogError_Type, 
+            T.Source AS NLogError_Source, 
+            T.Message AS NLogError_Message, 
+            T.Level AS NLogError_Level, 
+            T.Logger AS NLogError_Logger, 
+            T.Stacktrace AS NLogError_Stacktrace, 
+            T.AllXml AS NLogError_AllXml, 
+            T.TimeStamp AS NLogError_TimeStamp, 
+            True AS _from0
+        FROM CodeFirstDatabase.NLogError AS T
     ) AS T1]]></view>
 </views>

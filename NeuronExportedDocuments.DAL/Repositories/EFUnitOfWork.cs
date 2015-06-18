@@ -9,6 +9,7 @@ namespace NeuronExportedDocuments.DAL.Repositories
         private DocumentContext _db;
         private ServiceDocumentRepository _serviceDocumentRepository;
         private DocumentImageRepository _documentImageRepository;
+        private NLogErrorRepository _nLogErroreRepository;
 
         public EFUnitOfWork()
         {
@@ -34,12 +35,23 @@ namespace NeuronExportedDocuments.DAL.Repositories
             }
         }
 
+        public IRepository<NLogError> NLogErrors
+        {
+            get
+            {
+                if (_nLogErroreRepository == null)
+                    _nLogErroreRepository = new NLogErrorRepository(_db);
+                return _nLogErroreRepository;
+            }
+        }
+
         public void Save()
         {
             _db.SaveChanges();
         }
 
         private bool disposed = false;
+        
 
         public virtual void Dispose(bool disposing)
         {

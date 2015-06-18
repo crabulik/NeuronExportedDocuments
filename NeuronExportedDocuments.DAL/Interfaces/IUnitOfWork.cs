@@ -7,6 +7,7 @@ namespace NeuronExportedDocuments.DAL.Interfaces
     {
         IRepository<ServiceDocument> ServiceDocuments { get; }
         IRepository<DocumentImage> DocumentImages { get; }
+        IRepository<NLogError> NLogErrors { get; }
         void Save();
     }
 }

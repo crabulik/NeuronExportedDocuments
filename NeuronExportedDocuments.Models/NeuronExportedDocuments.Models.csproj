@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,6 +42,8 @@
   <ItemGroup>
     <Compile Include="DocumentImage.cs" />
     <Compile Include="Enums\ExportedDocStatus.cs" />
+    <Compile Include="Interfaces\ILogger.cs" />
+    <Compile Include="NLogError.cs" />
     <Compile Include="ServiceDocument.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -66,10 +66,19 @@
     <Compile Include="Migrations\201506170659212_DocPassAndStatus.Designer.cs">
       <DependentUpon>201506170659212_DocPassAndStatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506171207059_NLogErrorTable.cs" />
+    <Compile Include="Migrations\201506171207059_NLogErrorTable.Designer.cs">
+      <DependentUpon>201506171207059_NLogErrorTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506181402230_NLogTableChanges.cs" />
+    <Compile Include="Migrations\201506181402230_NLogTableChanges.Designer.cs">
+      <DependentUpon>201506181402230_NLogTableChanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DocumentImageRepository.cs" />
     <Compile Include="Repositories\EFUnitOfWork.cs" />
+    <Compile Include="Repositories\NLogErrorRepository.cs" />
     <Compile Include="Repositories\ServiceDocumentRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +110,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506170659212_DocPassAndStatus.resx">
       <DependentUpon>201506170659212_DocPassAndStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506171207059_NLogErrorTable.resx">
+      <DependentUpon>201506171207059_NLogErrorTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506181402230_NLogTableChanges.resx">
+      <DependentUpon>201506181402230_NLogTableChanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

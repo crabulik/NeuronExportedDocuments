@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
-using System.Web;
 using System.Web.Http;
-using System.Web.Mvc;
 using NeuronExportedDocuments.DAL.Interfaces;
 using NeuronExportedDocuments.Interfaces;
-using NeuronExportedDocuments.Models;
 using NeuronExportedDocuments.Models.Enums;
+using NeuronExportedDocuments.Models.Interfaces;
+using NeuronExportedDocuments.Resources;
 
 namespace NeuronExportedDocuments.Controllers
 {
@@ -16,52 +12,68 @@ namespace NeuronExportedDocuments.Controllers
     {
         private IUnitOfWork Database { get; set; }
         private IWebDocumentProcessor DocumentProcessor { get; set; }
+        private IWebLogger Log { get; set; }
         static object _synclock = new object();
 
-        public DocumentPublisherController(IUnitOfWork database, IWebDocumentProcessor processor)
+        public DocumentPublisherController(IUnitOfWork database, IWebDocumentProcessor processor, IWebLogger logger)
         {
             Database = database;
             DocumentProcessor = processor;
+            Log = logger;
         }
-
-
-
 
 
         public bool Get()
         {
+            Log.Info("DocumentPublisherController.get");
             var result = false;
             lock (_synclock)
             {
-                var changed = false;
-                var unhandledDocs =
-                    Database.ServiceDocuments.Find((document) => document.Status == ExportedDocStatus.Unhandled);
-                foreach (var unhandledDoc in unhandledDocs)
+                try
                 {
-                    if (DocumentProcessor.PublishDocument(unhandledDoc))
+                    var changed = false;
+                    var unhandledDocs =
+                        Database.ServiceDocuments.Find((document) => document.Status == ExportedDocStatus.Unhandled);
+                    foreach (var unhandledDoc in unhandledDocs)
                     {
-                        Database.ServiceDocuments.Update(unhandledDoc);
-                        changed = true;
+                        if (DocumentProcessor.PublishDocument(unhandledDoc))
+                        {
+                            Database.ServiceDocuments.Update(unhandledDoc);
+                            changed = true;
+                        }
+                        else
+                        {
+                            Log.Warn(MainExceptionMessages.rs_DocumentWasntPublished, unhandledDoc);
+                        }
                     }
-                }
-                if (changed)
-                    Database.Save();
+                    if (changed)
+                        Database.Save();
 
-                changed = false;
-                var publishedDocs =
-                    Database.ServiceDocuments.Find((document) => document.Status == ExportedDocStatus.Published);
-                foreach (var publishedDoc in publishedDocs)
-                {
-                    if (DocumentProcessor.SendDocInfo(publishedDoc))
+                    changed = false;
+                    var publishedDocs =
+                        Database.ServiceDocuments.Find((document) => document.Status == ExportedDocStatus.Published);
+                    foreach (var publishedDoc in publishedDocs)
                     {
-                        Database.ServiceDocuments.Update(publishedDoc);
-                        changed = true;
+                        if (DocumentProcessor.SendDocInfo(publishedDoc))
+                        {
+                            Database.ServiceDocuments.Update(publishedDoc);
+                            changed = true;
+                        }
+                        else
+                        {
+                            Log.Warn(MainExceptionMessages.rs_DocumentInfoWasntSendedToUser, publishedDoc);
+                        }
+                    }
+                    if (changed)
+                    {
+                        Database.Save();
+                        result = true;
                     }
                 }
-                if (changed)
+                catch (Exception e)
                 {
-                    Database.Save();
-                    result = true;
+                    Log.Error(MainExceptionMessages.rs_ExceptionInDocumentPublisherControllerGet, e);
+                    return false;
                 }
             }
 
