@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<views MappingHash="2dbe8910c3a6d5b850874573780accf1058465d5cc26d68e80d7b6c96f769a03">
+<views MappingHash="30b4f3d75ef4512427b3bb2c704d2911ea7ad3a61deeb0ebbaba2ba841509140">
   <view extent="CodeFirstDatabase.DocumentImage"><![CDATA[
     SELECT VALUE -- Constructing DocumentImage
         [CodeFirstDatabaseSchema.DocumentImage](T1.DocumentImage_DocumentImageId, T1.DocumentImage_ServiceDocumentId, T1.DocumentImage_FileName, T1.DocumentImage_MimeType, T1.DocumentImage_ImageData)

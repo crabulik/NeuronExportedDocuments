@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using NeuronExportedDocuments.Models.Enums;
 
 namespace NeuronExportedDocuments.Models
@@ -31,8 +32,9 @@ namespace NeuronExportedDocuments.Models
         public DateTime? OpenDate { get; set; }
 
         public ExportedDocStatus Status { get; set; }
-
+        [MaxLength(12)]
         public string PublishId { get; set; }
+        [MaxLength(8)]
         public string PublishPassword { get; set; }
 
         public ServiceDocument()

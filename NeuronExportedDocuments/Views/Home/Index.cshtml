@@ -1,0 +1,17 @@
+﻿@using NeuronExportedDocuments.Resources
+@model NeuronExportedDocuments.Models.DocumentCredentials
+
+@{
+    ViewBag.Title = MainMessages.rs_GetNeuronDocument;
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+@section Scripts {
+
+}
+@section Body {
+    <div id="getter" class="section panel panel-primary">
+        @Html.Partial("DocumentGetter", Model)
+    </div>
+}
+
