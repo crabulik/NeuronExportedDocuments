@@ -1,65 +1,56 @@
 ﻿$(function () {
-    $('span.field-validation-valid, span.field-validation-error').each(function () {
-        $(this).addClass('help-inline');
-    });
-
+    // any validation summary items should be encapsulated by a class alert and alert-danger
     $('.validation-summary-errors').each(function () {
         $(this).addClass('alert');
-        $(this).addClass('alert-error');
-        $(this).addClass('alert-block');
+        $(this).addClass('alert-danger');
     });
 
+    // update validation fields on submission of form
     $('form').submit(function () {
         if ($(this).valid()) {
             $(this).find('div.control-group').each(function () {
                 if ($(this).find('span.field-validation-error').length == 0) {
-                    $(this).removeClass('error');
+                    $(this).removeClass('has-error');
+                    $(this).addClass('has-success');
                 }
             });
         }
         else {
             $(this).find('div.control-group').each(function () {
                 if ($(this).find('span.field-validation-error').length > 0) {
-                    $(this).addClass('error');
+                    $(this).removeClass('has-success');
+                    $(this).addClass('has-error');
                 }
             });
             $('.validation-summary-errors').each(function () {
-                if ($(this).hasClass('alert-error') == false) {
+                if ($(this).hasClass('alert-danger') == false) {
                     $(this).addClass('alert');
-                    $(this).addClass('alert-error');
-                    $(this).addClass('alert-block');
+                    $(this).addClass('alert-danger');
                 }
             });
         }
     });
 
+    // check each form-group for errors on ready
     $('form').each(function () {
-        $(this).find('div.control-group').each(function () {
+        $(this).find('div.form-group').each(function () {
             if ($(this).find('span.field-validation-error').length > 0) {
-                $(this).addClass('error');
+                $(this).addClass('has-error');
             }
         });
-    });
-
-    $("input[type='password'], input[type='text']").blur(function () {
-        if ($(this).hasClass('input-validation-error') == true || $(this).closest(".control-group").find('span.field-validation-error').length > 0) {
-            $(this).addClass('error');
-            $(this).closest(".control-group").addClass("error");
-        } else {
-            $(this).removeClass('error');
-            $(this).closest(".control-group").removeClass("error");
-        }
     });
 });
 
 var page = function () {
-    //Update that validator
+    //Update the validator
     $.validator.setDefaults({
         highlight: function (element) {
-            $(element).closest(".control-group").addClass("error");
+            $(element).closest(".form-group").addClass("has-error");
+            $(element).closest(".form-group").removeClass("has-success");
         },
         unhighlight: function (element) {
-            $(element).closest(".control-group").removeClass("error");
+            $(element).closest(".form-group").removeClass("has-error");
+            $(element).closest(".form-group").addClass("has-success");
         }
     });
 }();

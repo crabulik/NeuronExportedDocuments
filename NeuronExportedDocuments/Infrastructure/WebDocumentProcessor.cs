@@ -80,7 +80,11 @@ namespace NeuronExportedDocuments.Infrastructure
                 var sourceString = DateTime.Now.ToLongTimeString() + doc.ServiceDocumentId +
                                    DateTime.Now.ToShortDateString() + doc.NeuronDbDocumentId;
                 var id = sourceString.GetHashCode();
-                if (id > 0)
+                if (id < 0)
+                {
+                    id = 0 - id;
+                }
+                if (id != 0)
                 lock (_synclock)
                 {
                     if (!Database.ServiceDocuments.Find((document) => (document.PublishId == id.ToString())).Any())

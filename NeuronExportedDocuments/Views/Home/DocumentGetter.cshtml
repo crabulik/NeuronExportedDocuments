@@ -7,21 +7,21 @@
 <div class="panel-body">
     @using (Html.BeginForm("GetDocument", "Home", new { @class = "navbar-form navbar-left" }))
     {
-
-        <div class="form-group control-group @if (!ViewData.ModelState.IsValidField("PublishId"))
-                                             { @Html.Raw("error"); }">
+        @Html.ValidationSummary(true);
+        <div class="form-group @if (!ViewData.ModelState.IsValidField("PublishId"))
+                                             { @Html.Raw("has-error"); }">
             @Html.LabelFor(model => model.PublishId, new { @class = "control-label" })
-            <div class="controls">
-                @Html.EditorFor(model => model.PublishId, new { @class = "form-control", autocomplete = "off" })
+            <div class="control-group">
+                @Html.TextBoxFor(model => model.PublishId, new { @class = "form-control", autocomplete = "off" })
                 @Html.ValidationMessageFor(model => model.PublishId, null, new { @class = "help-inline" })
             </div>
         </div>
         
-        <div class="form-group control-group @if (!ViewData.ModelState.IsValidField("PublishPassword"))
-                                             { @Html.Raw("error"); }">
+        <div class="form-group @if (!ViewData.ModelState.IsValidField("PublishPassword"))
+                                             { @Html.Raw("has-error"); }">
             @Html.LabelFor(model => model.PublishPassword, new { @class = "control-label" })
-            <div class="controls">
-                @Html.EditorFor(model => model.PublishPassword, null,  new { @class = "form-control", autocomplete = "off" })
+            <div class="control-group">
+                @Html.TextBoxFor(model => model.PublishPassword, new { @class = "form-control", autocomplete = "off" })
                 @Html.ValidationMessageFor(model => model.PublishPassword, null, new { @class = "help-inline" })
             </div>
         </div>

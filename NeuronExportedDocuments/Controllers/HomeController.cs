@@ -39,11 +39,11 @@ namespace NeuronExportedDocuments.Controllers
                 var found = Database.ServiceDocuments.Find((document) => document.PublishId == doc.PublishId).FirstOrDefault();
                 if (found == null)
                 {
-                    ModelState.AddModelError("PublishId", ValidateMessages.rs_DocumentIdOrPasswordAreIncorrect);
+                    ModelState.AddModelError("", ValidateMessages.rs_DocumentIdOrPasswordAreIncorrect);
                 }
                 else if (found.PublishPassword != doc.PublishPassword)
                 {
-                    ModelState.AddModelError("PublishId", ValidateMessages.rs_DocumentIdOrPasswordAreIncorrect);
+                    ModelState.AddModelError("", ValidateMessages.rs_DocumentIdOrPasswordAreIncorrect);
                 }
                 else
                 {
