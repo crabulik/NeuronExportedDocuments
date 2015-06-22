@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<views MappingHash="30b4f3d75ef4512427b3bb2c704d2911ea7ad3a61deeb0ebbaba2ba841509140">
+<views MappingHash="735d0b94a740b1041218a2bdc5477a9a2b1602d33d7cc28f55877e62b2ee2cbb">
   <view extent="CodeFirstDatabase.DocumentImage"><![CDATA[
     SELECT VALUE -- Constructing DocumentImage
         [CodeFirstDatabaseSchema.DocumentImage](T1.DocumentImage_DocumentImageId, T1.DocumentImage_ServiceDocumentId, T1.DocumentImage_FileName, T1.DocumentImage_MimeType, T1.DocumentImage_ImageData)
@@ -15,7 +15,7 @@
     ) AS T1]]></view>
   <view extent="CodeFirstDatabase.ServiceDocument"><![CDATA[
     SELECT VALUE -- Constructing ServiceDocument
-        [CodeFirstDatabaseSchema.ServiceDocument](T1.ServiceDocument_ServiceDocumentId, T1.ServiceDocument_NeuronDbDocumentId, T1.ServiceDocument_Name, T1.ServiceDocument_DeliveryEMail, T1.ServiceDocument_DeliveryPhone, T1.ServiceDocument_CreatDate, T1.ServiceDocument_PdfFileData, T1.ServiceDocument_IsBlocked, T1.ServiceDocument_FailedTimes, T1.ServiceDocument_IsOpened, T1.ServiceDocument_OpenDate, T1.ServiceDocument_Status, T1.ServiceDocument_PublishId, T1.ServiceDocument_PublishPassword)
+        [CodeFirstDatabaseSchema.ServiceDocument](T1.ServiceDocument_ServiceDocumentId, T1.ServiceDocument_NeuronDbDocumentId, T1.ServiceDocument_Name, T1.ServiceDocument_DeliveryEMail, T1.ServiceDocument_DeliveryPhone, T1.ServiceDocument_CreatDate, T1.ServiceDocument_PdfFileData, T1.ServiceDocument_ImageData, T1.ServiceDocument_IsImagesInZip, T1.ServiceDocument_IsBlocked, T1.ServiceDocument_FailedTimes, T1.ServiceDocument_IsOpened, T1.ServiceDocument_OpenDate, T1.ServiceDocument_Status, T1.ServiceDocument_PublishId, T1.ServiceDocument_PublishPassword)
     FROM (
         SELECT 
             T.ServiceDocumentId AS ServiceDocument_ServiceDocumentId, 
@@ -25,6 +25,8 @@
             T.DeliveryPhone AS ServiceDocument_DeliveryPhone, 
             T.CreatDate AS ServiceDocument_CreatDate, 
             T.PdfFileData AS ServiceDocument_PdfFileData, 
+            T.ImageData AS ServiceDocument_ImageData, 
+            T.IsImagesInZip AS ServiceDocument_IsImagesInZip, 
             T.IsBlocked AS ServiceDocument_IsBlocked, 
             T.FailedTimes AS ServiceDocument_FailedTimes, 
             T.IsOpened AS ServiceDocument_IsOpened, 
@@ -50,7 +52,7 @@
     ) AS T1]]></view>
   <view extent="DocumentContext.ServiceDocuments"><![CDATA[
     SELECT VALUE -- Constructing ServiceDocuments
-        [NeuronExportedDocuments.DAL.ServiceDocument](T1.ServiceDocument_ServiceDocumentId, T1.ServiceDocument_NeuronDbDocumentId, T1.ServiceDocument_Name, T1.ServiceDocument_DeliveryEMail, T1.ServiceDocument_DeliveryPhone, T1.ServiceDocument_CreatDate, T1.ServiceDocument_PdfFileData, T1.ServiceDocument_IsBlocked, T1.ServiceDocument_FailedTimes, T1.ServiceDocument_IsOpened, T1.ServiceDocument_OpenDate, T1.ServiceDocument_Status, T1.ServiceDocument_PublishId, T1.ServiceDocument_PublishPassword)
+        [NeuronExportedDocuments.DAL.ServiceDocument](T1.ServiceDocument_ServiceDocumentId, T1.ServiceDocument_NeuronDbDocumentId, T1.ServiceDocument_Name, T1.ServiceDocument_DeliveryEMail, T1.ServiceDocument_DeliveryPhone, T1.ServiceDocument_CreatDate, T1.ServiceDocument_PdfFileData, T1.ServiceDocument_ImageData, T1.ServiceDocument_IsImagesInZip, T1.ServiceDocument_IsBlocked, T1.ServiceDocument_FailedTimes, T1.ServiceDocument_IsOpened, T1.ServiceDocument_OpenDate, T1.ServiceDocument_Status, T1.ServiceDocument_PublishId, T1.ServiceDocument_PublishPassword)
     FROM (
         SELECT 
             T.ServiceDocumentId AS ServiceDocument_ServiceDocumentId, 
@@ -60,6 +62,8 @@
             T.DeliveryPhone AS ServiceDocument_DeliveryPhone, 
             T.CreatDate AS ServiceDocument_CreatDate, 
             T.PdfFileData AS ServiceDocument_PdfFileData, 
+            T.ImageData AS ServiceDocument_ImageData, 
+            T.IsImagesInZip AS ServiceDocument_IsImagesInZip, 
             T.IsBlocked AS ServiceDocument_IsBlocked, 
             T.FailedTimes AS ServiceDocument_FailedTimes, 
             T.IsOpened AS ServiceDocument_IsOpened, 

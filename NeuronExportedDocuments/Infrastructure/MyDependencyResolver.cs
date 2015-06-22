@@ -4,6 +4,7 @@ using System.Web.Http.Dependencies;
 using NeuronExportedDocuments.DAL.Interfaces;
 using NeuronExportedDocuments.DAL.Repositories;
 using NeuronExportedDocuments.Interfaces;
+using NeuronExportedDocuments.Models;
 using NeuronExportedDocuments.Models.Interfaces;
 using NeuronExportedDocuments.Services.Logging;
 using NeuronExportedDocuments.Services.Logging.NLog;
@@ -29,6 +30,8 @@ namespace NeuronExportedDocuments.Infrastructure
             _kernel.Bind<IUnitOfWork>().To<EFUnitOfWork>();
             _kernel.Bind<IWebDocumentProcessor>().To<WebDocumentProcessor>().InSingletonScope();
             _kernel.Bind<IWebLogger>().To<NLogLogger>().InSingletonScope();
+            _kernel.Bind<IUserData>().To<UserData>();
+            _kernel.Bind<UserDataBinder>().ToSelf();
         }
 
         public object GetService(Type serviceType)

@@ -8,6 +8,8 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Http;
+using NeuronExportedDocuments.Infrastructure;
+using NeuronExportedDocuments.Interfaces;
 using NeuronExportedDocuments.Models.Interfaces;
 using NeuronExportedDocuments.Services.Logging;
 using NLog.Config;
@@ -23,6 +25,7 @@ namespace NeuronExportedDocuments
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            ModelBinders.Binders.Add(typeof(IUserData), DependencyResolver.Current.GetService<UserDataBinder>());
 
             ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("utc_date", typeof(NeuronExportedDocuments.Services.Logging.NLog.UtcDateRenderer));
             ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("web_variables", typeof(NeuronExportedDocuments.Services.Logging.NLog.WebVariablesRenderer));

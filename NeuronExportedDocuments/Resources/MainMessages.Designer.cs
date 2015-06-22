@@ -95,5 +95,14 @@ namespace NeuronExportedDocuments.Resources {
                 return ResourceManager.GetString("rs_GetNeuronDocument", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document_{0}.pdf.
+        /// </summary>
+        public static string rs_PDFDocumentDefaultName {
+            get {
+                return ResourceManager.GetString("rs_PDFDocumentDefaultName", resourceCulture);
+            }
+        }
     }
 }

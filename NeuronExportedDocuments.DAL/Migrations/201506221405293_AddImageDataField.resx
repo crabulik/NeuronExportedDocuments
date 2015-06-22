@@ -117,25 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="rs_DocumentIdMustBe12" xml:space="preserve">
-    <value>Document ID must has not more than 12 characters</value>
+  <data name="Target" xml:space="preserve">
+    <value>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</value>
   </data>
-  <data name="rs_DocumentIdMustBeSet" xml:space="preserve">
-    <value>Document ID must be set</value>
-  </data>
-  <data name="rs_DocumentIdOnlyDigits" xml:space="preserve">
-    <value>Document ID must contains only digits</value>
-  </data>
-  <data name="rs_DocumentIdOrPasswordAreIncorrect" xml:space="preserve">
-    <value>The Document ID or Password are incorrect</value>
-  </data>
-  <data name="rs_DocumentPasswordMustBe8" xml:space="preserve">
-    <value>Document Password must has not more than 8 characters</value>
-  </data>
-  <data name="rs_DocumentPasswordMustBeSet" xml:space="preserve">
-    <value>Document Password must be set</value>
-  </data>
-  <data name="rs_DocumentPleaseEnterPassword" xml:space="preserve">
-    <value>Please, enter the document's password</value>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
   </data>
 </root>

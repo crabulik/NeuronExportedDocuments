@@ -113,5 +113,14 @@ namespace NeuronExportedDocuments.Resources {
                 return ResourceManager.GetString("rs_DocumentPasswordMustBeSet", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please, enter the document&apos;s password.
+        /// </summary>
+        public static string rs_DocumentPleaseEnterPassword {
+            get {
+                return ResourceManager.GetString("rs_DocumentPleaseEnterPassword", resourceCulture);
+            }
+        }
     }
 }

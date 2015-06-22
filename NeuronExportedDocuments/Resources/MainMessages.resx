@@ -129,4 +129,7 @@
   <data name="rs_GetNeuronDocument" xml:space="preserve">
     <value>Get a Neuron document</value>
   </data>
+  <data name="rs_PDFDocumentDefaultName" xml:space="preserve">
+    <value>Document_{0}.pdf</value>
+  </data>
 </root>

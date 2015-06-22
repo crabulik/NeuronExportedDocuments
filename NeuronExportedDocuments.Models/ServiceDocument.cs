@@ -23,6 +23,9 @@ namespace NeuronExportedDocuments.Models
 
         public byte[] PdfFileData { get; set; }
 
+        public byte[] ImageData { get; set; }
+        public bool IsImagesInZip { get; set; }
+
         public bool IsBlocked { get; set; }
 
         public int FailedTimes { get; set; }
