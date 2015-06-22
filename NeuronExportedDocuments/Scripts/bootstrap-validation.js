@@ -8,7 +8,7 @@
     // update validation fields on submission of form
     $('form').submit(function () {
         if ($(this).valid()) {
-            $(this).find('div.control-group').each(function () {
+            $(this).find('div.form-group').each(function () {
                 if ($(this).find('span.field-validation-error').length == 0) {
                     $(this).removeClass('has-error');
                     $(this).addClass('has-success');
@@ -16,7 +16,7 @@
             });
         }
         else {
-            $(this).find('div.control-group').each(function () {
+            $(this).find('div.form-group').each(function () {
                 if ($(this).find('span.field-validation-error').length > 0) {
                     $(this).removeClass('has-success');
                     $(this).addClass('has-error');

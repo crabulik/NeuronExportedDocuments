@@ -13,7 +13,10 @@ namespace NeuronExportedDocuments
                 "~/Scripts/jquery-{version}.js",
                 "~/Scripts/jquery.validate.js",
                 "~/Scripts/jquery.validate.unobtrusive.js",
-                "~/Scripts/bootstrap-validation.js"));
+                "~/Scripts/bootstrap.js"
+                //,"~/Scripts/jquery.validate.unobtrusive.bootstrap.tooltip.js"
+                ,"~/Scripts/bootstrap-validation.js"
+                ));
         }
     }
 }
