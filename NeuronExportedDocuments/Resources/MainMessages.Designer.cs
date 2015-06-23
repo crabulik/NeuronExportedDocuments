@@ -61,6 +61,15 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose document format:.
+        /// </summary>
+        public static string rs_ChooseDocumentFormat {
+            get {
+                return ResourceManager.GetString("rs_ChooseDocumentFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Document Code.
         /// </summary>
         public static string rs_DocumentPublishId {
@@ -79,11 +88,47 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Download Neuron document.
+        /// </summary>
+        public static string rs_DownloadNeuronDocument {
+            get {
+                return ResourceManager.GetString("rs_DownloadNeuronDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get.
         /// </summary>
         public static string rs_GetDocument {
             get {
                 return ResourceManager.GetString("rs_GetDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PDF file.
+        /// </summary>
+        public static string rs_GetDocumentAsPdf {
+            get {
+                return ResourceManager.GetString("rs_GetDocumentAsPdf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image.
+        /// </summary>
+        public static string rs_GetDocumentAsPng {
+            get {
+                return ResourceManager.GetString("rs_GetDocumentAsPng", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Images archive.
+        /// </summary>
+        public static string rs_GetDocumentAsZip {
+            get {
+                return ResourceManager.GetString("rs_GetDocumentAsZip", resourceCulture);
             }
         }
         
@@ -97,11 +142,38 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Get next document.
+        /// </summary>
+        public static string rs_GetNextDocument {
+            get {
+                return ResourceManager.GetString("rs_GetNextDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Document_{0}.pdf.
         /// </summary>
         public static string rs_PDFDocumentDefaultName {
             get {
                 return ResourceManager.GetString("rs_PDFDocumentDefaultName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document_{0}.png.
+        /// </summary>
+        public static string rs_PNGDocumentDefaultName {
+            get {
+                return ResourceManager.GetString("rs_PNGDocumentDefaultName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document_{0}.zip.
+        /// </summary>
+        public static string rs_ZIPDocumentDefaultName {
+            get {
+                return ResourceManager.GetString("rs_ZIPDocumentDefaultName", resourceCulture);
             }
         }
     }

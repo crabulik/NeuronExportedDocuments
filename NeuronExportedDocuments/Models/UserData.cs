@@ -5,11 +5,11 @@ namespace NeuronExportedDocuments.Models
 {
     public class UserData : IUserData
     {
-        public Dictionary<string, ServiceDocument> GetCache { get; set; }
+        public Dictionary<string, ServiceDocumentInfo> GetCache { get; set; }
 
         public UserData()
         {
-            GetCache = new Dictionary<string, ServiceDocument>();
+            GetCache = new Dictionary<string, ServiceDocumentInfo>();
         }
     }
 }

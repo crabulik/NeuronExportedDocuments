@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using NeuronExportedDocuments.DAL.Interfaces;
 using NeuronExportedDocuments.Interfaces;
 using NeuronExportedDocuments.Models;
@@ -14,15 +15,18 @@ namespace NeuronExportedDocuments.Controllers
     public class HomeController : Controller
     {
         protected const string TryCounterName = "TryCounterName";
+        protected const string PngMimeName = "image/png";
         private IUnitOfWork Database { get; set; }
 
         private IWebLogger Log { get; set; }
+        private IMappingEngine ModelMapper { get; set; }
 
         
-        public HomeController(IUnitOfWork uow, IWebLogger logger)
+        public HomeController(IUnitOfWork uow, IWebLogger logger, IMappingEngine mapper)
         {
             Database = uow;
             Log = logger;
+            ModelMapper = mapper;
         }
         public ActionResult Index()
         {
@@ -51,15 +55,17 @@ namespace NeuronExportedDocuments.Controllers
                 else
                 {
                     Session[TryCounterName] = 0;
-                    if (userData.GetCache.ContainsKey(found.PublishId))
+                    var documentInfo = ModelMapper.Map<ServiceDocumentInfo>(found);
+                    if (userData.GetCache.ContainsKey(documentInfo.PublishId))
                     {
-                        userData.GetCache[found.PublishId] = found;
+
+                        userData.GetCache[documentInfo.PublishId] = documentInfo;
                     }
                     else
                     {
-                        userData.GetCache.Add(found.PublishId, found);
+                        userData.GetCache.Add(documentInfo.PublishId, documentInfo);
                     }
-                    return RedirectToAction("DownloadPdf", new { publishId = found.PublishId });
+                    return View(documentInfo);
                 }
                 
             }
@@ -72,19 +78,50 @@ namespace NeuronExportedDocuments.Controllers
             if (userData.GetCache.ContainsKey(publishId))
             {
                 var name = string.Format(MainMessages.rs_PDFDocumentDefaultName,
-                    userData.GetCache[publishId].CreatDate.ToShortDateString());
+                    userData.GetCache[publishId].PublishId);
                 return File(userData.GetCache[publishId].PdfFileData,
                     System.Net.Mime.MediaTypeNames.Application.Pdf, name);
             }
             else
             {
-                ModelState.AddModelError("", ValidateMessages.rs_DocumentPleaseEnterPassword);
-                return View("Index", new DocumentCredentials
-                {
-                    PublishId = publishId
-                });
+                return ToGetPageWithFilledPublishId(publishId);
             }
             
+        }
+
+        public ActionResult DownloadImg(IUserData userData, string publishId)
+        {
+            if (userData.GetCache.ContainsKey(publishId))
+            {
+                var doc = userData.GetCache[publishId];
+                if (doc.IsImagesInZip)
+                {
+                    var name = string.Format(MainMessages.rs_ZIPDocumentDefaultName,
+                        doc.PublishId);
+                    return File(doc.ImageData,
+                        System.Net.Mime.MediaTypeNames.Application.Zip, name);
+                }
+                else
+                {
+                    var name = string.Format(MainMessages.rs_PNGDocumentDefaultName,
+                        doc.PublishId);
+                    return File(doc.ImageData,
+                        PngMimeName, name);
+                }
+            }
+            else
+            {
+                return ToGetPageWithFilledPublishId(publishId);
+            }
+        }
+
+        private ActionResult ToGetPageWithFilledPublishId(string publishId)
+        {
+            ModelState.AddModelError("", ValidateMessages.rs_DocumentPleaseEnterPassword);
+            return View("Index", new DocumentCredentials
+            {
+                PublishId = publishId
+            });
         }
     }
 }

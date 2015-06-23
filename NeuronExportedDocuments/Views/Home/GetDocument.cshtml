@@ -1,0 +1,38 @@
+﻿
+@using NeuronExportedDocuments.Resources
+@model NeuronExportedDocuments.Models.ServiceDocumentInfo
+
+@{
+    ViewBag.Title = MainMessages.rs_DownloadNeuronDocument;
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+@section Scripts {
+
+}
+@section Body {
+    <h2>@MainMessages.rs_DownloadNeuronDocument</h2>
+    <div class="panel panel-primary">
+        <div class="panel-heading">@MainMessages.rs_ChooseDocumentFormat</div>
+        <div class="panel-body">
+            <p>
+                @if (Model.IsImagesInZip)
+                {
+                    <a class="btn btn-default btn-lg" href="@Url.Action("DownloadImg", new { publishId = Model.PublishId})">
+                        <img src="@Url.Content("~/Content/img/ic_archive_black_48dp_1x.png")" />@MainMessages.rs_GetDocumentAsZip
+                    </a>
+                }
+                else
+                {
+                    <a class="btn btn-default btn-lg" href="@Url.Action("DownloadImg", new { publishId = Model.PublishId})">
+                        <img src="@Url.Content("~/Content/img/ic_image_black_48dp_1x.png")" />@MainMessages.rs_GetDocumentAsPng
+                    </a>
+                }
+                <a class="btn btn-default btn-lg" href="@Url.Action("DownloadPdf", new { publishId = Model.PublishId })">
+                    <img src="@Url.Content("~/Content/img/ic_picture_as_pdf_black_48dp_1x.png")" />@MainMessages.rs_GetDocumentAsPdf
+                </a>
+            </p>
+            @Html.ActionLink(MainMessages.rs_GetNextDocument, "Index")
+        </div>
+    </div>
+}

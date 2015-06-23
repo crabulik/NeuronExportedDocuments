@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http.Dependencies;
+using AutoMapper;
 using NeuronExportedDocuments.DAL.Interfaces;
 using NeuronExportedDocuments.DAL.Repositories;
 using NeuronExportedDocuments.Interfaces;
 using NeuronExportedDocuments.Models;
 using NeuronExportedDocuments.Models.Interfaces;
+using NeuronExportedDocuments.Services.AutoMapper;
 using NeuronExportedDocuments.Services.Logging;
 using NeuronExportedDocuments.Services.Logging.NLog;
 using Ninject;
@@ -32,6 +34,9 @@ namespace NeuronExportedDocuments.Infrastructure
             _kernel.Bind<IWebLogger>().To<NLogLogger>().InSingletonScope();
             _kernel.Bind<IUserData>().To<UserData>();
             _kernel.Bind<UserDataBinder>().ToSelf();
+
+            IAutoMapperConfiguration conf = new AutoMapperConfiguration();
+            _kernel.Bind<IMappingEngine>().ToMethod(conf.Configure);
         }
 
         public object GetService(Type serviceType)

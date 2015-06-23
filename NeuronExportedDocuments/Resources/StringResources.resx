@@ -117,43 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="rs_ChooseDocumentFormat" xml:space="preserve">
-    <value>Choose document format:</value>
+  <data name="rs_ExportedDocStatusErrorValue" xml:space="preserve">
+    <value>!Error Value!</value>
   </data>
-  <data name="rs_DocumentPublishId" xml:space="preserve">
-    <value>Document Code</value>
+  <data name="rs_ExportedDocStatusInArchive" xml:space="preserve">
+    <value>In Archive</value>
   </data>
-  <data name="rs_DocumentPublishPassword" xml:space="preserve">
-    <value>Password</value>
+  <data name="rs_ExportedDocStatusInfoSented" xml:space="preserve">
+    <value>Info Sent</value>
   </data>
-  <data name="rs_DownloadNeuronDocument" xml:space="preserve">
-    <value>Download Neuron document</value>
+  <data name="rs_ExportedDocStatusPublished" xml:space="preserve">
+    <value>Published</value>
   </data>
-  <data name="rs_GetDocument" xml:space="preserve">
-    <value>Get</value>
-  </data>
-  <data name="rs_GetDocumentAsPdf" xml:space="preserve">
-    <value>PDF file</value>
-  </data>
-  <data name="rs_GetDocumentAsPng" xml:space="preserve">
-    <value>Image</value>
-  </data>
-  <data name="rs_GetDocumentAsZip" xml:space="preserve">
-    <value>Images archive</value>
-  </data>
-  <data name="rs_GetNeuronDocument" xml:space="preserve">
-    <value>Get a Neuron document</value>
-  </data>
-  <data name="rs_GetNextDocument" xml:space="preserve">
-    <value>Get next document</value>
-  </data>
-  <data name="rs_PDFDocumentDefaultName" xml:space="preserve">
-    <value>Document_{0}.pdf</value>
-  </data>
-  <data name="rs_PNGDocumentDefaultName" xml:space="preserve">
-    <value>Document_{0}.png</value>
-  </data>
-  <data name="rs_ZIPDocumentDefaultName" xml:space="preserve">
-    <value>Document_{0}.zip</value>
+  <data name="rs_ExportedDocStatusUnhandled" xml:space="preserve">
+    <value>Unhandled</value>
   </data>
 </root>

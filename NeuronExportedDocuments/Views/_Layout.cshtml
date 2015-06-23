@@ -7,9 +7,18 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/ClientScripts")
     @RenderSection("Scripts")
-   
+    
 </head>
-<body>
-    @RenderSection("Body")
-</body>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                        <img alt="Brand" src="@Url.Content("~/Content/img/neuron.png")">
+                    </a>
+                </div>
+            </div>
+        </nav>
+        @RenderSection("Body")
+    </body>
 </html>

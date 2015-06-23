@@ -5,6 +5,6 @@ namespace NeuronExportedDocuments.Interfaces
 {
     public interface IUserData
     {
-        Dictionary<string, ServiceDocument> GetCache { get; set; }
+        Dictionary<string, ServiceDocumentInfo> GetCache { get; set; }
     }
 }
