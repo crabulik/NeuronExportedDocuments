@@ -120,6 +120,9 @@
   <data name="rs_ChooseDocumentFormat" xml:space="preserve">
     <value>Choose document format:</value>
   </data>
+  <data name="rs_DocumentAccessibilityTerm" xml:space="preserve">
+    <value>Your document will be acessiable until</value>
+  </data>
   <data name="rs_DocumentPublishId" xml:space="preserve">
     <value>Document Code</value>
   </data>
@@ -152,6 +155,9 @@
   </data>
   <data name="rs_PNGDocumentDefaultName" xml:space="preserve">
     <value>Document_{0}.png</value>
+  </data>
+  <data name="rs_Warning" xml:space="preserve">
+    <value>Warning!</value>
   </data>
   <data name="rs_ZIPDocumentDefaultName" xml:space="preserve">
     <value>Document_{0}.zip</value>

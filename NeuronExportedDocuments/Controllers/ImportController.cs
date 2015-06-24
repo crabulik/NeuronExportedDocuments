@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -39,6 +40,15 @@ namespace NeuronExportedDocuments.Controllers
                 var document = _docConverter.Convert(value);
                 if (document != null)
                 {
+                    var inDbDoc =
+                        Database.ServiceDocuments.Find(p => (p.NeuronDbDocumentId == document.NeuronDbDocumentId) &&
+                            (p.CreatDate >= document.CreatDate))
+                            .FirstOrDefault();
+                    if (inDbDoc != null)
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotAcceptable, WebApiMessages.DocIsExist);
+                    }
+
                     Database.ServiceDocuments.Create(document);
                     Database.Save();
                     var response = Request.CreateResponse(HttpStatusCode.OK, WebApiMessages.Ok);

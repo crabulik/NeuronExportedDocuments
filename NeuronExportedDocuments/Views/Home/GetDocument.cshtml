@@ -12,6 +12,12 @@
 }
 @section Body {
     <h2>@MainMessages.rs_DownloadNeuronDocument</h2>
+    @if (Model.IsOpened)
+    {
+        <div class="alert alert-warning" role="alert">
+            <strong>@MainMessages.rs_Warning</strong> @MainMessages.rs_DocumentAccessibilityTerm <strong>@((Model.OpenDate.HasValue) ? Model.OpenDate.Value.AddMonths(1).ToShortDateString() : "???")</strong>
+        </div>
+    }
     <div class="panel panel-primary">
         <div class="panel-heading">@MainMessages.rs_ChooseDocumentFormat</div>
         <div class="panel-body">

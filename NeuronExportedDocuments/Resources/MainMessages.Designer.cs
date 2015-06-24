@@ -70,6 +70,15 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your document will be acessiable until.
+        /// </summary>
+        public static string rs_DocumentAccessibilityTerm {
+            get {
+                return ResourceManager.GetString("rs_DocumentAccessibilityTerm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Document Code.
         /// </summary>
         public static string rs_DocumentPublishId {
@@ -165,6 +174,15 @@ namespace NeuronExportedDocuments.Resources {
         public static string rs_PNGDocumentDefaultName {
             get {
                 return ResourceManager.GetString("rs_PNGDocumentDefaultName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning!.
+        /// </summary>
+        public static string rs_Warning {
+            get {
+                return ResourceManager.GetString("rs_Warning", resourceCulture);
             }
         }
         

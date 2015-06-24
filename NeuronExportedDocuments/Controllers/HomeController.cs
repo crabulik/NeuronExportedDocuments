@@ -55,6 +55,7 @@ namespace NeuronExportedDocuments.Controllers
                 else
                 {
                     Session[TryCounterName] = 0;
+                    SetDocumentOpened(found);
                     var documentInfo = ModelMapper.Map<ServiceDocumentInfo>(found);
                     if (userData.GetCache.ContainsKey(documentInfo.PublishId))
                     {
@@ -71,6 +72,17 @@ namespace NeuronExportedDocuments.Controllers
             }
             Session[TryCounterName] = tryCounter;
             return View("Index");
+        }
+
+        private void SetDocumentOpened(ServiceDocument document)
+        {
+            if (!document.IsOpened)
+            {
+                document.IsOpened = true;
+                document.OpenDate = DateTime.Now;
+                Database.ServiceDocuments.Update(document);
+                Database.Save();
+            }
         }
 
         public ActionResult DownloadPdf(IUserData userData, string publishId)
