@@ -8,6 +8,7 @@ using NeuronExportedDocuments.Interfaces;
 using NeuronExportedDocuments.Models;
 using NeuronExportedDocuments.Models.Interfaces;
 using NeuronExportedDocuments.Services.AutoMapper;
+using NeuronExportedDocuments.Services.Config;
 using NeuronExportedDocuments.Services.Logging;
 using NeuronExportedDocuments.Services.Logging.DocumentOperation;
 using NeuronExportedDocuments.Services.Logging.NLog;
@@ -34,6 +35,7 @@ namespace NeuronExportedDocuments.Infrastructure
             _kernel.Bind<IWebDocumentProcessor>().To<WebDocumentProcessor>().InSingletonScope();
             _kernel.Bind<IWebLogger>().To<NLogLogger>().InSingletonScope();
             _kernel.Bind<IDocumentOperationLogger>().To<DocumentOperationLogger>().InSingletonScope();
+            _kernel.Bind<IConfig>().To<GeneralСonfig>().InSingletonScope();
             _kernel.Bind<IUserData>().To<UserData>();
             _kernel.Bind<UserDataBinder>().ToSelf();
 

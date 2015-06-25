@@ -199,6 +199,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Interfaces\IAutoMapperConfiguration.cs" />
+    <Compile Include="Interfaces\IConfig.cs" />
     <Compile Include="Interfaces\IDocumentOperationLogger.cs" />
     <Compile Include="Interfaces\IUserData.cs" />
     <Compile Include="Interfaces\IWebDocumentProcessor.cs" />
@@ -230,6 +231,8 @@
     <Compile Include="Services\AutoMapper\AutoMapperConfiguration.cs" />
     <Compile Include="Services\AutoMapper\ExportedDocStatusResolver.cs" />
     <Compile Include="Services\AutoMapper\ServiceDocumentProfile.cs" />
+    <Compile Include="Services\Config\GeneralСonfig.cs" />
+    <Compile Include="Services\Config\MailSetting.cs" />
     <Compile Include="Services\Logging\DocumentOperation\DocumentOperationLogger.cs" />
     <Compile Include="Services\Logging\LogUtility.cs" />
     <Compile Include="Services\Logging\NLog\NLogLogger.cs" />
