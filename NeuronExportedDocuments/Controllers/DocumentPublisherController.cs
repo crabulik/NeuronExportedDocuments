@@ -27,7 +27,6 @@ namespace NeuronExportedDocuments.Controllers
 
         public bool Get()
         {
-            Log.Info("DocumentPublisherController.get");
             var result = false;
             lock (_synclock)
             {

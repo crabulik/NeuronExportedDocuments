@@ -17,12 +17,15 @@ namespace NeuronExportedDocuments.Infrastructure
     {
         static object _synclock = new object();
         private IDBUnitOfWork Database { get; set; }
+        private IConfig Config { get; set; }
 
         private IWebLogger Log { get; set; }
-        public WebDocumentProcessor(IDBUnitOfWork database, IWebLogger logger)
+        public WebDocumentProcessor(IDBUnitOfWork database, IWebLogger logger,
+            IConfig config)
         {
             Database = database;
             Log = logger;
+            Config = config;
         }
         public bool SendEmail(ServiceDocument doc)
         {
@@ -30,12 +33,12 @@ namespace NeuronExportedDocuments.Infrastructure
             try
             {
             // настройки smtp-сервера, с которого будем отправлять письмо
-                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-                smtp.EnableSsl = true;
-                smtp.Credentials = new NetworkCredential("pavel.shilan@aljur.com", "egkio329gul");
+                SmtpClient smtp = new SmtpClient(Config.MailSetting.SmtpServer, Config.MailSetting.SmtpPort);
+                smtp.EnableSsl = Config.MailSetting.EnableSsl;
+                smtp.Credentials = new NetworkCredential(Config.MailSetting.SmtpUserName, Config.MailSetting.SmtpPassword);
 
                 // наш email с заголовком письма
-                MailAddress from = new MailAddress("pavel.shilan@aljur.com", "Test");
+                MailAddress from = new MailAddress(Config.MailSetting.SmtpReply, Config.MailSetting.SmtpUser);
                 // кому отправляем
                 MailAddress to = new MailAddress(doc.DeliveryEMail);
                 // создаем объект сообщения
@@ -122,7 +125,7 @@ namespace NeuronExportedDocuments.Infrastructure
             result = TrySetPublishId(doc);
             if (result)
             {
-                doc.PublishPassword = GetPass();
+                doc.PublishPassword = GetPass(Config.GeneralSettings.DocumentPassLength);
                 doc.Status = ExportedDocStatus.Published;
             }
             return result;

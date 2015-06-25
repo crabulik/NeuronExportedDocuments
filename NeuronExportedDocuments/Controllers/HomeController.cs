@@ -9,6 +9,7 @@ using NeuronExportedDocuments.Interfaces;
 using NeuronExportedDocuments.Models;
 using NeuronExportedDocuments.Models.Enums;
 using NeuronExportedDocuments.Models.Interfaces;
+using NeuronExportedDocuments.Models.ViewModels;
 using NeuronExportedDocuments.Resources;
 
 namespace NeuronExportedDocuments.Controllers
@@ -22,14 +23,17 @@ namespace NeuronExportedDocuments.Controllers
         private IWebLogger Log { get; set; }
         private IDocumentOperationLogger DocumentLog { get; set; }
         private IMappingEngine ModelMapper { get; set; }
+        private IConfig Config { get; set; }
 
         
-        public HomeController(IDBUnitOfWork uow, IWebLogger logger, IDocumentOperationLogger documentLogger, IMappingEngine mapper)
+        public HomeController(IDBUnitOfWork uow, IWebLogger logger, IDocumentOperationLogger documentLogger, IMappingEngine mapper,
+            IConfig config)
         {
             Database = uow;
             Log = logger;
             DocumentLog = documentLogger;
             ModelMapper = mapper;
+            Config = config;
         }
         public ActionResult Index()
         {
@@ -73,7 +77,8 @@ namespace NeuronExportedDocuments.Controllers
                     {
                         userData.GetCache.Add(documentInfo.PublishId, documentInfo);
                     }
-                    return View(documentInfo);
+
+                    return View(new GetDocumentViewModel(documentInfo, Config.GeneralSettings.DocumentAccessDaysCount));
                 }
                 
             }
