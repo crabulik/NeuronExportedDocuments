@@ -20,7 +20,8 @@ namespace NeuronExportedDocuments.Infrastructure
                 PdfFileData = document.PdfFileData,
                 IsImagesInZip = document.IsImagesInZip,
                 ImageData = document.ImageData,
-                ImagesInterpretation = new List<DocumentImage>()
+                ImagesInterpretation = new List<DocumentImage>(),
+                DocumentOperations = new List<DocumentLogOperation>()
             };
             foreach (var img in document.ImagesInterpretation)
             {

@@ -41,8 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DocumentImage.cs" />
+    <Compile Include="DocumentLogOperation.cs" />
+    <Compile Include="Enums\DocumentLogOperationType.cs" />
     <Compile Include="Enums\ExportedDocStatus.cs" />
-    <Compile Include="Interfaces\ILogger.cs" />
+    <Compile Include="Interfaces\IWebLogger.cs" />
     <Compile Include="NLogError.cs" />
     <Compile Include="ServiceDocument.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

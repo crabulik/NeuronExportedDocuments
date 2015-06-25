@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<views MappingHash="735d0b94a740b1041218a2bdc5477a9a2b1602d33d7cc28f55877e62b2ee2cbb">
+<views MappingHash="b4f40d3ac650edd2f39e7a0a1bb0d6685c5946b5829ba89a9db4afa9a55821c7">
   <view extent="CodeFirstDatabase.DocumentImage"><![CDATA[
     SELECT VALUE -- Constructing DocumentImage
         [CodeFirstDatabaseSchema.DocumentImage](T1.DocumentImage_DocumentImageId, T1.DocumentImage_ServiceDocumentId, T1.DocumentImage_FileName, T1.DocumentImage_MimeType, T1.DocumentImage_ImageData)
@@ -12,6 +12,20 @@
             T.ImageData AS DocumentImage_ImageData, 
             True AS _from0
         FROM DocumentContext.DocumentImages AS T
+    ) AS T1]]></view>
+  <view extent="CodeFirstDatabase.DocumentLogOperation"><![CDATA[
+    SELECT VALUE -- Constructing DocumentLogOperation
+        [CodeFirstDatabaseSchema.DocumentLogOperation](T1.DocumentLogOperation_DocumentLogOperationId, T1.DocumentLogOperation_ServiceDocumentId, T1.DocumentLogOperation_OperationType, T1.DocumentLogOperation_OperationDate, T1.DocumentLogOperation_ConnectionIpAddress, T1.DocumentLogOperation_Info)
+    FROM (
+        SELECT 
+            T.DocumentLogOperationId AS DocumentLogOperation_DocumentLogOperationId, 
+            T.ServiceDocumentId AS DocumentLogOperation_ServiceDocumentId, 
+            CAST(T.OperationType AS [Edm.Int32]) AS DocumentLogOperation_OperationType, 
+            T.OperationDate AS DocumentLogOperation_OperationDate, 
+            T.ConnectionIpAddress AS DocumentLogOperation_ConnectionIpAddress, 
+            T.Info AS DocumentLogOperation_Info, 
+            True AS _from0
+        FROM DocumentContext.DocumentsLogs AS T
     ) AS T1]]></view>
   <view extent="CodeFirstDatabase.ServiceDocument"><![CDATA[
     SELECT VALUE -- Constructing ServiceDocument
@@ -49,6 +63,20 @@
             T.ImageData AS DocumentImage_ImageData, 
             True AS _from0
         FROM CodeFirstDatabase.DocumentImage AS T
+    ) AS T1]]></view>
+  <view extent="DocumentContext.DocumentsLogs"><![CDATA[
+    SELECT VALUE -- Constructing DocumentsLogs
+        [NeuronExportedDocuments.DAL.DocumentLogOperation](T1.DocumentLogOperation_DocumentLogOperationId, T1.DocumentLogOperation_ServiceDocumentId, T1.DocumentLogOperation_OperationType, T1.DocumentLogOperation_OperationDate, T1.DocumentLogOperation_ConnectionIpAddress, T1.DocumentLogOperation_Info)
+    FROM (
+        SELECT 
+            T.DocumentLogOperationId AS DocumentLogOperation_DocumentLogOperationId, 
+            T.ServiceDocumentId AS DocumentLogOperation_ServiceDocumentId, 
+            CAST(T.OperationType AS [NeuronExportedDocuments.DAL.DocumentLogOperationType]) AS DocumentLogOperation_OperationType, 
+            T.OperationDate AS DocumentLogOperation_OperationDate, 
+            T.ConnectionIpAddress AS DocumentLogOperation_ConnectionIpAddress, 
+            T.Info AS DocumentLogOperation_Info, 
+            True AS _from0
+        FROM CodeFirstDatabase.DocumentLogOperation AS T
     ) AS T1]]></view>
   <view extent="DocumentContext.ServiceDocuments"><![CDATA[
     SELECT VALUE -- Constructing ServiceDocuments

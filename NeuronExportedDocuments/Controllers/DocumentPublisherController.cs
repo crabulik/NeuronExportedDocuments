@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Web.Http;
 using NeuronExportedDocuments.DAL.Interfaces;
+using NeuronExportedDocuments.Infrastructure.Extensions;
 using NeuronExportedDocuments.Interfaces;
+using NeuronExportedDocuments.Models;
 using NeuronExportedDocuments.Models.Enums;
 using NeuronExportedDocuments.Models.Interfaces;
 using NeuronExportedDocuments.Resources;
@@ -10,12 +12,12 @@ namespace NeuronExportedDocuments.Controllers
 {
     public class DocumentPublisherController : ApiController
     {
-        private IUnitOfWork Database { get; set; }
+        private IDBUnitOfWork Database { get; set; }
         private IWebDocumentProcessor DocumentProcessor { get; set; }
         private IWebLogger Log { get; set; }
         static object _synclock = new object();
 
-        public DocumentPublisherController(IUnitOfWork database, IWebDocumentProcessor processor, IWebLogger logger)
+        public DocumentPublisherController(IDBUnitOfWork database, IWebDocumentProcessor processor, IWebLogger logger)
         {
             Database = database;
             DocumentProcessor = processor;
@@ -38,6 +40,12 @@ namespace NeuronExportedDocuments.Controllers
                     {
                         if (DocumentProcessor.PublishDocument(unhandledDoc))
                         {
+                            unhandledDoc.DocumentOperations.Add(
+                                new DocumentLogOperation
+                                {
+                                    OperationType = DocumentLogOperationType.Published,
+                                    ConnectionIpAddress = Request.GetClientIpAddress()
+                                });
                             Database.ServiceDocuments.Update(unhandledDoc);
                             changed = true;
                         }
@@ -56,6 +64,12 @@ namespace NeuronExportedDocuments.Controllers
                     {
                         if (DocumentProcessor.SendDocInfo(publishedDoc))
                         {
+                            publishedDoc.DocumentOperations.Add(
+                                new DocumentLogOperation
+                                {
+                                    OperationType = DocumentLogOperationType.InfoSentedToUser,
+                                    ConnectionIpAddress = Request.GetClientIpAddress()
+                                });
                             Database.ServiceDocuments.Update(publishedDoc);
                             changed = true;
                         }

@@ -178,6 +178,24 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Request for the Document ID: &quot;{0}&quot; with wrong password from IP: &quot;{1}&quot;.
+        /// </summary>
+        public static string rs_RequestForDocumentWithWrongPassword {
+            get {
+                return ResourceManager.GetString("rs_RequestForDocumentWithWrongPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Request for an unexisted document with ID: &quot;{0}&quot;  from IP: &quot;{1}&quot;.
+        /// </summary>
+        public static string rs_RequestForUnexistedDocument {
+            get {
+                return ResourceManager.GetString("rs_RequestForUnexistedDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Warning!.
         /// </summary>
         public static string rs_Warning {

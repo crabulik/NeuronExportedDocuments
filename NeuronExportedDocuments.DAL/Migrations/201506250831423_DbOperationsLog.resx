@@ -117,76 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="rs_DocumentConvertError" xml:space="preserve">
-    <value>Couldn't convert the exported document with Neuron ID {0}.</value>
+  <data name="Target" xml:space="preserve">
+    <value>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</value>
   </data>
-  <data name="rs_DocumentInfoWasntSendedToUser" xml:space="preserve">
-    <value>The Document's credentials wasn't sended to user.</value>
-  </data>
-  <data name="rs_DocumentLogOperationConnectionIpAddress" xml:space="preserve">
-    <value>Connection Ip Address : </value>
-  </data>
-  <data name="rs_DocumentLogOperationInfo" xml:space="preserve">
-    <value>Additional Info : </value>
-  </data>
-  <data name="rs_DocumentLogOperationOperationDate" xml:space="preserve">
-    <value>Operation Date : </value>
-  </data>
-  <data name="rs_DocumentLogOperationOperationType" xml:space="preserve">
-    <value>OperationType : </value>
-  </data>
-  <data name="rs_DocumentLogOperationServiceDocumentId" xml:space="preserve">
-    <value>ServiceDocument Id : </value>
-  </data>
-  <data name="rs_DocumentWasntPublished" xml:space="preserve">
-    <value>The Document was not published.</value>
-  </data>
-  <data name="rs_ErrorInPath" xml:space="preserve">
-    <value>Error in Path : </value>
-  </data>
-  <data name="rs_ExceptionForOperationLog" xml:space="preserve">
-    <value>Exception For OperationLog:
-{1}
-in Document:
-{0}</value>
-  </data>
-  <data name="rs_ExceptionInDocumentPublisherControllerGet" xml:space="preserve">
-    <value>Can't publish documents.</value>
-  </data>
-  <data name="rs_ExceptionInImportControllerPost" xml:space="preserve">
-    <value>Can't import document.</value>
-  </data>
-  <data name="rs_ExportServiceDocumentHasNoData" xml:space="preserve">
-    <value>Document with Neuron ID {0} doesn't have any data. Imoprt is canceled.</value>
-  </data>
-  <data name="rs_GeneratingIdAttemptsOutOfBounds" xml:space="preserve">
-    <value>All atempts for generetating Document ID is over.</value>
-  </data>
-  <data name="rs_Message" xml:space="preserve">
-    <value>Message : </value>
-  </data>
-  <data name="rs_RawUrl" xml:space="preserve">
-    <value>Raw Url : </value>
-  </data>
-  <data name="rs_SendEmailError" xml:space="preserve">
-    <value>Errors found during "Send by email" process.</value>
-  </data>
-  <data name="rs_ServiceDocumenNeuronDbDocumentId" xml:space="preserve">
-    <value>Neuron Db Document Id :</value>
-  </data>
-  <data name="rs_ServiceDocumenStatus" xml:space="preserve">
-    <value>Status : </value>
-  </data>
-  <data name="rs_ServiceDocumentName" xml:space="preserve">
-    <value>Service Document Name : </value>
-  </data>
-  <data name="rs_Source" xml:space="preserve">
-    <value>Source : </value>
-  </data>
-  <data name="rs_StackTrace" xml:space="preserve">
-    <value>Stack Trace : </value>
-  </data>
-  <data name="rs_TargetSite" xml:space="preserve">
-    <value>TargetSite : </value>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
   </data>
 </root>

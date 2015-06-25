@@ -17,17 +17,22 @@ namespace NeuronExportedDocuments.DAL.Repositories
         }
         public IEnumerable<ServiceDocument> GetAll()
         {
-            return _db.ServiceDocuments;
+            return _db.ServiceDocuments
+                .Include(p => p.DocumentOperations);
         }
 
         public ServiceDocument Get(int id)
         {
-            return _db.ServiceDocuments.Find(id);
+            return _db.ServiceDocuments
+                .Include(p => p.DocumentOperations)
+                .FirstOrDefault(i => i.ServiceDocumentId == id);
         }
 
         public IEnumerable<ServiceDocument> Find(Func<ServiceDocument, bool> predicate)
         {
-            return _db.ServiceDocuments.Where(predicate).ToList();
+            return _db.ServiceDocuments
+                .Include(p => p.DocumentOperations)
+                .Where(predicate).ToList();
         }
 
         public void Create(ServiceDocument item)

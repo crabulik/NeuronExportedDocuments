@@ -79,6 +79,51 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connection Ip Address : .
+        /// </summary>
+        public static string rs_DocumentLogOperationConnectionIpAddress {
+            get {
+                return ResourceManager.GetString("rs_DocumentLogOperationConnectionIpAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Additional Info : .
+        /// </summary>
+        public static string rs_DocumentLogOperationInfo {
+            get {
+                return ResourceManager.GetString("rs_DocumentLogOperationInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operation Date : .
+        /// </summary>
+        public static string rs_DocumentLogOperationOperationDate {
+            get {
+                return ResourceManager.GetString("rs_DocumentLogOperationOperationDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OperationType : .
+        /// </summary>
+        public static string rs_DocumentLogOperationOperationType {
+            get {
+                return ResourceManager.GetString("rs_DocumentLogOperationOperationType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ServiceDocument Id : .
+        /// </summary>
+        public static string rs_DocumentLogOperationServiceDocumentId {
+            get {
+                return ResourceManager.GetString("rs_DocumentLogOperationServiceDocumentId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The Document was not published..
         /// </summary>
         public static string rs_DocumentWasntPublished {
@@ -93,6 +138,18 @@ namespace NeuronExportedDocuments.Resources {
         public static string rs_ErrorInPath {
             get {
                 return ResourceManager.GetString("rs_ErrorInPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exception For OperationLog:
+        ///{1}
+        ///in Document:
+        ///{0}.
+        /// </summary>
+        public static string rs_ExceptionForOperationLog {
+            get {
+                return ResourceManager.GetString("rs_ExceptionForOperationLog", resourceCulture);
             }
         }
         

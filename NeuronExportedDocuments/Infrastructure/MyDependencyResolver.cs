@@ -9,6 +9,7 @@ using NeuronExportedDocuments.Models;
 using NeuronExportedDocuments.Models.Interfaces;
 using NeuronExportedDocuments.Services.AutoMapper;
 using NeuronExportedDocuments.Services.Logging;
+using NeuronExportedDocuments.Services.Logging.DocumentOperation;
 using NeuronExportedDocuments.Services.Logging.NLog;
 using Ninject;
 using IDependencyResolver = System.Web.Mvc.IDependencyResolver;
@@ -29,9 +30,10 @@ namespace NeuronExportedDocuments.Infrastructure
         private void InitializeBindings()
         {
             _kernel.Bind<WebDocumentConverter>().ToSelf().InSingletonScope();
-            _kernel.Bind<IUnitOfWork>().To<EFUnitOfWork>();
+            _kernel.Bind<IDBUnitOfWork>().To<EFUnitOfWork>();
             _kernel.Bind<IWebDocumentProcessor>().To<WebDocumentProcessor>().InSingletonScope();
             _kernel.Bind<IWebLogger>().To<NLogLogger>().InSingletonScope();
+            _kernel.Bind<IDocumentOperationLogger>().To<DocumentOperationLogger>().InSingletonScope();
             _kernel.Bind<IUserData>().To<UserData>();
             _kernel.Bind<UserDataBinder>().ToSelf();
 

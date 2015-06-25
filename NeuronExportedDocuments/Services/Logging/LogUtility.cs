@@ -53,6 +53,29 @@ namespace NeuronExportedDocuments.Services.Logging
              strBuilder.AppendLine(doc.Status.ToString());
              return strBuilder.ToString();
         }
+
+        public static string BuildDocumentLogOperationMessage(DocumentLogOperation logOperation)
+        {
+            var strBuilder = new StringBuilder();
+            strBuilder.AppendLine();
+            strBuilder.Append(MainExceptionMessages.rs_DocumentLogOperationServiceDocumentId);
+            strBuilder.AppendLine(logOperation.ServiceDocumentId.ToString());
+
+            strBuilder.Append(MainExceptionMessages.rs_DocumentLogOperationOperationType);
+            strBuilder.AppendLine(logOperation.OperationType.ToString());
+
+            strBuilder.Append(MainExceptionMessages.rs_DocumentLogOperationOperationDate);
+            strBuilder.Append(logOperation.OperationDate.ToShortDateString());
+            strBuilder.Append(" ");
+            strBuilder.AppendLine(logOperation.OperationDate.ToLongTimeString());
+
+            strBuilder.Append(MainExceptionMessages.rs_DocumentLogOperationConnectionIpAddress);
+            strBuilder.AppendLine(logOperation.ConnectionIpAddress);
+
+            strBuilder.Append(MainExceptionMessages.rs_DocumentLogOperationInfo);
+            strBuilder.AppendLine(logOperation.Info);
+            return strBuilder.ToString();
+        }
      }
     
 }

@@ -40,6 +40,8 @@ namespace NeuronExportedDocuments.Models
         [MaxLength(8)]
         public string PublishPassword { get; set; }
 
+        public List<DocumentLogOperation> DocumentOperations { get; set; }
+
         public ServiceDocument()
         {
             IsBlocked = false;

@@ -16,10 +16,10 @@ namespace NeuronExportedDocuments.Infrastructure
     public class WebDocumentProcessor : IWebDocumentProcessor
     {
         static object _synclock = new object();
-        private IUnitOfWork Database { get; set; }
+        private IDBUnitOfWork Database { get; set; }
 
         private IWebLogger Log { get; set; }
-        public WebDocumentProcessor(IUnitOfWork database, IWebLogger logger)
+        public WebDocumentProcessor(IDBUnitOfWork database, IWebLogger logger)
         {
             Database = database;
             Log = logger;

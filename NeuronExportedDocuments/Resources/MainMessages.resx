@@ -156,6 +156,12 @@
   <data name="rs_PNGDocumentDefaultName" xml:space="preserve">
     <value>Document_{0}.png</value>
   </data>
+  <data name="rs_RequestForDocumentWithWrongPassword" xml:space="preserve">
+    <value>Request for the Document ID: "{0}" with wrong password from IP: "{1}"</value>
+  </data>
+  <data name="rs_RequestForUnexistedDocument" xml:space="preserve">
+    <value>Request for an unexisted document with ID: "{0}"  from IP: "{1}"</value>
+  </data>
   <data name="rs_Warning" xml:space="preserve">
     <value>Warning!</value>
   </data>

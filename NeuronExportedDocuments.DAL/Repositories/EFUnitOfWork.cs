@@ -1,19 +1,26 @@
 ﻿using System;
+using System.Data.Entity.Validation;
+using System.Text;
 using NeuronExportedDocuments.DAL.Interfaces;
 using NeuronExportedDocuments.Models;
+using NeuronExportedDocuments.Models.Interfaces;
 
 namespace NeuronExportedDocuments.DAL.Repositories
 {
-    public class EFUnitOfWork : IDisposable, IUnitOfWork
+    public class EFUnitOfWork : IDisposable, IDBUnitOfWork
     {
         private DocumentContext _db;
         private ServiceDocumentRepository _serviceDocumentRepository;
         private DocumentImageRepository _documentImageRepository;
         private NLogErrorRepository _nLogErroreRepository;
+        private DocumentLogOperationRepository _documentLogOperationRepository;
 
-        public EFUnitOfWork()
+        private IWebLogger Log { get; set; }
+
+        public EFUnitOfWork(IWebLogger logger)
         {
             _db = new DocumentContext();
+            Log = logger;
         }
         public IRepository<ServiceDocument> ServiceDocuments
         {
@@ -45,9 +52,44 @@ namespace NeuronExportedDocuments.DAL.Repositories
             }
         }
 
+        public IRepository<DocumentLogOperation> DocumentsLogs
+        {
+            get
+            {
+                if (_documentLogOperationRepository == null)
+                    _documentLogOperationRepository = new DocumentLogOperationRepository(_db);
+                return _documentLogOperationRepository;
+            }
+        }
+
         public void Save()
         {
-            _db.SaveChanges();
+            
+            try
+            {
+                _db.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    var sb = new StringBuilder("Entity of type \"");
+                    sb.Append(eve.Entry.Entity.GetType().Name);
+                    sb.Append("\" in state \"");
+                    sb.Append(eve.Entry.State.ToString());
+                    sb.AppendLine("\" has the following validation errors:");
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        sb.Append("- Property: \"");
+                        sb.Append(ve.PropertyName);
+                        sb.Append("\", Error: \"");
+                        sb.Append(ve.ErrorMessage);
+                        sb.AppendLine("\"");
+                    }
+                    Log.Error(sb.ToString(), e);
+                }
+                throw;
+            }
         }
 
         private bool disposed = false;

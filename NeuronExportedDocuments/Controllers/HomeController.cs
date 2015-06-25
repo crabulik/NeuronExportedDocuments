@@ -7,6 +7,7 @@ using AutoMapper;
 using NeuronExportedDocuments.DAL.Interfaces;
 using NeuronExportedDocuments.Interfaces;
 using NeuronExportedDocuments.Models;
+using NeuronExportedDocuments.Models.Enums;
 using NeuronExportedDocuments.Models.Interfaces;
 using NeuronExportedDocuments.Resources;
 
@@ -16,16 +17,18 @@ namespace NeuronExportedDocuments.Controllers
     {
         protected const string TryCounterName = "TryCounterName";
         protected const string PngMimeName = "image/png";
-        private IUnitOfWork Database { get; set; }
+        private IDBUnitOfWork Database { get; set; }
 
         private IWebLogger Log { get; set; }
+        private IDocumentOperationLogger DocumentLog { get; set; }
         private IMappingEngine ModelMapper { get; set; }
 
         
-        public HomeController(IUnitOfWork uow, IWebLogger logger, IMappingEngine mapper)
+        public HomeController(IDBUnitOfWork uow, IWebLogger logger, IDocumentOperationLogger documentLogger, IMappingEngine mapper)
         {
             Database = uow;
             Log = logger;
+            DocumentLog = documentLogger;
             ModelMapper = mapper;
         }
         public ActionResult Index()
@@ -46,10 +49,14 @@ namespace NeuronExportedDocuments.Controllers
                 var found = Database.ServiceDocuments.Find((document) => document.PublishId == doc.PublishId).FirstOrDefault();
                 if (found == null)
                 {
+                    Log.Info(string.Format(MainMessages.rs_RequestForUnexistedDocument, doc.PublishId, Request.UserHostAddress));
+
                     ModelState.AddModelError("", ValidateMessages.rs_DocumentIdOrPasswordAreIncorrect);
                 }
                 else if (found.PublishPassword != doc.PublishPassword)
                 {
+                    SetDocumentFailAccess(found);                   
+
                     ModelState.AddModelError("", ValidateMessages.rs_DocumentIdOrPasswordAreIncorrect);
                 }
                 else
@@ -74,15 +81,36 @@ namespace NeuronExportedDocuments.Controllers
             return View("Index");
         }
 
+        private void SetDocumentFailAccess(ServiceDocument document)
+        {
+            document.FailedTimes ++;
+
+            document.DocumentOperations.Add(new DocumentLogOperation
+            {
+                OperationType = DocumentLogOperationType.FailAccess,
+                ConnectionIpAddress = Request.UserHostAddress
+            });
+            Database.ServiceDocuments.Update(document);
+            Database.Save();
+
+            Log.Info(string.Format(MainMessages.rs_RequestForDocumentWithWrongPassword, document.PublishId, Request.UserHostAddress));
+        }
+
         private void SetDocumentOpened(ServiceDocument document)
         {
+            document.FailedTimes = 0;
             if (!document.IsOpened)
             {
                 document.IsOpened = true;
-                document.OpenDate = DateTime.Now;
-                Database.ServiceDocuments.Update(document);
-                Database.Save();
+                document.OpenDate = DateTime.Now;               
             }
+            document.DocumentOperations.Add( new DocumentLogOperation
+            {
+                OperationType = DocumentLogOperationType.SuccessAccess,
+                ConnectionIpAddress = Request.UserHostAddress
+            });
+            Database.ServiceDocuments.Update(document);
+            Database.Save();
         }
 
         public ActionResult DownloadPdf(IUserData userData, string publishId)

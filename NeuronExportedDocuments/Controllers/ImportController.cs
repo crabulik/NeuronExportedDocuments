@@ -7,6 +7,9 @@ using System.Web.Http;
 using NeuronDocumentSync.Models;
 using NeuronExportedDocuments.DAL.Interfaces;
 using NeuronExportedDocuments.Infrastructure;
+using NeuronExportedDocuments.Infrastructure.Extensions;
+using NeuronExportedDocuments.Models;
+using NeuronExportedDocuments.Models.Enums;
 using NeuronExportedDocuments.Models.Interfaces;
 using NeuronExportedDocuments.Resources;
 
@@ -15,11 +18,11 @@ namespace NeuronExportedDocuments.Controllers
     public class ImportController : ApiController
     {
         private WebDocumentConverter _docConverter;
-        private IUnitOfWork Database { get; set; }
+        private IDBUnitOfWork Database { get; set; }
 
         private IWebLogger Log { get; set; }
 
-        public ImportController(WebDocumentConverter docConverter, IUnitOfWork uow, IWebLogger logger)
+        public ImportController(WebDocumentConverter docConverter, IDBUnitOfWork uow, IWebLogger logger)
         {
             _docConverter = docConverter;
             Database = uow;
@@ -49,6 +52,12 @@ namespace NeuronExportedDocuments.Controllers
                         return Request.CreateResponse(HttpStatusCode.NotAcceptable, WebApiMessages.DocIsExist);
                     }
 
+
+                    document.DocumentOperations.Add(new DocumentLogOperation
+                    {
+                        OperationType = DocumentLogOperationType.Imported,
+                        ConnectionIpAddress = Request.GetClientIpAddress() ?? string.Empty
+                    });
                     Database.ServiceDocuments.Create(document);
                     Database.Save();
                     var response = Request.CreateResponse(HttpStatusCode.OK, WebApiMessages.Ok);

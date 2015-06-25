@@ -190,6 +190,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Extensions\HttpRequestMessageExtensions.cs" />
     <Compile Include="Infrastructure\UserDataBinder.cs" />
     <Compile Include="Infrastructure\WebDocumentConverter.cs" />
     <Compile Include="Infrastructure\MyDependencyResolver.cs" />
@@ -198,6 +199,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Interfaces\IAutoMapperConfiguration.cs" />
+    <Compile Include="Interfaces\IDocumentOperationLogger.cs" />
     <Compile Include="Interfaces\IUserData.cs" />
     <Compile Include="Interfaces\IWebDocumentProcessor.cs" />
     <Compile Include="Models\DocumentCredentials.cs" />
@@ -228,6 +230,7 @@
     <Compile Include="Services\AutoMapper\AutoMapperConfiguration.cs" />
     <Compile Include="Services\AutoMapper\ExportedDocStatusResolver.cs" />
     <Compile Include="Services\AutoMapper\ServiceDocumentProfile.cs" />
+    <Compile Include="Services\Logging\DocumentOperation\DocumentOperationLogger.cs" />
     <Compile Include="Services\Logging\LogUtility.cs" />
     <Compile Include="Services\Logging\NLog\NLogLogger.cs" />
     <Compile Include="Services\Logging\NLog\UtcDateRenderer.cs" />
