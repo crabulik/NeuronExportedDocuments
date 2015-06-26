@@ -14,6 +14,7 @@ namespace NeuronExportedDocuments.DAL.Repositories
         private DocumentImageRepository _documentImageRepository;
         private NLogErrorRepository _nLogErroreRepository;
         private DocumentLogOperationRepository _documentLogOperationRepository;
+        private ServiceMessageRepository _serviceMessageRepository;
 
         private IWebLogger Log { get; set; }
 
@@ -59,6 +60,16 @@ namespace NeuronExportedDocuments.DAL.Repositories
                 if (_documentLogOperationRepository == null)
                     _documentLogOperationRepository = new DocumentLogOperationRepository(_db);
                 return _documentLogOperationRepository;
+            }
+        }
+
+        public IRepository<ServiceMessage> ServiceMessages
+        {
+            get
+            {
+                if (_serviceMessageRepository == null)
+                    _serviceMessageRepository = new ServiceMessageRepository(_db);
+                return _serviceMessageRepository;
             }
         }
 

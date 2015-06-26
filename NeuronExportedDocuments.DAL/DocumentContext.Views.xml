@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<views MappingHash="b4f40d3ac650edd2f39e7a0a1bb0d6685c5946b5829ba89a9db4afa9a55821c7">
+<views MappingHash="515f1d83d3be7795fb9bcb8ea00877ab789a585c481f41c2f69dc13282007bef">
   <view extent="CodeFirstDatabase.DocumentImage"><![CDATA[
     SELECT VALUE -- Constructing DocumentImage
         [CodeFirstDatabaseSchema.DocumentImage](T1.DocumentImage_DocumentImageId, T1.DocumentImage_ServiceDocumentId, T1.DocumentImage_FileName, T1.DocumentImage_MimeType, T1.DocumentImage_ImageData)
@@ -139,5 +139,29 @@
             T.TimeStamp AS NLogError_TimeStamp, 
             True AS _from0
         FROM CodeFirstDatabase.NLogError AS T
+    ) AS T1]]></view>
+  <view extent="CodeFirstDatabase.ServiceMessage"><![CDATA[
+    SELECT VALUE -- Constructing ServiceMessage
+        [CodeFirstDatabaseSchema.ServiceMessage](T1.ServiceMessage_ServiceMessageId, T1.ServiceMessage_Key, T1.ServiceMessage_Message, T1.ServiceMessage_IsDefault)
+    FROM (
+        SELECT 
+            T.ServiceMessageId AS ServiceMessage_ServiceMessageId, 
+            CAST(T.[Key] AS [Edm.Int32]) AS ServiceMessage_Key, 
+            T.Message AS ServiceMessage_Message, 
+            T.IsDefault AS ServiceMessage_IsDefault, 
+            True AS _from0
+        FROM DocumentContext.ServiceMessages AS T
+    ) AS T1]]></view>
+  <view extent="DocumentContext.ServiceMessages"><![CDATA[
+    SELECT VALUE -- Constructing ServiceMessages
+        [NeuronExportedDocuments.DAL.ServiceMessage](T1.ServiceMessage_ServiceMessageId, T1.ServiceMessage_Key, T1.ServiceMessage_Message, T1.ServiceMessage_IsDefault)
+    FROM (
+        SELECT 
+            T.ServiceMessageId AS ServiceMessage_ServiceMessageId, 
+            CAST(T.[Key] AS [NeuronExportedDocuments.DAL.ServiceMessageKey]) AS ServiceMessage_Key, 
+            T.Message AS ServiceMessage_Message, 
+            T.IsDefault AS ServiceMessage_IsDefault, 
+            True AS _from0
+        FROM CodeFirstDatabase.ServiceMessage AS T
     ) AS T1]]></view>
 </views>

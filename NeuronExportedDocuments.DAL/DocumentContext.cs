@@ -15,5 +15,6 @@ namespace NeuronExportedDocuments.DAL
         public DbSet<DocumentImage> DocumentImages { get; set; }
         public DbSet<NLogError> NLogErrors { get; set; }
         public DbSet<DocumentLogOperation> DocumentsLogs { get; set; }
+        public DbSet<ServiceMessage> ServiceMessages { get; set; }
     }
 }

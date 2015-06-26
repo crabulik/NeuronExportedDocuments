@@ -1,3 +1,5 @@
+using NeuronExportedDocuments.DAL.Seeds;
+
 namespace NeuronExportedDocuments.DAL.Migrations
 {
     using System;
@@ -27,6 +29,18 @@ namespace NeuronExportedDocuments.DAL.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            var serviceMessages = SeedGenerator.ServiceMessageSeed();
+
+            foreach (var serviceMessage in serviceMessages)
+            {
+                var inDbItem = context.ServiceMessages.SingleOrDefault(s => s.Key == serviceMessage.Key);
+                if (inDbItem == null)
+                {
+                    context.ServiceMessages.Add(serviceMessage);
+                }
+            }
+            context.SaveChanges();
         }
     }
 }

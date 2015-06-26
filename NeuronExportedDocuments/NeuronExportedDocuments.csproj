@@ -72,6 +72,7 @@
     </Reference>
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web.DynamicData">
       <Private>True</Private>
     </Reference>
@@ -204,6 +205,7 @@
     <Compile Include="Interfaces\IUserData.cs" />
     <Compile Include="Interfaces\IWebDocumentProcessor.cs" />
     <Compile Include="Models\DocumentCredentials.cs" />
+    <Compile Include="Models\FormaterKey.cs" />
     <Compile Include="Models\ServiceDocumentInfo.cs" />
     <Compile Include="Models\UserData.cs" />
     <Compile Include="Models\ViewModels\GetDocumentViewModel.cs" />
@@ -217,6 +219,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MainMessages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ServiceMessagesResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceMessagesResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\StringResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -240,6 +247,8 @@
     <Compile Include="Services\Logging\NLog\NLogLogger.cs" />
     <Compile Include="Services\Logging\NLog\UtcDateRenderer.cs" />
     <Compile Include="Services\Logging\NLog\WebVariablesRenderer.cs" />
+    <Compile Include="Services\ServiceMessaging\ServiceMessages.cs" />
+    <Compile Include="Services\ServiceMessaging\ServiceMessagesFormater.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -285,6 +294,10 @@
     <EmbeddedResource Include="Resources\MainMessages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MainMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ServiceMessagesResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceMessagesResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

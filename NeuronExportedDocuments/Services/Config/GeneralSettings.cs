@@ -6,6 +6,7 @@ namespace NeuronExportedDocuments.Services.Config
     {
         private const string DocumentAccessDaysCountPropertyName = "DocumentAccessDaysCount";
         private const string DocumentPassLengthPropertyName = "DocumentPassLength";
+        private const string ServiceMessagesExperienceMinutesPropertyName = "ServiceMessagesExperienceMinutes";
 
 
         [ConfigurationProperty(DocumentAccessDaysCountPropertyName, IsRequired = false, DefaultValue = "31")]
@@ -41,6 +42,25 @@ namespace NeuronExportedDocuments.Services.Config
                     this[DocumentPassLengthPropertyName] = value;
                 }
                     
+            }
+        }
+
+        [ConfigurationProperty(ServiceMessagesExperienceMinutesPropertyName, IsRequired = false, DefaultValue = "60")]
+        public int ServiceMessagesExperienceMinutes
+        {
+            get
+            {
+                return (int)this[ServiceMessagesExperienceMinutesPropertyName];
+            }
+            set
+            {
+                if (value < 1)
+                    this[ServiceMessagesExperienceMinutesPropertyName] = 4;
+                else
+                {
+                    this[ServiceMessagesExperienceMinutesPropertyName] = value;
+                }
+
             }
         }
     }
