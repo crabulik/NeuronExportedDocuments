@@ -24,20 +24,28 @@ namespace NeuronExportedDocuments.Controllers
         private IDocumentOperationLogger DocumentLog { get; set; }
         private IMappingEngine ModelMapper { get; set; }
         private IConfig Config { get; set; }
+        private IServiceMessages ServiceMessages { get; set; }
 
         
         public HomeController(IDBUnitOfWork uow, IWebLogger logger, IDocumentOperationLogger documentLogger, IMappingEngine mapper,
-            IConfig config)
+            IConfig config, IServiceMessages serviceMessages)
         {
             Database = uow;
             Log = logger;
             DocumentLog = documentLogger;
             ModelMapper = mapper;
             Config = config;
+            ServiceMessages = serviceMessages;
         }
         public ActionResult Index()
         {
-            return View(new DocumentCredentials());
+            var tmpVM = new HomeIndexViewModel
+            {
+                DocumentCredentials = new DocumentCredentials(),
+                HelloMessage = ServiceMessages.GetMessage(ServiceMessageKey.HomeIndexHelloMessage),
+                HelloDescriptionMessage = ServiceMessages.GetMessage(ServiceMessageKey.HomeIndexHelloDescriptionMessage)
+            };
+            return View(tmpVM);
         }
 
         public ActionResult GetDocument(IUserData userData, DocumentCredentials doc)
@@ -78,7 +86,9 @@ namespace NeuronExportedDocuments.Controllers
                         userData.GetCache.Add(documentInfo.PublishId, documentInfo);
                     }
 
-                    return View(new GetDocumentViewModel(documentInfo, Config.GeneralSettings.DocumentAccessDaysCount));
+                    var tmpVM = new GetDocumentViewModel(documentInfo, Config.GeneralSettings.DocumentAccessDaysCount);
+                    tmpVM.WarningMessage = ServiceMessages.FormatMessageByGetDocumentViewModel(ServiceMessageKey.GetDocumentWarningMessage, tmpVM);
+                    return View(tmpVM);
                 }
                 
             }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Caching;
 using NeuronExportedDocuments.DAL.Interfaces;
@@ -6,11 +7,13 @@ using NeuronExportedDocuments.Interfaces;
 using NeuronExportedDocuments.Models;
 using NeuronExportedDocuments.Models.Enums;
 using NeuronExportedDocuments.Models.Interfaces;
+using NeuronExportedDocuments.Models.ViewModels;
 using NeuronExportedDocuments.Resources;
+using NeuronExportedDocuments.Services.Config;
 
 namespace NeuronExportedDocuments.Services.ServiceMessaging
 {
-    public class ServiceMessages
+    public class ServiceMessages : IServiceMessages
     {
         private IDBUnitOfWork Database { get; set; }
 
@@ -19,11 +22,13 @@ namespace NeuronExportedDocuments.Services.ServiceMessaging
         private MemoryCache Cache { get; set; }
 
         private IConfig Config { get; set; }
-        public ServiceMessages(IDBUnitOfWork uow, IWebLogger logger, IConfig config)
+        private IServiceMessagesFormater Formatter { get; set; }
+        public ServiceMessages(IDBUnitOfWork uow, IWebLogger logger, IConfig config, IServiceMessagesFormater formatter)
         {
             Database = uow;
             Log = logger;
             Config = config;
+            Formatter = formatter;
             Cache = MemoryCache.Default;
         }
         public string GetMessage(ServiceMessageKey key)
@@ -48,6 +53,10 @@ namespace NeuronExportedDocuments.Services.ServiceMessaging
                     defServiceMessage.Message = GetDefaultMessage(defServiceMessage.Key);
                     defServiceMessage.IsDefault = false;
                 }
+                // General settings keys are pushed to the cache
+                defServiceMessage.Message = Formatter.FormatByGeneralSettings(defServiceMessage.Message,
+                    Config.GeneralSettings);
+                
                 Cache.Add(defServiceMessage.GetCachedKey(), defServiceMessage,
                     DateTimeOffset.Now.AddMinutes(Config.GeneralSettings.ServiceMessagesExperienceMinutes));
 
@@ -62,10 +71,87 @@ namespace NeuronExportedDocuments.Services.ServiceMessaging
             {
                 case ServiceMessageKey.SendCredentialsEmailMessage:
                     return ServiceMessagesResources.rs_DefSendCredentialsEmailMessage;
+                case ServiceMessageKey.SendCredentialsEmailSubject:
+                    return ServiceMessagesResources.rs_DefSendCredentialsEmailSubject;
+                case ServiceMessageKey.HomeIndexHelloMessage:
+                    return ServiceMessagesResources.rs_DefHomeIndexHelloMessage;
+                case ServiceMessageKey.HomeIndexHelloDescriptionMessage:
+                    return ServiceMessagesResources.rs_DefHomeIndexHelloDescriptionMessage;
+                case ServiceMessageKey.GetDocumentWarningMessage:
+                    return ServiceMessagesResources.rs_DefGetDocumentWarningMessage;
                 default:
                     throw new ArgumentOutOfRangeException("key");
             }
         }
+
+        #region ServiceDocumentInfo
+
+        public string FormatMessageByDocumentInfo(string inputMessage, ServiceDocumentInfo documentInfo)
+        {
+            return Formatter.FormatByDocumentInfo(inputMessage, documentInfo);
+        }
+
+        public string FormatMessageByDocumentInfo(ServiceMessageKey key, ServiceDocumentInfo documentInfo)
+        {
+            return FormatMessageByDocumentInfo(GetMessage(key), documentInfo);
+        }
+
+        public List<FormaterKey> GetDocumentInfoKeys()
+        {
+            return Formatter.GetDocumentInfoKeys();
+        }
+
+        #endregion
+
+
+        #region GetDocumentViewModel
+
+        public string FormatMessageByGetDocumentViewModel(string inputMessage, GetDocumentViewModel documentInfoVM)
+        {
+            return Formatter.FormatByGetDocumentViewModel(inputMessage, documentInfoVM);
+        }
+
+        public string FormatMessageByGetDocumentViewModel(ServiceMessageKey key, GetDocumentViewModel documentInfoVM)
+        {
+            return FormatMessageByGetDocumentViewModel(GetMessage(key), documentInfoVM);
+        }
+
+        public List<FormaterKey> GetGetDocumentViewModelKeys()
+        {
+            return Formatter.GetGetDocumentViewModelKeys();
+        }
+
+        #endregion
+
+
+        #region ServiceDocument
+
+        public string FormatMessageByServiceDocument(string inputMessage, ServiceDocument document)
+        {
+            return Formatter.FormatByServiceDocument(inputMessage, document);
+        }
+
+        public string FormatMessageByServiceDocument(ServiceMessageKey key, ServiceDocument document)
+        {
+            return FormatMessageByServiceDocument(GetMessage(key), document);
+        }
+
+        public List<FormaterKey> GetServiceDocumentKeys()
+        {
+            return Formatter.GetServiceDocumentKeys();
+        }
+
+        #endregion
+
+
+        #region GeneralSettings
+
+        public List<FormaterKey> GetGeneralSettingsKeys()
+        {
+            return Formatter.GetGeneralSettingsKeys();
+        }
+
+        #endregion
 
     }
 }

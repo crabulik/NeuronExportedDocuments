@@ -12,31 +12,37 @@
 }
 @section Body {
     <h2>@MainMessages.rs_DownloadNeuronDocument</h2>
-    @if (Model.ServiceDocumentInfo.IsOpened)
+    @if ((Model.ServiceDocumentInfo.IsOpened) && (Model.WarningMessage != string.Empty))
     {
         <div class="alert alert-warning" role="alert">
-            <strong>@MainMessages.rs_Warning</strong> @MainMessages.rs_DocumentAccessibilityTerm <strong>@((Model.ServiceDocumentInfo.OpenDate.HasValue) ? Model.ServiceDocumentInfo.OpenDate.Value.AddDays(Model.AccessDaysCount).ToShortDateString() : "???")</strong>
+            <strong>@MainMessages.rs_Warning</strong> @Model.WarningMessage
         </div>
     }
     <div class="panel panel-primary">
         <div class="panel-heading">@MainMessages.rs_ChooseDocumentFormat</div>
         <div class="panel-body">
             <p>
-                @if (Model.ServiceDocumentInfo.IsImagesInZip)
+                @if(Model.ServiceDocumentInfo.IsImageExists)
                 {
-                    <a class="btn btn-default btn-lg" href="@Url.Action("DownloadImg", new { publishId = Model.ServiceDocumentInfo.PublishId })">
-                        <img src="@Url.Content("~/Content/img/ic_archive_black_48dp_1x.png")" />@MainMessages.rs_GetDocumentAsZip
+                    if (Model.ServiceDocumentInfo.IsImagesInZip)
+                    {
+                        <a class="btn btn-default btn-lg" href="@Url.Action("DownloadImg", new {publishId = Model.ServiceDocumentInfo.PublishId})">
+                            <img src="@Url.Content("~/Content/img/ic_archive_black_48dp_1x.png")" />@MainMessages.rs_GetDocumentAsZip
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-default btn-lg" href="@Url.Action("DownloadImg", new {publishId = Model.ServiceDocumentInfo.PublishId})">
+                            <img src="@Url.Content("~/Content/img/ic_image_black_48dp_1x.png")" />@MainMessages.rs_GetDocumentAsPng
+                        </a>
+                    }
+                }
+                @if (Model.ServiceDocumentInfo.IsPdfExists)
+                {
+                    <a class="btn btn-default btn-lg" href="@Url.Action("DownloadPdf", new {publishId = Model.ServiceDocumentInfo.PublishId})">
+                        <img src="@Url.Content("~/Content/img/ic_picture_as_pdf_black_48dp_1x.png")" />@MainMessages.rs_GetDocumentAsPdf
                     </a>
                 }
-                else
-                {
-                    <a class="btn btn-default btn-lg" href="@Url.Action("DownloadImg", new { publishId = Model.ServiceDocumentInfo.PublishId })">
-                        <img src="@Url.Content("~/Content/img/ic_image_black_48dp_1x.png")" />@MainMessages.rs_GetDocumentAsPng
-                    </a>
-                }
-                <a class="btn btn-default btn-lg" href="@Url.Action("DownloadPdf", new { publishId = Model.ServiceDocumentInfo.PublishId })">
-                    <img src="@Url.Content("~/Content/img/ic_picture_as_pdf_black_48dp_1x.png")" />@MainMessages.rs_GetDocumentAsPdf
-                </a>
             </p>
             @Html.ActionLink(MainMessages.rs_GetNextDocument, "Index")
         </div>

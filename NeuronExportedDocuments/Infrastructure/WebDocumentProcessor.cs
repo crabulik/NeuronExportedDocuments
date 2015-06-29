@@ -20,12 +20,14 @@ namespace NeuronExportedDocuments.Infrastructure
         private IConfig Config { get; set; }
 
         private IWebLogger Log { get; set; }
+        private IServiceMessages ServicesMessages { get; set; }
         public WebDocumentProcessor(IDBUnitOfWork database, IWebLogger logger,
-            IConfig config)
+            IConfig config, IServiceMessages servicesMessages)
         {
             Database = database;
             Log = logger;
             Config = config;
+            ServicesMessages = servicesMessages;
         }
         public bool SendEmail(ServiceDocument doc)
         {
@@ -44,9 +46,9 @@ namespace NeuronExportedDocuments.Infrastructure
                 // создаем объект сообщения
                 MailMessage m = new MailMessage(from, to);
                 // тема письма
-                m.Subject = "Test mail";
+                m.Subject = ServicesMessages.FormatMessageByServiceDocument(ServiceMessageKey.SendCredentialsEmailSubject, doc);
                 // текст письма
-                m.Body = string.Format("Document ID: {0}, document pass: {1}", doc.PublishId, doc.PublishPassword);
+                m.Body = ServicesMessages.FormatMessageByServiceDocument(ServiceMessageKey.SendCredentialsEmailMessage, doc);
                 smtp.Send(m);
             }
             catch (Exception e)

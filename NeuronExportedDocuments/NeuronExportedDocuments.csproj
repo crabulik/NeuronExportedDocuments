@@ -192,6 +192,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Extensions\HttpRequestMessageExtensions.cs" />
+    <Compile Include="Infrastructure\NeuronWebConverter.cs" />
     <Compile Include="Infrastructure\UserDataBinder.cs" />
     <Compile Include="Infrastructure\WebDocumentConverter.cs" />
     <Compile Include="Infrastructure\MyDependencyResolver.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="Interfaces\IAutoMapperConfiguration.cs" />
     <Compile Include="Interfaces\IConfig.cs" />
     <Compile Include="Interfaces\IDocumentOperationLogger.cs" />
+    <Compile Include="Interfaces\IServiceMessages.cs" />
     <Compile Include="Interfaces\IUserData.cs" />
     <Compile Include="Interfaces\IWebDocumentProcessor.cs" />
     <Compile Include="Models\DocumentCredentials.cs" />
@@ -209,6 +211,7 @@
     <Compile Include="Models\ServiceDocumentInfo.cs" />
     <Compile Include="Models\UserData.cs" />
     <Compile Include="Models\ViewModels\GetDocumentViewModel.cs" />
+    <Compile Include="Models\ViewModels\HomeIndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\MainExceptionMessages.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -247,6 +250,7 @@
     <Compile Include="Services\Logging\NLog\NLogLogger.cs" />
     <Compile Include="Services\Logging\NLog\UtcDateRenderer.cs" />
     <Compile Include="Services\Logging\NLog\WebVariablesRenderer.cs" />
+    <Compile Include="Services\ServiceMessaging\IServiceMessagesFormater.cs" />
     <Compile Include="Services\ServiceMessaging\ServiceMessages.cs" />
     <Compile Include="Services\ServiceMessaging\ServiceMessagesFormater.cs" />
   </ItemGroup>

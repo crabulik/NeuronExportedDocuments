@@ -14,7 +14,17 @@ namespace NeuronExportedDocuments.Models
 
         public byte[] PdfFileData { get; set; }
 
+        public bool IsPdfExists
+        {
+            get { return (PdfFileData != null) && (PdfFileData.Length > 0); }
+        }
+
         public byte[] ImageData { get; set; }
+
+        public bool IsImageExists
+        {
+            get { return (ImageData != null) && (ImageData.Length > 0); }
+        }
         public bool IsImagesInZip { get; set; }
 
         public bool IsBlocked { get; set; }

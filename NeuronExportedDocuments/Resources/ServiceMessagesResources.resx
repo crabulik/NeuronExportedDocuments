@@ -117,17 +117,77 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="rs_DefGetDocumentWarningMessage" xml:space="preserve">
+    <value>Your document will be acessiable until [@DOCINFO_ACCESSFINALDATE]</value>
+  </data>
+  <data name="rs_DefHomeIndexHelloDescriptionMessage" xml:space="preserve">
+    <value>To get your document input the document's id and password and press "Get" button.</value>
+  </data>
+  <data name="rs_DefHomeIndexHelloMessage" xml:space="preserve">
+    <value>Hello!</value>
+  </data>
   <data name="rs_DefSendCredentialsEmailMessage" xml:space="preserve">
-    <value>Document ID: {0}, document pass: {1}</value>
+    <value>Hello.
+You have a new Neuron document.
+To get a document go to page:  [@SETT_GETDOCUMENTURL]
+Your document ID: "[@DOC_PUBLISHID]", document pass: "[@DOC_PUBLISHPASSWORD]"
+
+For more information about our clinic go to the page: [@SETT_MAINSITEURL]
+If you have any problems, write to our support: [@SETT_SUPPORTEMAIL]</value>
+  </data>
+  <data name="rs_DefSendCredentialsEmailSubject" xml:space="preserve">
+    <value>You have a new Neuron document</value>
+  </data>
+  <data name="rs_GeneralSettingsGetDocumentUrlKeyInfo" xml:space="preserve">
+    <value>The URL adress for getting the Neuron Document from the configuration file</value>
+  </data>
+  <data name="rs_GeneralSettingsMainSiteUrlKeyInfo" xml:space="preserve">
+    <value>The main site's URL from the configuration file</value>
+  </data>
+  <data name="rs_GeneralSupportEmailKeyInfo" xml:space="preserve">
+    <value>The support's EMail adress from the configuration file</value>
   </data>
   <data name="rs_NotSet" xml:space="preserve">
     <value>Not set</value>
   </data>
+  <data name="rs_ServiceDocumentAccessDaysCountKeyInfo" xml:space="preserve">
+    <value>The count of days while an user's document is enabled to download</value>
+  </data>
+  <data name="rs_ServiceDocumentAccessFinalDateKeyInfo" xml:space="preserve">
+    <value>The final date while an user's document is enabled to download</value>
+  </data>
   <data name="rs_ServiceDocumentCreatDateKeyInfo" xml:space="preserve">
     <value>A date, when the document was created</value>
   </data>
+  <data name="rs_ServiceDocumentDeliveryEmailKeyInfo" xml:space="preserve">
+    <value>E-mail for delivery document's credentials</value>
+  </data>
+  <data name="rs_ServiceDocumentDeliveryPhoneKeyInfo" xml:space="preserve">
+    <value>A phone number for delivery document's credentials</value>
+  </data>
+  <data name="rs_ServiceDocumentInfoCreatDateKeyInfo" xml:space="preserve">
+    <value>A date, when the document was created</value>
+  </data>
+  <data name="rs_ServiceDocumentInfoOpenDateKeyInfo" xml:space="preserve">
+    <value>A date, when the document was opened for the first time (or "Not set")</value>
+  </data>
+  <data name="rs_ServiceDocumentInfoPublishIdKeyInfo" xml:space="preserve">
+    <value>A document's access ID</value>
+  </data>
+  <data name="rs_ServiceDocumentInfoStatusKeyInfo" xml:space="preserve">
+    <value>A status of the document</value>
+  </data>
+  <data name="rs_ServiceDocumentNameKeyInfo" xml:space="preserve">
+    <value>A document's name</value>
+  </data>
   <data name="rs_ServiceDocumentOpenDateKeyInfo" xml:space="preserve">
     <value>A date, when the document was opened for the first time (or "Not set")</value>
+  </data>
+  <data name="rs_ServiceDocumentPublishIdKeyInfo" xml:space="preserve">
+    <value>A document's access ID</value>
+  </data>
+  <data name="rs_ServiceDocumentPublishPasswordKeyInfo" xml:space="preserve">
+    <value>A document's password</value>
   </data>
   <data name="rs_ServiceDocumentStatusKeyInfo" xml:space="preserve">
     <value>A status of the document</value>

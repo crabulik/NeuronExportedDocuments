@@ -12,6 +12,7 @@ using NeuronExportedDocuments.Services.Config;
 using NeuronExportedDocuments.Services.Logging;
 using NeuronExportedDocuments.Services.Logging.DocumentOperation;
 using NeuronExportedDocuments.Services.Logging.NLog;
+using NeuronExportedDocuments.Services.ServiceMessaging;
 using Ninject;
 using IDependencyResolver = System.Web.Mvc.IDependencyResolver;
 
@@ -36,7 +37,9 @@ namespace NeuronExportedDocuments.Infrastructure
             _kernel.Bind<IWebLogger>().To<NLogLogger>().InSingletonScope();
             _kernel.Bind<IDocumentOperationLogger>().To<DocumentOperationLogger>().InSingletonScope();
             _kernel.Bind<IConfig>().To<GeneralСonfig>().InSingletonScope();
+            _kernel.Bind<IServiceMessagesFormater>().To<ServiceMessagesFormater>().InSingletonScope();
             _kernel.Bind<IUserData>().To<UserData>();
+            _kernel.Bind<IServiceMessages>().To<ServiceMessages>();
             _kernel.Bind<UserDataBinder>().ToSelf();
 
             IAutoMapperConfiguration conf = new AutoMapperConfiguration();

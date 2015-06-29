@@ -7,6 +7,9 @@ namespace NeuronExportedDocuments.Services.Config
         private const string DocumentAccessDaysCountPropertyName = "DocumentAccessDaysCount";
         private const string DocumentPassLengthPropertyName = "DocumentPassLength";
         private const string ServiceMessagesExperienceMinutesPropertyName = "ServiceMessagesExperienceMinutes";
+        private const string MainSiteUrlPropertyName = "MainSiteUrl";
+        private const string GetDocumentUrlPropertyName = "GetDocumentUrl";
+        private const string SupportEmailPropertyName = "SupportEmail";
 
 
         [ConfigurationProperty(DocumentAccessDaysCountPropertyName, IsRequired = false, DefaultValue = "31")]
@@ -61,6 +64,45 @@ namespace NeuronExportedDocuments.Services.Config
                     this[ServiceMessagesExperienceMinutesPropertyName] = value;
                 }
 
+            }
+        }
+
+        [ConfigurationProperty(MainSiteUrlPropertyName, IsRequired = true)]
+        public string MainSiteUrl
+        {
+            get
+            {
+                return (string)this[MainSiteUrlPropertyName];
+            }
+            set
+            {
+                this[MainSiteUrlPropertyName] = value;
+            }
+        }
+
+        [ConfigurationProperty(GetDocumentUrlPropertyName, IsRequired = true)]
+        public string GetDocumentUrl
+        {
+            get
+            {
+                return (string)this[GetDocumentUrlPropertyName];
+            }
+            set
+            {
+                this[GetDocumentUrlPropertyName] = value;
+            }
+        }
+
+        [ConfigurationProperty(SupportEmailPropertyName, IsRequired = true)]
+        public string SupportEmail
+        {
+            get
+            {
+                return (string)this[SupportEmailPropertyName];
+            }
+            set
+            {
+                this[SupportEmailPropertyName] = value;
             }
         }
     }
