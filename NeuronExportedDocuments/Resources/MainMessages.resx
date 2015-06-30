@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="rs_AdminPanel" xml:space="preserve">
+    <value>Admin Panel</value>
+  </data>
   <data name="rs_ChooseDocumentFormat" xml:space="preserve">
     <value>Choose document format:</value>
   </data>
@@ -150,6 +153,9 @@
   <data name="rs_GetNextDocument" xml:space="preserve">
     <value>Get next document</value>
   </data>
+  <data name="rs_Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
   <data name="rs_PDFDocumentDefaultName" xml:space="preserve">
     <value>Document_{0}.pdf</value>
   </data>
@@ -161,6 +167,21 @@
   </data>
   <data name="rs_RequestForUnexistedDocument" xml:space="preserve">
     <value>Request for an unexisted document with ID: "{0}"  from IP: "{1}"</value>
+  </data>
+  <data name="rs_ServiceMessageIsDefaultDisplayName" xml:space="preserve">
+    <value>Is Default</value>
+  </data>
+  <data name="rs_ServiceMessageKeyDisplayName" xml:space="preserve">
+    <value>Message Key</value>
+  </data>
+  <data name="rs_ServiceMessageMessageDisplayName" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="rs_ServiceMessagesList" xml:space="preserve">
+    <value>Neuron Documents Service Messages</value>
+  </data>
+  <data name="rs_ServiceMessagesListShort" xml:space="preserve">
+    <value>Service Messages</value>
   </data>
   <data name="rs_Warning" xml:space="preserve">
     <value>Warning!</value>

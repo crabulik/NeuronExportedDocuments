@@ -70,6 +70,12 @@
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.4.0.0\lib\net45\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Caching" />
@@ -154,6 +160,7 @@
     <Content Include="Content\img\ic_picture_as_pdf_black_48dp_2x.png" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\neuron.png" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -185,6 +192,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DocumentPublisherController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImportController.cs" />
@@ -212,6 +220,7 @@
     <Compile Include="Models\UserData.cs" />
     <Compile Include="Models\ViewModels\GetDocumentViewModel.cs" />
     <Compile Include="Models\ViewModels\HomeIndexViewModel.cs" />
+    <Compile Include="Models\ViewModels\ServiceMessagesViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\MainExceptionMessages.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -268,6 +277,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\DocumentGetter.cshtml" />
     <Content Include="Views\Home\GetDocument.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\ServiceMessages.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

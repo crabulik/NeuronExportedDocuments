@@ -1,0 +1,59 @@
+﻿@using NeuronExportedDocuments.Resources
+@using PagedList.Mvc;
+@model NeuronExportedDocuments.Models.ViewModels.ServiceMessagesViewModel
+
+@{
+    ViewBag.Title = MainMessages.rs_ServiceMessagesList;
+    Layout = "~/Views/_AdminLayout.cshtml";
+}
+
+@section Scripts {
+
+}
+@section Body {
+    
+<table class="table table-striped">
+    <tr>
+        <th>
+            @MainMessages.rs_ServiceMessageKeyDisplayName
+        </th>
+        <th>
+            @MainMessages.rs_ServiceMessageIsDefaultDisplayName
+        </th>
+        <th>
+            @MainMessages.rs_ServiceMessageMessageDisplayName
+        </th>
+        <th></th>
+    </tr>
+
+
+    @foreach (var item in Model.List)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Key)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDefault)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Message)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ServiceMessageId }) |
+            </td>
+        </tr>
+    }
+
+</table>
+    @if (Model.List.PageCount > 1)
+    {
+        <br />
+        <div>@MainMessages.rs_Page @(Model.List.PageCount < Model.List.PageNumber ? 0 : Model.List.PageNumber) of @Model.List.PageCount</div>
+
+        @Html.PagedListPager(Model.List, page => Url.Action("ServiceMessages", new { page }));
+    }
+
+
+}
+

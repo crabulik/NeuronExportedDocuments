@@ -61,6 +61,15 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Admin Panel.
+        /// </summary>
+        public static string rs_AdminPanel {
+            get {
+                return ResourceManager.GetString("rs_AdminPanel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose document format:.
         /// </summary>
         public static string rs_ChooseDocumentFormat {
@@ -160,6 +169,15 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Page.
+        /// </summary>
+        public static string rs_Page {
+            get {
+                return ResourceManager.GetString("rs_Page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Document_{0}.pdf.
         /// </summary>
         public static string rs_PDFDocumentDefaultName {
@@ -192,6 +210,51 @@ namespace NeuronExportedDocuments.Resources {
         public static string rs_RequestForUnexistedDocument {
             get {
                 return ResourceManager.GetString("rs_RequestForUnexistedDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Default.
+        /// </summary>
+        public static string rs_ServiceMessageIsDefaultDisplayName {
+            get {
+                return ResourceManager.GetString("rs_ServiceMessageIsDefaultDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message Key.
+        /// </summary>
+        public static string rs_ServiceMessageKeyDisplayName {
+            get {
+                return ResourceManager.GetString("rs_ServiceMessageKeyDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message.
+        /// </summary>
+        public static string rs_ServiceMessageMessageDisplayName {
+            get {
+                return ResourceManager.GetString("rs_ServiceMessageMessageDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neuron Documents Service Messages.
+        /// </summary>
+        public static string rs_ServiceMessagesList {
+            get {
+                return ResourceManager.GetString("rs_ServiceMessagesList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Service Messages.
+        /// </summary>
+        public static string rs_ServiceMessagesListShort {
+            get {
+                return ResourceManager.GetString("rs_ServiceMessagesListShort", resourceCulture);
             }
         }
         
