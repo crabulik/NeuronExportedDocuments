@@ -117,11 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="rs_DefGetDocumentWarningDisplayName" xml:space="preserve">
+    <value>Warning message for an opened document</value>
+  </data>
   <data name="rs_DefGetDocumentWarningMessage" xml:space="preserve">
     <value>Your document will be acessiable until [@DOCINFO_ACCESSFINALDATE]</value>
   </data>
+  <data name="rs_DefHomeIndexHelloDescriptionDisplayName" xml:space="preserve">
+    <value>Main "Hello" message</value>
+  </data>
   <data name="rs_DefHomeIndexHelloDescriptionMessage" xml:space="preserve">
     <value>To get your document input the document's id and password and press "Get" button.</value>
+  </data>
+  <data name="rs_DefHomeIndexHelloDisplayName" xml:space="preserve">
+    <value>Main "Hello" caption</value>
   </data>
   <data name="rs_DefHomeIndexHelloMessage" xml:space="preserve">
     <value>Hello!</value>
@@ -135,8 +144,14 @@ Your document ID: "[@DOC_PUBLISHID]", document pass: "[@DOC_PUBLISHPASSWORD]"
 For more information about our clinic go to the page: [@SETT_MAINSITEURL]
 If you have any problems, write to our support: [@SETT_SUPPORTEMAIL]</value>
   </data>
+  <data name="rs_DefSendCredentialsEmailMessageDisplayName" xml:space="preserve">
+    <value>Template for Emails to users with credential information</value>
+  </data>
   <data name="rs_DefSendCredentialsEmailSubject" xml:space="preserve">
     <value>You have a new Neuron document</value>
+  </data>
+  <data name="rs_DefSendCredentialsEmailSubjectDisplayName" xml:space="preserve">
+    <value>Caption for Emails to users with credential information</value>
   </data>
   <data name="rs_GeneralSettingsGetDocumentUrlKeyInfo" xml:space="preserve">
     <value>The URL adress for getting the Neuron Document from the configuration file</value>

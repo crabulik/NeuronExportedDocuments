@@ -79,6 +79,15 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string rs_Close {
+            get {
+                return ResourceManager.GetString("rs_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your document will be acessiable until.
         /// </summary>
         public static string rs_DocumentAccessibilityTerm {
@@ -111,6 +120,42 @@ namespace NeuronExportedDocuments.Resources {
         public static string rs_DownloadNeuronDocument {
             get {
                 return ResourceManager.GetString("rs_DownloadNeuronDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Default.
+        /// </summary>
+        public static string rs_EditServiceIsDefaultName {
+            get {
+                return ResourceManager.GetString("rs_EditServiceIsDefaultName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Service Message.
+        /// </summary>
+        public static string rs_EditServiceMessageCaption {
+            get {
+                return ResourceManager.GetString("rs_EditServiceMessageCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message.
+        /// </summary>
+        public static string rs_EditServiceMessageName {
+            get {
+                return ResourceManager.GetString("rs_EditServiceMessageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Formater Keys.
+        /// </summary>
+        public static string rs_FormaterKeysName {
+            get {
+                return ResourceManager.GetString("rs_FormaterKeysName", resourceCulture);
             }
         }
         
@@ -210,6 +255,15 @@ namespace NeuronExportedDocuments.Resources {
         public static string rs_RequestForUnexistedDocument {
             get {
                 return ResourceManager.GetString("rs_RequestForUnexistedDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string rs_Save {
+            get {
+                return ResourceManager.GetString("rs_Save", resourceCulture);
             }
         }
         

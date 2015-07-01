@@ -65,6 +65,26 @@ namespace NeuronExportedDocuments.Services.ServiceMessaging
             return defServiceMessage.Message;
         }
 
+
+        public string GetDefaultKeyDisplayName(ServiceMessageKey key)
+        {
+            switch (key)
+            {
+                case ServiceMessageKey.SendCredentialsEmailMessage:
+                    return ServiceMessagesResources.rs_DefSendCredentialsEmailMessageDisplayName;
+                case ServiceMessageKey.SendCredentialsEmailSubject:
+                    return ServiceMessagesResources.rs_DefSendCredentialsEmailSubjectDisplayName;
+                case ServiceMessageKey.HomeIndexHelloMessage:
+                    return ServiceMessagesResources.rs_DefHomeIndexHelloDisplayName;
+                case ServiceMessageKey.HomeIndexHelloDescriptionMessage:
+                    return ServiceMessagesResources.rs_DefHomeIndexHelloDescriptionDisplayName;
+                case ServiceMessageKey.GetDocumentWarningMessage:
+                    return ServiceMessagesResources.rs_DefGetDocumentWarningDisplayName;
+                default:
+                    throw new ArgumentOutOfRangeException("key");
+            }
+        }
+
         public string GetDefaultMessage(ServiceMessageKey key)
         {
             switch (key)
@@ -82,6 +102,27 @@ namespace NeuronExportedDocuments.Services.ServiceMessaging
                 default:
                     throw new ArgumentOutOfRangeException("key");
             }
+        }
+
+        public List<FormaterKey> GetFormatKeys(ServiceMessageKey key)
+        {
+            var result = GetGeneralSettingsKeys();
+
+            switch (key)
+            {
+                case ServiceMessageKey.SendCredentialsEmailMessage:
+                case ServiceMessageKey.SendCredentialsEmailSubject:
+                    result.AddRange(GetServiceDocumentKeys());
+                    break;
+                case ServiceMessageKey.HomeIndexHelloMessage:
+                    break;
+                case ServiceMessageKey.HomeIndexHelloDescriptionMessage:
+                case ServiceMessageKey.GetDocumentWarningMessage:
+                    result.AddRange(GetGetDocumentViewModelKeys());
+                    break;
+            }
+
+            return result;
         }
 
         #region ServiceDocumentInfo

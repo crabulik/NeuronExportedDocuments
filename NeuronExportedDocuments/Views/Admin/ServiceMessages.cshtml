@@ -8,44 +8,72 @@
 }
 
 @section Scripts {
-
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.edit-message').click(function () {
+                var id = $(this).attr('data-id');
+                var backUrl = $(this).attr('back-url');
+                $.ajax({
+                    url: '@Url.Action("EditServiceMessage")', // to get the right path to controller from TableRoutes of Asp.Net MVC
+                    dataType: "html", 
+                    type: "GET", //to do a post request 
+                    contentType: 'application/html; charset=utf-8',
+                    cache: false, 
+                    data: { id: id, backUrl: backUrl }, // here you can pass arguments to your request if you need
+                    success: function (data) {
+                        $('#edit-message-container').html(data);
+                        $('#edit-message').modal('show');
+                    },
+                    error: function (xhr, status) {
+                        alert(status);
+                    }
+                });
+            });
+        });
+    </script>
 }
 @section Body {
-    
-<table class="table table-striped">
+
+    <div class="modal fade" id="edit-message" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="edit-message-container">
+        </div>
+    </div>
+</div>  
+    <table class="table table-striped">
     <tr>
         <th>
             @MainMessages.rs_ServiceMessageKeyDisplayName
         </th>
-        <th>
+        <th class="text-center">
             @MainMessages.rs_ServiceMessageIsDefaultDisplayName
         </th>
         <th>
             @MainMessages.rs_ServiceMessageMessageDisplayName
         </th>
-        <th></th>
+        <th class="text-center"></th>
     </tr>
 
 
     @foreach (var item in Model.List)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Key)
+            <td class="col-md-4">
+                @(Model.ServiceMessages.GetDefaultKeyDisplayName(item.Key))
             </td>
-            <td>
+            <td class="col-md-1 text-center">
                 @Html.DisplayFor(modelItem => item.IsDefault)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Message)
+            <td class="col-md-6">
+                <span style="white-space: pre-line">@((item.IsDefault) ? Model.ServiceMessages.GetDefaultMessage(item.Key) : item.Message)</span>
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ServiceMessageId }) |
+            <td class="col-md-1 text-center">
+                <button class="glyphicon glyphicon-edit btn btn-primary edit-message" data-id="@item.ServiceMessageId" back-url="@Request.Url.PathAndQuery"></button>
             </td>
         </tr>
     }
 
-</table>
+    </table>
     @if (Model.List.PageCount > 1)
     {
         <br />

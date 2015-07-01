@@ -189,4 +189,22 @@
   <data name="rs_ZIPDocumentDefaultName" xml:space="preserve">
     <value>Document_{0}.zip</value>
   </data>
+  <data name="rs_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="rs_EditServiceIsDefaultName" xml:space="preserve">
+    <value>Is Default</value>
+  </data>
+  <data name="rs_EditServiceMessageCaption" xml:space="preserve">
+    <value>Edit Service Message</value>
+  </data>
+  <data name="rs_EditServiceMessageName" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="rs_FormaterKeysName" xml:space="preserve">
+    <value>Formater Keys</value>
+  </data>
+  <data name="rs_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
 </root>

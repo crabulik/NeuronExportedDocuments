@@ -218,6 +218,7 @@
     <Compile Include="Models\FormaterKey.cs" />
     <Compile Include="Models\ServiceDocumentInfo.cs" />
     <Compile Include="Models\UserData.cs" />
+    <Compile Include="Models\ViewModels\EditServiceMessageViewModel.cs" />
     <Compile Include="Models\ViewModels\GetDocumentViewModel.cs" />
     <Compile Include="Models\ViewModels\HomeIndexViewModel.cs" />
     <Compile Include="Models\ViewModels\ServiceMessagesViewModel.cs" />
@@ -280,6 +281,7 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\_AdminLayout.cshtml" />
     <Content Include="Views\Admin\ServiceMessages.cshtml" />
+    <Content Include="Views\Admin\_EditServiceMessagePartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

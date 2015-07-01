@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using NeuronExportedDocuments.Models;
 using NeuronExportedDocuments.Models.Enums;
+using NeuronExportedDocuments.Models.ViewModels;
 
 namespace NeuronExportedDocuments.Services.AutoMapper
 {
@@ -11,6 +12,7 @@ namespace NeuronExportedDocuments.Services.AutoMapper
             CreateMap<ServiceDocument, ServiceDocumentInfo>()
                 .ForMember(vm => vm.StatusString, opt => opt.ResolveUsing<ExportedDocStatusResolver>()
                     .FromMember(p => p.Status));
+            CreateMap<ServiceMessage, EditServiceMessageViewModel>();
         }
 
         public override string ProfileName
