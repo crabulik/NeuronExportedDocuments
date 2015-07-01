@@ -78,7 +78,8 @@ namespace NeuronExportedDocuments.Controllers
                     toUpdate.Message = viewModel.Message;
                 }
                 Database.ServiceMessages.Update(toUpdate);
-                Database.Save();               
+                Database.Save();   
+                Обновить кэш!!!!
             }
             return Redirect(viewModel.BackUrl);
         }

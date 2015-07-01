@@ -10,15 +10,21 @@
     
 </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-                        <img alt="Brand" src="@Url.Content("~/Content/img/neuron.png")">
-                    </a>
-                </div>
+        <div class="container">
+            <div class="header">
+                <nav class="nav nav-pills navbar-inverse">
+                    
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                                <img alt="Brand" src="@Url.Content("~/Content/img/neuron.png")">
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+                
             </div>
-        </nav>
-        @RenderSection("Body")
+            @RenderSection("Body")
+        </div>
     </body>
 </html>
