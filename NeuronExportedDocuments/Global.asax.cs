@@ -30,6 +30,9 @@ namespace NeuronExportedDocuments
             ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("utc_date", typeof(NeuronExportedDocuments.Services.Logging.NLog.UtcDateRenderer));
             ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("web_variables", typeof(NeuronExportedDocuments.Services.Logging.NLog.WebVariablesRenderer));
 
+            var binder = new DateTimeModelBinder();
+            ModelBinders.Binders.Add(typeof(DateTime), binder);
+            ModelBinders.Binders.Add(typeof(DateTime?), binder);
         }
 
         protected void Application_Error()
