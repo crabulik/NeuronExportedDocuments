@@ -15,7 +15,7 @@
     @if ((Model.ServiceDocumentInfo.IsOpened) && (Model.WarningMessage != string.Empty))
     {
         <div class="alert alert-warning" role="alert">
-            <strong>@MainMessages.rs_Warning</strong> @Model.WarningMessage
+            <strong>@MainMessages.rs_Warning</strong> @Html.Raw(Model.WarningMessage)
         </div>
     }
     <div class="panel panel-primary">

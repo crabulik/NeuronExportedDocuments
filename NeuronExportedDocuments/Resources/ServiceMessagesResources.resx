@@ -121,7 +121,7 @@
     <value>Warning message for an opened document</value>
   </data>
   <data name="rs_DefGetDocumentWarningMessage" xml:space="preserve">
-    <value>Your document will be acessiable until [@DOCINFO_ACCESSFINALDATE]</value>
+    <value>Your document will be acessiable until &lt;strong&gt;[@DOCINFO_ACCESSFINALDATE]&lt;/strong&gt;</value>
   </data>
   <data name="rs_DefHomeIndexHelloDescriptionDisplayName" xml:space="preserve">
     <value>Main "Hello" message</value>

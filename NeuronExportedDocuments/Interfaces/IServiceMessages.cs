@@ -9,6 +9,7 @@ namespace NeuronExportedDocuments.Interfaces
     public interface IServiceMessages
     {
         string GetMessage(ServiceMessageKey key);
+        void UpdateCachedMessage(ServiceMessage message);
         string GetDefaultKeyDisplayName(ServiceMessageKey key);
         string GetDefaultMessage(ServiceMessageKey key);
         List<FormaterKey> GetFormatKeys(ServiceMessageKey key);

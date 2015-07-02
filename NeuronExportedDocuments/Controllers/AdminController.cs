@@ -67,6 +67,7 @@ namespace NeuronExportedDocuments.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryTokenAttribute]
+        [ValidateInput(false)]
         public ActionResult EditServiceMessage(EditServiceMessageViewModel viewModel)
         {
             if (ModelState.IsValid)
@@ -78,8 +79,8 @@ namespace NeuronExportedDocuments.Controllers
                     toUpdate.Message = viewModel.Message;
                 }
                 Database.ServiceMessages.Update(toUpdate);
-                Database.Save();   
-                Обновить кэш!!!!
+                Database.Save();
+                ServiceMessages.UpdateCachedMessage(toUpdate);
             }
             return Redirect(viewModel.BackUrl);
         }

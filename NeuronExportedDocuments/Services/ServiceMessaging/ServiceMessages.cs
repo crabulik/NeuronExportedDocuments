@@ -57,12 +57,20 @@ namespace NeuronExportedDocuments.Services.ServiceMessaging
                 defServiceMessage.Message = Formatter.FormatByGeneralSettings(defServiceMessage.Message,
                     Config.GeneralSettings);
                 
-                Cache.Add(defServiceMessage.GetCachedKey(), defServiceMessage,
+                Cache.Set(defServiceMessage.GetCachedKey(), defServiceMessage,
                     DateTimeOffset.Now.AddMinutes(Config.GeneralSettings.ServiceMessagesExperienceMinutes));
 
             }
 
             return defServiceMessage.Message;
+        }
+
+        public void UpdateCachedMessage(ServiceMessage message)
+        {
+            message.Message = Formatter.FormatByGeneralSettings(message.Message,
+                    Config.GeneralSettings);
+            Cache.Set(message.GetCachedKey(), message,
+                    DateTimeOffset.Now.AddMinutes(Config.GeneralSettings.ServiceMessagesExperienceMinutes));
         }
 
 

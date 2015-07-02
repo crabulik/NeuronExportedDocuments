@@ -70,7 +70,7 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your document will be acessiable until [@DOCINFO_ACCESSFINALDATE].
+        ///   Looks up a localized string similar to Your document will be acessiable until &lt;strong&gt;[@DOCINFO_ACCESSFINALDATE]&lt;/strong&gt;.
         /// </summary>
         public static string rs_DefGetDocumentWarningMessage {
             get {

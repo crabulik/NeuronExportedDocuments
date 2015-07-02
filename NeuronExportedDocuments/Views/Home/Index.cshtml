@@ -11,8 +11,8 @@
 }
 @section Body {
     <div class="jumbotron">
-        <h1>@Model.HelloMessage</h1>
-        <p>@Model.HelloDescriptionMessage</p>
+        <h1>@Html.Raw(Model.HelloMessage)</h1>
+        <p>@Html.Raw(Model.HelloDescriptionMessage)</p>
     </div>
     <div id="getter" class="section panel panel-primary">
         @Html.Partial("DocumentGetter", Model.DocumentCredentials)
