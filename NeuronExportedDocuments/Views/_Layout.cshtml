@@ -6,7 +6,12 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/ClientScripts")
+    @Scripts.Render("~/bundles/global")
+    @Scripts.Render("~/bundles/globalLastFile")
     @RenderSection("Scripts")
+    <script>
+        Globalize.culture("ru-RU");
+    </script>
     
 </head>
     <body>

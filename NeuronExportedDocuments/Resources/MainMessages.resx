@@ -207,4 +207,7 @@
   <data name="rs_Save" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="rs_Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
 </root>

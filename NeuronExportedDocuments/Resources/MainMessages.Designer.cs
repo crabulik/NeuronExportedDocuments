@@ -268,6 +268,15 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string rs_Search {
+            get {
+                return ResourceManager.GetString("rs_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Is Default.
         /// </summary>
         public static string rs_ServiceMessageIsDefaultDisplayName {

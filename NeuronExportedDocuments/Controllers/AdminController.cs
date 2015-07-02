@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using NeuronExportedDocuments.DAL.Interfaces;
 using NeuronExportedDocuments.Interfaces;
+using NeuronExportedDocuments.Models;
 using NeuronExportedDocuments.Models.Interfaces;
 using NeuronExportedDocuments.Models.ViewModels;
 using PagedList;
@@ -14,6 +15,7 @@ namespace NeuronExportedDocuments.Controllers
 {
     public class AdminController : Controller
     {
+        private const int LofErrorsPerPageCount = 10;
         private const int ServiceMessagesPerPageCount = 6;
         private IDBUnitOfWork Database { get; set; }
 
@@ -29,9 +31,21 @@ namespace NeuronExportedDocuments.Controllers
             ServiceMessages = serviceMessages;
             ModelMapper = mapper;
         }
-        public ActionResult Index()
+        public ActionResult Index(int? page, NLogErrorsFilter filter = null)
         {
-            return View();
+            int pageNumber = (page ?? 1);
+            if (filter == null)
+                filter = new NLogErrorsFilter();
+            var errorsList = Database.NLogErrors.GetAll().Where(w => ((w.RecordTime >= filter.LogStartDateTime) &&
+                (w.RecordTime <= filter.LogEndDateTime))).OrderByDescending(p => p.RecordTime);
+
+
+            var vm = new LogErrorsViewModel
+            {
+                Filter = filter,
+                List = errorsList.ToPagedList(pageNumber, LofErrorsPerPageCount),
+            };
+            return View(vm);
         }
 
 

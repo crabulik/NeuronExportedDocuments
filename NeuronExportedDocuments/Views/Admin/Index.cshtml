@@ -1,4 +1,6 @@
-﻿@using NeuronExportedDocuments.Resources
+﻿@using PagedList.Mvc;
+@using NeuronExportedDocuments.Resources
+@model NeuronExportedDocuments.Models.ViewModels.LogErrorsViewModel
 
 @{
     ViewBag.Title = MainMessages.rs_AdminPanel;
@@ -6,8 +8,106 @@
 }
 
 @section Scripts {
-
+    <script type="text/javascript">
+        $(function () {
+            moment.locale('ru');
+            $('#startLogDate').datetimepicker({
+                format: 'DD.MM.YYYY H:mm:ss'
+            });
+            $('#endtLogDate').datetimepicker({
+                format: 'DD.MM.YYYY H:mm:ss'
+            });
+            $("#startLogDate").on("dp.change", function (e) {
+                $('#endtLogDate').data("DateTimePicker").minDate(e.date);
+            });
+            $("#endtLogDate").on("dp.change", function (e) {
+                $('#startLogDate').data("DateTimePicker").maxDate(e.date);
+            });          
+        });
+    </script>
 }
 @section Body {
+    
+    @using (Html.BeginForm("Index", "Admin", FormMethod.Get))
+    {
+        <div class="container">
+            <div class='col-lg-3'>
+                <div class="form-group">
+                    <div class='input-group date' id='startLogDate'>
+                        @Html.TextBoxFor(m => m.Filter.LogStartDateTime, new { @class = "form-control" })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-lg-3'>
+                <div class="form-group">
+                    <div class='input-group date' id='endtLogDate'>
+                        @Html.TextBoxFor(m => m.Filter.LogEndDateTime, new { @class = "form-control" })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        @Html.CheckBoxFor(m => m.Filter.IsHostFilter, new{aria_label="..."})
+                    </span>
+                    @Html.TextBoxFor(m => m.Filter.HostFilter, new {@class="form-control", aria_label="..."})
+                </div>
+            </div>
+            <div class="col-lg-1">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        @Html.CheckBoxFor(m => m.Filter.IsTypeFilter, new { aria_label = "..." })
+                    </span>
+                    @Html.TextBoxFor(m => m.Filter.TypeFilter, new { @class = "form-control", aria_label = "..." })
+                </div>
+            </div>
+            <button type="submit" >@MainMessages.rs_Search</button>
+        </div>           
+    } 
+   
+    <table class="table table-striped">
+    <tr>
+        <th>
+            @MainMessages.rs_ServiceMessageKeyDisplayName
+        </th>
+        <th class="text-center">
+            @MainMessages.rs_ServiceMessageIsDefaultDisplayName
+        </th>
+        <th>
+            @MainMessages.rs_ServiceMessageMessageDisplayName
+        </th>
+        <th class="text-center"></th>
+    </tr>
 
+
+        @foreach (var item in Model.List)
+        {
+            <tr>
+                <td class="col-md-4">
+                    @Html.DisplayFor(modelItem => item.RecordTime)
+                </td>
+                <td class="col-md-1">
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td class="col-md-6">
+                    <span style="white-space: pre-line">@(item.Stacktrace)</span>
+                </td>
+
+            </tr>
+        }
+
+    </table>
+    @if (Model.List.PageCount > 1)
+    {
+        <br />
+        <div>@MainMessages.rs_Page @(Model.List.PageCount < Model.List.PageNumber ? 0 : Model.List.PageNumber) of @Model.List.PageCount</div>
+
+        @Html.PagedListPager(Model.List, page => Url.Action("Index", new { page, Model.Filter }));
+    }
 }

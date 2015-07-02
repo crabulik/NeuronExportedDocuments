@@ -12,11 +12,23 @@ namespace NeuronExportedDocuments
                 .Include(
                 "~/Scripts/jquery-{version}.js",
                 "~/Scripts/jquery.validate.js",
+                "~/Scripts/jquery.validate.min.js",
                 "~/Scripts/jquery.validate.unobtrusive.js",
-                "~/Scripts/bootstrap.js"
+                "~/Scripts/jquery.validate.unobtrusive.min.js",
+                "~/Scripts/moment*",
+                "~/Scripts/locale/*.js",
+                "~/Scripts/bootstrap*"
                 //,"~/Scripts/jquery.validate.unobtrusive.bootstrap.tooltip.js"
-                ,"~/Scripts/bootstrap-validation.js"
+                ,"~/Scripts/bootstrap-validation*"
+                , "~/Scripts/bootstrap-datetimepicker*"
                 ));
+
+            bundles.Add(new ScriptBundle("~/bundles/global").Include(
+                "~/Scripts/globalize.js",
+                "~/Scripts/globalize/cultures/globalize.culture.ru-RU.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/globalLastFile").Include(
+                "~/Scripts/jquery.validate.globalize*"));
         }
     }
 }
