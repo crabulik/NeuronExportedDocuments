@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace NeuronExportedDocuments.Models.Interfaces
 {
@@ -16,5 +17,7 @@ namespace NeuronExportedDocuments.Models.Interfaces
 
         void Fatal(string message);
         void Fatal(Exception x);
+
+        List<string> GetAllLogLevels();
     }
 }

@@ -44,9 +44,8 @@ namespace NeuronExportedDocuments.Controllers
                 if (document != null)
                 {
                     var inDbDoc =
-                        Database.ServiceDocuments.Find(p => (p.NeuronDbDocumentId == document.NeuronDbDocumentId) &&
-                            (p.CreatDate >= document.CreatDate))
-                            .FirstOrDefault();
+                        Database.ServiceDocuments.GetQueryable().FirstOrDefault(p => (p.NeuronDbDocumentId == document.NeuronDbDocumentId) &&
+                                                                                     (p.CreatDate >= document.CreatDate));
                     if (inDbDoc != null)
                     {
                         return Request.CreateResponse(HttpStatusCode.NotAcceptable, WebApiMessages.DocIsExist);

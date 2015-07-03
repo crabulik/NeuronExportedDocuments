@@ -210,4 +210,31 @@
   <data name="rs_Search" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="rs_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="rs_HostFilter" xml:space="preserve">
+    <value>Host Filter ...</value>
+  </data>
+  <data name="rs_NlogErrorRecordHost" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="rs_NlogErrorRecordLevel" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="rs_NlogErrorRecordMessage" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="rs_NlogErrorRecordTime" xml:space="preserve">
+    <value>Record Time</value>
+  </data>
+  <data name="rs_NLogErrorXmlCaption" xml:space="preserve">
+    <value>Xml data</value>
+  </data>
+  <data name="rs_ServiceLog" xml:space="preserve">
+    <value>Service Log</value>
+  </data>
+  <data name="rs_UnknownLogId" xml:space="preserve">
+    <value>Unknown Log Id</value>
+  </data>
 </root>

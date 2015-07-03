@@ -21,6 +21,11 @@ namespace NeuronExportedDocuments.DAL.Repositories
             return _db.DocumentImages; 
         }
 
+        public IQueryable<DocumentImage> GetQueryable()
+        {
+            return _db.DocumentImages; 
+        }
+
         public DocumentImage Get(int id)
         {
             return _db.DocumentImages.Find(id);

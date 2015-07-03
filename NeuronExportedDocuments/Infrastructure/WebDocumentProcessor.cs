@@ -92,7 +92,7 @@ namespace NeuronExportedDocuments.Infrastructure
                 if (id != 0)
                 lock (_synclock)
                 {
-                    if (!Database.ServiceDocuments.Find((document) => (document.PublishId == id.ToString())).Any())
+                    if (!Database.ServiceDocuments.GetQueryable().Any(document => (document.PublishId == id.ToString())))
                     {
                         result = true;
                     }

@@ -14,9 +14,15 @@ namespace NeuronExportedDocuments.DAL.Repositories
         public NLogErrorRepository(DocumentContext db)
         {
             _db = db;
+            _db.Database.Log = p => System.Diagnostics.Debug.Write(p);
         }
 
         public IEnumerable<NLogError> GetAll()
+        {
+            return _db.NLogErrors;
+        }
+
+        public IQueryable<NLogError> GetQueryable()
         {
             return _db.NLogErrors;
         }

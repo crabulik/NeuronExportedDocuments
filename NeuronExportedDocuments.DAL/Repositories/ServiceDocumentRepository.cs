@@ -21,6 +21,12 @@ namespace NeuronExportedDocuments.DAL.Repositories
                 .Include(p => p.DocumentOperations);
         }
 
+        public IQueryable<ServiceDocument> GetQueryable()
+        {
+            return _db.ServiceDocuments
+                .Include(p => p.DocumentOperations);
+        }
+
         public ServiceDocument Get(int id)
         {
             return _db.ServiceDocuments

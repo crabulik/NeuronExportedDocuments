@@ -58,7 +58,7 @@ namespace NeuronExportedDocuments.Controllers
             tryCounter += 1;
             if (ModelState.IsValid)
             {
-                var found = Database.ServiceDocuments.Find((document) => document.PublishId == doc.PublishId).FirstOrDefault();
+                var found = Database.ServiceDocuments.GetQueryable().FirstOrDefault(document => document.PublishId == doc.PublishId);
                 if (found == null)
                 {
                     Log.Info(string.Format(MainMessages.rs_RequestForUnexistedDocument, doc.PublishId, Request.UserHostAddress));

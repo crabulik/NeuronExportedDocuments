@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Http;
 using NeuronExportedDocuments.DAL.Interfaces;
 using NeuronExportedDocuments.Infrastructure.Extensions;
@@ -34,7 +35,8 @@ namespace NeuronExportedDocuments.Controllers
                 {
                     var changed = false;
                     var unhandledDocs =
-                        Database.ServiceDocuments.Find((document) => document.Status == ExportedDocStatus.Unhandled);
+                        Database.ServiceDocuments.GetQueryable()
+                            .Where((document) => document.Status == ExportedDocStatus.Unhandled);
                     foreach (var unhandledDoc in unhandledDocs)
                     {
                         if (DocumentProcessor.PublishDocument(unhandledDoc))
@@ -58,7 +60,7 @@ namespace NeuronExportedDocuments.Controllers
 
                     changed = false;
                     var publishedDocs =
-                        Database.ServiceDocuments.Find((document) => document.Status == ExportedDocStatus.Published);
+                        Database.ServiceDocuments.GetQueryable().Where((document) => document.Status == ExportedDocStatus.Published);
                     foreach (var publishedDoc in publishedDocs)
                     {
                         if (DocumentProcessor.SendDocInfo(publishedDoc))

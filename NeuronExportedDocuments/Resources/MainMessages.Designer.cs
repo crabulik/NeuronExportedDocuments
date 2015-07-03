@@ -70,6 +70,15 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string rs_All {
+            get {
+                return ResourceManager.GetString("rs_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose document format:.
         /// </summary>
         public static string rs_ChooseDocumentFormat {
@@ -214,6 +223,60 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Host Filter ....
+        /// </summary>
+        public static string rs_HostFilter {
+            get {
+                return ResourceManager.GetString("rs_HostFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Host.
+        /// </summary>
+        public static string rs_NlogErrorRecordHost {
+            get {
+                return ResourceManager.GetString("rs_NlogErrorRecordHost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level.
+        /// </summary>
+        public static string rs_NlogErrorRecordLevel {
+            get {
+                return ResourceManager.GetString("rs_NlogErrorRecordLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message.
+        /// </summary>
+        public static string rs_NlogErrorRecordMessage {
+            get {
+                return ResourceManager.GetString("rs_NlogErrorRecordMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Record Time.
+        /// </summary>
+        public static string rs_NlogErrorRecordTime {
+            get {
+                return ResourceManager.GetString("rs_NlogErrorRecordTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xml data.
+        /// </summary>
+        public static string rs_NLogErrorXmlCaption {
+            get {
+                return ResourceManager.GetString("rs_NLogErrorXmlCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Page.
         /// </summary>
         public static string rs_Page {
@@ -277,6 +340,15 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Service Log.
+        /// </summary>
+        public static string rs_ServiceLog {
+            get {
+                return ResourceManager.GetString("rs_ServiceLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Is Default.
         /// </summary>
         public static string rs_ServiceMessageIsDefaultDisplayName {
@@ -318,6 +390,15 @@ namespace NeuronExportedDocuments.Resources {
         public static string rs_ServiceMessagesListShort {
             get {
                 return ResourceManager.GetString("rs_ServiceMessagesListShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown Log Id.
+        /// </summary>
+        public static string rs_UnknownLogId {
+            get {
+                return ResourceManager.GetString("rs_UnknownLogId", resourceCulture);
             }
         }
         

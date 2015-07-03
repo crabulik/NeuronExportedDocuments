@@ -9,6 +9,7 @@ using NeuronExportedDocuments.Interfaces;
 using NeuronExportedDocuments.Models;
 using NeuronExportedDocuments.Models.Interfaces;
 using NeuronExportedDocuments.Models.ViewModels;
+using NeuronExportedDocuments.Resources;
 using PagedList;
 
 namespace NeuronExportedDocuments.Controllers
@@ -36,18 +37,40 @@ namespace NeuronExportedDocuments.Controllers
             int pageNumber = (page ?? 1);
             if (filter == null)
                 filter = new NLogErrorsFilter();
-            var errorsList = Database.NLogErrors.GetAll().Where(w => ((w.RecordTime >= filter.LogStartDateTime) &&
-                (w.RecordTime <= filter.LogEndDateTime))).OrderByDescending(p => p.RecordTime);
+            if (filter.LogLevelFilter == LogErrorsViewModel.AllTypesName)
+                filter.IsLogLevelFilter = false;
+
+
+            var errorsList = Database.NLogErrors.GetQueryable().Where(p => ((p.RecordTime >= filter.LogStartDateTime) &&
+                                                (p.RecordTime <= filter.LogEndDateTime)));
+            if (filter.IsLogLevelFilter)
+                errorsList = errorsList.Where(w => w.Level == filter.LogLevelFilter);
+
+            if (filter.IsHostFilter)
+                errorsList = errorsList.Where(w => w.Host.Contains(filter.HostFilter));
+
+            errorsList = errorsList.OrderByDescending(p => p.RecordTime);
 
 
             var vm = new LogErrorsViewModel
             {
                 Filter = filter,
                 List = errorsList.ToPagedList(pageNumber, LofErrorsPerPageCount),
+                LogLevels = Log.GetAllLogLevels()
             };
             return View(vm);
         }
 
+        public ActionResult NLogErrorXml(int? id)
+        {
+            if (id.HasValue)
+            {
+                var result = Database.NLogErrors.Get(id.Value);
+                if (result != null)
+                    return View((Object)result.AllXml);
+            }
+            return View((Object)MainMessages.rs_UnknownLogId);
+        }
 
         [ActionName("ServiceMessages")]
         public ActionResult ServiceMessagesList(int? page)

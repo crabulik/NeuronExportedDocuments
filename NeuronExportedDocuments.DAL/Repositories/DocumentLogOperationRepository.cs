@@ -21,6 +21,11 @@ namespace NeuronExportedDocuments.DAL.Repositories
             return _db.DocumentsLogs;
         }
 
+        public IQueryable<DocumentLogOperation> GetQueryable()
+        {
+            return _db.DocumentsLogs;
+        }
+
         public DocumentLogOperation Get(int id)
         {
             return _db.DocumentsLogs.Find(id);

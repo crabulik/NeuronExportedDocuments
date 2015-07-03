@@ -386,6 +386,7 @@
     <Content Include="Views\Admin\ServiceMessages.cshtml" />
     <Content Include="Views\Admin\_EditServiceMessagePartial.cshtml" />
     <Content Include="Scripts\jquery.validate.globalize.min.js.map" />
+    <Content Include="Views\Admin\NLogErrorXml.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

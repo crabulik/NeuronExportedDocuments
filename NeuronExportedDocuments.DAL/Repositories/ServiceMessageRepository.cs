@@ -20,6 +20,11 @@ namespace NeuronExportedDocuments.DAL.Repositories
             return _db.ServiceMessages;
         }
 
+        public IQueryable<ServiceMessage> GetQueryable()
+        {
+            return _db.ServiceMessages;
+        }
+
         public ServiceMessage Get(int id)
         {
             return _db.ServiceMessages.Find(id);
