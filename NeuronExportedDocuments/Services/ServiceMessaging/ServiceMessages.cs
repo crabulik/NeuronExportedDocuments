@@ -45,7 +45,7 @@ namespace NeuronExportedDocuments.Services.ServiceMessaging
             }
             else
             {
-                var dbMessage = Database.ServiceMessages.Find(p => p.Key == key).FirstOrDefault();
+                var dbMessage = Database.ServiceMessages.GetQueryable().FirstOrDefault(p => p.Key == key);
                 if (dbMessage != null)
                     defServiceMessage = dbMessage;
                 if (defServiceMessage.IsDefault)

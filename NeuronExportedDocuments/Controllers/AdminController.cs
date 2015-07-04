@@ -76,7 +76,7 @@ namespace NeuronExportedDocuments.Controllers
         public ActionResult ServiceMessagesList(int? page)
         {
             int pageNumber = (page ?? 1);
-            var messagesList = Database.ServiceMessages.GetAll().OrderBy(p => p.GetCachedKey());
+            var messagesList = Database.ServiceMessages.GetQueryable().OrderBy(p => p.Key);
             var vm = new ServiceMessagesViewModel
             {
                 List = messagesList.ToPagedList(pageNumber, ServiceMessagesPerPageCount),
