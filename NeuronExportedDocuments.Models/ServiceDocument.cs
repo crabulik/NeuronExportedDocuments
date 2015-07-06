@@ -17,6 +17,8 @@ namespace NeuronExportedDocuments.Models
 
         public string DeliveryPhone { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}",
+               ApplyFormatInEditMode = true)]
         public DateTime CreatDate { get; set; }
 
         public List<DocumentImage> ImagesInterpretation { get; set; }

@@ -1,0 +1,145 @@
+﻿@using System.Globalization
+@using PagedList.Mvc;
+@using NeuronExportedDocuments.Resources
+@model NeuronExportedDocuments.Models.ViewModels.DocumentsViewModel
+
+@{
+    ViewBag.Title = MainMessages.rs_AdminPanel;
+    Layout = "~/Views/_AdminLayout.cshtml";
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            moment.locale('ru');
+            $('#startCreateDate').datetimepicker({
+                format: 'DD.MM.YYYY'
+            });
+            $('#endCreateDate').datetimepicker({
+                format: 'DD.MM.YYYY'
+            });
+            $("#startCreateDate").on("dp.change", function (e) {
+                $('#endCreateDate').data("DateTimePicker").minDate(e.date);
+            });
+            $("#endCreateDate").on("dp.change", function (e) {
+                $('#startCreateDate').data("DateTimePicker").maxDate(e.date);
+            });
+        });
+    </script>
+}
+@section Body {
+
+    @using (Html.BeginForm("Documents", "Admin", FormMethod.Get))
+    {
+        <div class="">
+            <div class='col-lg-3'>
+                <div class="form-group">
+                    <div class='input-group date' id='startCreateDate'>
+                        @Html.TextBoxFor(m => m.Filter.CreateDateStart, new { @class = "form-control", autocomplete = "off" })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-lg-3'>
+                <div class="form-group">
+                    <div class='input-group date' id='endCreateDate'>
+                        @Html.TextBoxFor(m => m.Filter.CreateDateEnd, new { @class = "form-control", autocomplete = "off" })
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            @*<div class="col-lg-3">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        @Html.CheckBoxFor(m => m.Filter.IsHostFilter, new { aria_label = "..." })
+                    </span>
+                    @Html.TextBoxFor(m => m.Filter.HostFilter, new { @class = "form-control", aria_label = "...", placeholder = MainMessages.rs_HostFilter })
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        @Html.CheckBoxFor(m => m.Filter.IsLogLevelFilter, new { aria_label = "..." })
+                    </span>
+                    @Html.DropDownListFor(m => m.Filter.LogLevelFilter, Model.GetLogLevelsFilterList(), new { @class = "form-control", aria_label = "..." })
+                </div>
+            </div>*@
+            <div class="col-lg-1">
+                <button type="submit" class="btn btn-default">@MainMessages.rs_Search</button>
+            </div>
+        </div>
+    }
+
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @MainMessages.rs_NlogErrorRecordTime
+            </th>
+            <th>
+                @MainMessages.rs_NlogErrorRecordLevel
+            </th>
+            <th>
+                @MainMessages.rs_NlogErrorRecordHost
+            </th>
+            <th>
+                @MainMessages.rs_NlogErrorRecordMessage
+            </th>
+            <th class="text-center"></th>
+        </tr>
+
+
+        @foreach (var item in Model.List)
+        {
+            <tr>
+                <td class="col-md-2">
+                    @Html.DisplayFor(modelItem => item.CreatDate)
+                </td>
+                <td class="col-md-1">
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td class="col-md-1">
+                    @Html.DisplayFor(modelItem => item.IsBlocked)
+                </td>
+                <td class="col-md-1">
+                    @Html.DisplayFor(modelItem => item.FailedTimes)
+                </td>
+                <td class="col-md-1">
+                    @Html.DisplayFor(modelItem => item.IsOpened)
+                </td>
+                <td class="col-md-1">
+                    @Html.DisplayFor(modelItem => item.OpenDate)
+                </td>
+                <td class="col-md-2">
+                    @Html.DisplayFor(modelItem => item.PublishId)
+                </td>
+                
+                <td class="col-md-1 text-center">
+                    <a class="glyphicon glyphicon-info-sign btn btn-primary" role="button" href=@Url.Action("DocumentInfo", "Admin", new { id = item.ServiceDocumentId })></a>
+
+                </td>
+
+            </tr>
+        }
+
+    </table>
+    @if (Model.List.PageCount > 1)
+    {
+        <br />
+        <div>@MainMessages.rs_Page @(Model.List.PageCount < Model.List.PageNumber ? 0 : Model.List.PageNumber) of @Model.List.PageCount</div>
+
+        @Html.PagedListPager(Model.List, page => Url.Action("Documents", new
+   {
+       page,
+       /*hostFilter = Model.Filter.HostFilter,
+       isHostFilter = Model.Filter.IsHostFilter,
+       logLevelFilter = Model.Filter.LogLevelFilter,
+       isLogLevelFilter = Model.Filter.IsLogLevelFilter,*/
+       logStartDateTime = Model.Filter.CreateDateStart.ToString(CultureInfo.GetCultureInfo("ru-RU")),
+       logEndDateTime = Model.Filter.CreateDateEnd.ToString(CultureInfo.GetCultureInfo("ru-RU"))
+   }));
+    }
+}

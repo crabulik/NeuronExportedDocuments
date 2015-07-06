@@ -316,10 +316,12 @@
     <Compile Include="Interfaces\IUserData.cs" />
     <Compile Include="Interfaces\IWebDocumentProcessor.cs" />
     <Compile Include="Models\DocumentCredentials.cs" />
+    <Compile Include="Models\DocumentsFilter.cs" />
     <Compile Include="Models\FormaterKey.cs" />
     <Compile Include="Models\NLogErrorsFilter.cs" />
     <Compile Include="Models\ServiceDocumentInfo.cs" />
     <Compile Include="Models\UserData.cs" />
+    <Compile Include="Models\ViewModels\DocumentsViewModel.cs" />
     <Compile Include="Models\ViewModels\EditServiceMessageViewModel.cs" />
     <Compile Include="Models\ViewModels\GetDocumentViewModel.cs" />
     <Compile Include="Models\ViewModels\HomeIndexViewModel.cs" />
@@ -387,6 +389,7 @@
     <Content Include="Views\Admin\_EditServiceMessagePartial.cshtml" />
     <Content Include="Scripts\jquery.validate.globalize.min.js.map" />
     <Content Include="Views\Admin\NLogErrorXml.cshtml" />
+    <Content Include="Views\Admin\Documents.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

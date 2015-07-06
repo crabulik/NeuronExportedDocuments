@@ -237,4 +237,10 @@
   <data name="rs_UnknownLogId" xml:space="preserve">
     <value>Unknown Log Id</value>
   </data>
+  <data name="rs_DocumentsInfo" xml:space="preserve">
+    <value>Documents Info</value>
+  </data>
+  <data name="rs_More" xml:space="preserve">
+    <value>More</value>
+  </data>
 </root>

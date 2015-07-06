@@ -16,7 +16,8 @@ namespace NeuronExportedDocuments.Controllers
 {
     public class AdminController : Controller
     {
-        private const int LofErrorsPerPageCount = 10;
+        private const int LogErrorsPerPageCount = 10;
+        private const int DocumentsPerPageCount = 20;
         private const int ServiceMessagesPerPageCount = 6;
         private IDBUnitOfWork Database { get; set; }
 
@@ -55,7 +56,7 @@ namespace NeuronExportedDocuments.Controllers
             var vm = new LogErrorsViewModel
             {
                 Filter = filter,
-                List = errorsList.ToPagedList(pageNumber, LofErrorsPerPageCount),
+                List = errorsList.ToPagedList(pageNumber, LogErrorsPerPageCount),
                 LogLevels = Log.GetAllLogLevels()
             };
             return View(vm);
@@ -72,6 +73,8 @@ namespace NeuronExportedDocuments.Controllers
             return View((Object)MainMessages.rs_UnknownLogId);
         }
 
+        #region Service Messages
+
         [ActionName("ServiceMessages")]
         public ActionResult ServiceMessagesList(int? page)
         {
@@ -87,7 +90,7 @@ namespace NeuronExportedDocuments.Controllers
             return View(vm);
         }
 
-        [HttpGet] 
+        [HttpGet]
         public ActionResult EditServiceMessage(int id, string backUrl)
         {
             var found = Database.ServiceMessages.Get(id);
@@ -103,7 +106,7 @@ namespace NeuronExportedDocuments.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryTokenAttribute]
+        [ValidateAntiForgeryToken]
         [ValidateInput(false)]
         public ActionResult EditServiceMessage(EditServiceMessageViewModel viewModel)
         {
@@ -121,5 +124,31 @@ namespace NeuronExportedDocuments.Controllers
             }
             return Redirect(viewModel.BackUrl);
         }
+
+        #endregion
+
+        #region Documents Log
+        public ActionResult Documents(int? page, DocumentsFilter filter = null)
+        {
+            int pageNumber = (page ?? 1);
+            if (filter == null)
+                filter = new DocumentsFilter();
+
+
+            var documents = Database.ServiceDocuments.GetQueryable().Where(p => ((p.CreatDate >= filter.CreateDateStart) &&
+                                                (p.CreatDate <= filter.CreateDateEnd)));
+
+            documents = documents.OrderByDescending(p => p.CreatDate);
+
+
+            var vm = new DocumentsViewModel
+            {
+                Filter = filter,
+                List = documents.ToPagedList(pageNumber, DocumentsPerPageCount),
+            };
+            return View(vm);
+        }
+        #endregion
+
     }
 }
