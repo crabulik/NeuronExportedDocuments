@@ -243,4 +243,94 @@
   <data name="rs_More" xml:space="preserve">
     <value>More</value>
   </data>
+  <data name="rs_DocumentAdminInfo" xml:space="preserve">
+    <value>Document Info</value>
+  </data>
+  <data name="rs_DocumentAdminInfoIdError" xml:space="preserve">
+    <value>Error Document ID Value</value>
+  </data>
+  <data name="rs_DocumentCreatDate" xml:space="preserve">
+    <value>Creat Date</value>
+  </data>
+  <data name="rs_DocumentDeliveryEMail" xml:space="preserve">
+    <value>Delivery E-mail: </value>
+  </data>
+  <data name="rs_DocumentDeliveryPhone" xml:space="preserve">
+    <value>Delivery Phone: </value>
+  </data>
+  <data name="rs_DocumentFailedTimes" xml:space="preserve">
+    <value>Failed Times</value>
+  </data>
+  <data name="rs_DocumentIsBlocked" xml:space="preserve">
+    <value>Is Blocked</value>
+  </data>
+  <data name="rs_DocumentIsOpened" xml:space="preserve">
+    <value>Is Opened</value>
+  </data>
+  <data name="rs_DocumentLog" xml:space="preserve">
+    <value>Document's Log</value>
+  </data>
+  <data name="rs_DocumentOpenDate" xml:space="preserve">
+    <value>Open Date</value>
+  </data>
+  <data name="rs_DocumentOperationsConnectionIpAddress" xml:space="preserve">
+    <value>Connection Ip Address</value>
+  </data>
+  <data name="rs_DocumentOperationsInfo" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="rs_DocumentOperationsOperationDate" xml:space="preserve">
+    <value>Operation Date</value>
+  </data>
+  <data name="rs_DocumentOperationsOperationType" xml:space="preserve">
+    <value>Operation Type</value>
+  </data>
+  <data name="rs_DocumentStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="rs_ErrorIdForServiceMessage" xml:space="preserve">
+    <value>Error ServiceMessage ID Value</value>
+  </data>
+  <data name="rs_ConfirmCaption" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="rs_DocumentBlockFilterOff" xml:space="preserve">
+    <value>Block Filter: Off</value>
+  </data>
+  <data name="rs_DocumentFalseBlockFilter" xml:space="preserve">
+    <value>Not blocked</value>
+  </data>
+  <data name="rs_DocumentFalseOpenFilter" xml:space="preserve">
+    <value>Not opened</value>
+  </data>
+  <data name="rs_DocumentFilterOff" xml:space="preserve">
+    <value>Filter Off</value>
+  </data>
+  <data name="rs_DocumentOpenFilterOff" xml:space="preserve">
+    <value>Open Filter: Off</value>
+  </data>
+  <data name="rs_DocumentTrueBlockFilter" xml:space="preserve">
+    <value>Blocked</value>
+  </data>
+  <data name="rs_DocumentTrueOpenFilter" xml:space="preserve">
+    <value>Opened</value>
+  </data>
+  <data name="rs_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="rs_PublishIdFilter" xml:space="preserve">
+    <value>Publish Id Filter ...</value>
+  </data>
+  <data name="rs_RepublishDocumentConfirm" xml:space="preserve">
+    <value>Do you realy want to create and send new credentials for the document?</value>
+  </data>
+  <data name="rs_UnblockAndRepublishDocumentConfirm" xml:space="preserve">
+    <value>Do you realy want to unblock and send new credentials for the document?</value>
+  </data>
+  <data name="rs_UserName" xml:space="preserve">
+    <value>User Name : {0}</value>
+  </data>
+  <data name="rs_Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
 </root>

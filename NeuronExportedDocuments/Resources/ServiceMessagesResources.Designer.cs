@@ -116,6 +116,48 @@ namespace NeuronExportedDocuments.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to Hello.
+        ///The credential information for your document with ID: &quot;[@DOC_PUBLISHID]&quot; was changed.
+        ///New document pass is: &quot;[@DOC_PUBLISHPASSWORD]&quot;
+        ///To get a document go to page:  [@SETT_GETDOCUMENTURL]
+        ///
+        ///For more information about our clinic go to the page: [@SETT_MAINSITEURL]
+        ///If you have any problems, write to our support: [@SETT_SUPPORTEMAIL].
+        /// </summary>
+        public static string rs_DefSendChangedCredentialsEmailMessage {
+            get {
+                return ResourceManager.GetString("rs_DefSendChangedCredentialsEmailMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template for Emails to users with changed credential information.
+        /// </summary>
+        public static string rs_DefSendChangedCredentialsEmailMessageDisplayName {
+            get {
+                return ResourceManager.GetString("rs_DefSendChangedCredentialsEmailMessageDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credential information for your document was changed..
+        /// </summary>
+        public static string rs_DefSendChangedCredentialsEmailSubject {
+            get {
+                return ResourceManager.GetString("rs_DefSendChangedCredentialsEmailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Caption for Emails to users with changed credential information.
+        /// </summary>
+        public static string rs_DefSendChangedCredentialsEmailSubjectDisplayName {
+            get {
+                return ResourceManager.GetString("rs_DefSendChangedCredentialsEmailSubjectDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hello.
         ///You have a new Neuron document.
         ///To get a document go to page:  [@SETT_GETDOCUMENTURL]
         ///Your document ID: &quot;[@DOC_PUBLISHID]&quot;, document pass: &quot;[@DOC_PUBLISHPASSWORD]&quot;

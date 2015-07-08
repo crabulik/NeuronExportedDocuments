@@ -61,6 +61,87 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Banned.
+        /// </summary>
+        public static string rs_DocumentLogOperationTypeBanned {
+            get {
+                return ResourceManager.GetString("rs_DocumentLogOperationTypeBanned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fail Access.
+        /// </summary>
+        public static string rs_DocumentLogOperationTypeFailAccess {
+            get {
+                return ResourceManager.GetString("rs_DocumentLogOperationTypeFailAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imported.
+        /// </summary>
+        public static string rs_DocumentLogOperationTypeImported {
+            get {
+                return ResourceManager.GetString("rs_DocumentLogOperationTypeImported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Info Sent To User.
+        /// </summary>
+        public static string rs_DocumentLogOperationTypeInfoSentedToUser {
+            get {
+                return ResourceManager.GetString("rs_DocumentLogOperationTypeInfoSentedToUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Published.
+        /// </summary>
+        public static string rs_DocumentLogOperationTypePublished {
+            get {
+                return ResourceManager.GetString("rs_DocumentLogOperationTypePublished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Republished.
+        /// </summary>
+        public static string rs_DocumentLogOperationTypeRepublished {
+            get {
+                return ResourceManager.GetString("rs_DocumentLogOperationTypeRepublished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SetToArchive.
+        /// </summary>
+        public static string rs_DocumentLogOperationTypeSetToArchive {
+            get {
+                return ResourceManager.GetString("rs_DocumentLogOperationTypeSetToArchive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Success Access.
+        /// </summary>
+        public static string rs_DocumentLogOperationTypeSuccessAccess {
+            get {
+                return ResourceManager.GetString("rs_DocumentLogOperationTypeSuccessAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unblocked By Admin.
+        /// </summary>
+        public static string rs_DocumentLogOperationTypeUnblockedByAdmin {
+            get {
+                return ResourceManager.GetString("rs_DocumentLogOperationTypeUnblockedByAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to !Error Value!.
         /// </summary>
         public static string rs_ExportedDocStatusErrorValue {

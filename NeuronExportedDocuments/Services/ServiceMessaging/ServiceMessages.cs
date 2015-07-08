@@ -88,6 +88,11 @@ namespace NeuronExportedDocuments.Services.ServiceMessaging
                     return ServiceMessagesResources.rs_DefHomeIndexHelloDescriptionDisplayName;
                 case ServiceMessageKey.GetDocumentWarningMessage:
                     return ServiceMessagesResources.rs_DefGetDocumentWarningDisplayName;
+                case ServiceMessageKey.SendChangedCredentialsEmailMessage:
+                    return ServiceMessagesResources.rs_DefSendChangedCredentialsEmailMessageDisplayName;
+                case ServiceMessageKey.SendChangedCredentialsEmailSubject:
+                    return ServiceMessagesResources.rs_DefSendChangedCredentialsEmailSubjectDisplayName;
+
                 default:
                     throw new ArgumentOutOfRangeException("key");
             }
@@ -107,6 +112,10 @@ namespace NeuronExportedDocuments.Services.ServiceMessaging
                     return ServiceMessagesResources.rs_DefHomeIndexHelloDescriptionMessage;
                 case ServiceMessageKey.GetDocumentWarningMessage:
                     return ServiceMessagesResources.rs_DefGetDocumentWarningMessage;
+                case ServiceMessageKey.SendChangedCredentialsEmailMessage:
+                    return ServiceMessagesResources.rs_DefSendChangedCredentialsEmailMessage;
+                case ServiceMessageKey.SendChangedCredentialsEmailSubject:
+                    return ServiceMessagesResources.rs_DefSendChangedCredentialsEmailSubject;
                 default:
                     throw new ArgumentOutOfRangeException("key");
             }
@@ -120,6 +129,8 @@ namespace NeuronExportedDocuments.Services.ServiceMessaging
             {
                 case ServiceMessageKey.SendCredentialsEmailMessage:
                 case ServiceMessageKey.SendCredentialsEmailSubject:
+                case ServiceMessageKey.SendChangedCredentialsEmailSubject:
+                case ServiceMessageKey.SendChangedCredentialsEmailMessage:
                     result.AddRange(GetServiceDocumentKeys());
                     break;
                 case ServiceMessageKey.HomeIndexHelloMessage:

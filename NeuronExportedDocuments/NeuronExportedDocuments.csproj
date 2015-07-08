@@ -300,6 +300,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\DateTimeModelBinder.cs" />
+    <Compile Include="Infrastructure\Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Infrastructure\Extensions\HttpRequestMessageExtensions.cs" />
     <Compile Include="Infrastructure\NeuronWebConverter.cs" />
     <Compile Include="Infrastructure\UserDataBinder.cs" />
@@ -320,7 +321,9 @@
     <Compile Include="Models\FormaterKey.cs" />
     <Compile Include="Models\NLogErrorsFilter.cs" />
     <Compile Include="Models\ServiceDocumentInfo.cs" />
+    <Compile Include="Models\UnblockAndRepublishDocumentResult.cs" />
     <Compile Include="Models\UserData.cs" />
+    <Compile Include="Models\ViewModels\ConfirmDialogViewModel.cs" />
     <Compile Include="Models\ViewModels\DocumentsViewModel.cs" />
     <Compile Include="Models\ViewModels\EditServiceMessageViewModel.cs" />
     <Compile Include="Models\ViewModels\GetDocumentViewModel.cs" />
@@ -390,6 +393,10 @@
     <Content Include="Scripts\jquery.validate.globalize.min.js.map" />
     <Content Include="Views\Admin\NLogErrorXml.cshtml" />
     <Content Include="Views\Admin\Documents.cshtml" />
+    <Content Include="Views\Admin\_ServiceMessageNoFound.cshtml" />
+    <Content Include="Views\Admin\_DocumentAdminInfoIdError.cshtml" />
+    <Content Include="Views\Admin\_DocumentAdminInfo.cshtml" />
+    <Content Include="Views\Admin\_ConfirmDialog.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

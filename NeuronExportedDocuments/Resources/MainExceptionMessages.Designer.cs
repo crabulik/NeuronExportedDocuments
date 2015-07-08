@@ -61,6 +61,24 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cant Find the Document for the Operation.
+        /// </summary>
+        public static string rs_CantFindTheDocumentForOperation {
+            get {
+                return ResourceManager.GetString("rs_CantFindTheDocumentForOperation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The document, which info wasn&apos;t sent to user, is not been able to Republish..
+        /// </summary>
+        public static string rs_CantRepublishDocument {
+            get {
+                return ResourceManager.GetString("rs_CantRepublishDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Couldn&apos;t convert the exported document with Neuron ID {0}..
         /// </summary>
         public static string rs_DocumentConvertError {
@@ -129,6 +147,15 @@ namespace NeuronExportedDocuments.Resources {
         public static string rs_DocumentWasntPublished {
             get {
                 return ResourceManager.GetString("rs_DocumentWasntPublished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Document was not republished..
+        /// </summary>
+        public static string rs_DocumentWasntRePublished {
+            get {
+                return ResourceManager.GetString("rs_DocumentWasntRePublished", resourceCulture);
             }
         }
         

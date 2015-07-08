@@ -1,4 +1,5 @@
 ﻿using System;
+using NeuronExportedDocuments.Models.Enums;
 
 namespace NeuronExportedDocuments.Models
 {
@@ -8,10 +9,19 @@ namespace NeuronExportedDocuments.Models
 
         public DateTime CreateDateEnd { get; set; }
 
+        public BoolFilterStatus BlockFilter { get; set; }
+
+        public BoolFilterStatus OpenFilter { get; set; }
+
+        public string PublishIdFilter { get; set; }
+
         public DocumentsFilter()
         {
             CreateDateStart = DateTime.Now.Date;
             CreateDateEnd = DateTime.Now.Date + new TimeSpan(23, 59, 59);
+            BlockFilter = BoolFilterStatus.NotSelected;
+            OpenFilter = BoolFilterStatus.NotSelected;
+            PublishIdFilter = string.Empty;
         }
     }
 }

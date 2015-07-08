@@ -117,6 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="rs_DocumentLogOperationTypeBanned" xml:space="preserve">
+    <value>Banned</value>
+  </data>
+  <data name="rs_DocumentLogOperationTypeFailAccess" xml:space="preserve">
+    <value>Fail Access</value>
+  </data>
+  <data name="rs_DocumentLogOperationTypeImported" xml:space="preserve">
+    <value>Imported</value>
+  </data>
+  <data name="rs_DocumentLogOperationTypeInfoSentedToUser" xml:space="preserve">
+    <value>Info Sent To User</value>
+  </data>
+  <data name="rs_DocumentLogOperationTypePublished" xml:space="preserve">
+    <value>Published</value>
+  </data>
+  <data name="rs_DocumentLogOperationTypeRepublished" xml:space="preserve">
+    <value>Republished</value>
+  </data>
+  <data name="rs_DocumentLogOperationTypeSetToArchive" xml:space="preserve">
+    <value>SetToArchive</value>
+  </data>
+  <data name="rs_DocumentLogOperationTypeSuccessAccess" xml:space="preserve">
+    <value>Success Access</value>
+  </data>
+  <data name="rs_DocumentLogOperationTypeUnblockedByAdmin" xml:space="preserve">
+    <value>Unblocked By Admin</value>
+  </data>
   <data name="rs_ExportedDocStatusErrorValue" xml:space="preserve">
     <value>!Error Value!</value>
   </data>

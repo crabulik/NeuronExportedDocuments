@@ -135,6 +135,24 @@
   <data name="rs_DefHomeIndexHelloMessage" xml:space="preserve">
     <value>Hello!</value>
   </data>
+  <data name="rs_DefSendChangedCredentialsEmailMessage" xml:space="preserve">
+    <value>Hello.
+The credential information for your document with ID: "[@DOC_PUBLISHID]" was changed.
+New document pass is: "[@DOC_PUBLISHPASSWORD]"
+To get a document go to page:  [@SETT_GETDOCUMENTURL]
+
+For more information about our clinic go to the page: [@SETT_MAINSITEURL]
+If you have any problems, write to our support: [@SETT_SUPPORTEMAIL]</value>
+  </data>
+  <data name="rs_DefSendChangedCredentialsEmailMessageDisplayName" xml:space="preserve">
+    <value>Template for Emails to users with changed credential information</value>
+  </data>
+  <data name="rs_DefSendChangedCredentialsEmailSubject" xml:space="preserve">
+    <value>Credential information for your document was changed.</value>
+  </data>
+  <data name="rs_DefSendChangedCredentialsEmailSubjectDisplayName" xml:space="preserve">
+    <value>Caption for Emails to users with changed credential information</value>
+  </data>
   <data name="rs_DefSendCredentialsEmailMessage" xml:space="preserve">
     <value>Hello.
 You have a new Neuron document.

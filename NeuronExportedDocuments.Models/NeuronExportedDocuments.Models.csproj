@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="DocumentImage.cs" />
     <Compile Include="DocumentLogOperation.cs" />
+    <Compile Include="Enums\BoolFilterStatus.cs" />
     <Compile Include="Enums\DocumentLogOperationType.cs" />
     <Compile Include="Enums\ExportedDocStatus.cs" />
     <Compile Include="Enums\ServiceMessageKey.cs" />

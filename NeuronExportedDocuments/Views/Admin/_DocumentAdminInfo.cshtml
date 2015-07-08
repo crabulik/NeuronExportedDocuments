@@ -1,0 +1,66 @@
+﻿@using NeuronExportedDocuments.Infrastructure
+@using NeuronExportedDocuments.Resources
+@model NeuronExportedDocuments.Models.ServiceDocument
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="@MainMessages.rs_Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="myModalLabel">@MainMessages.rs_DocumentAdminInfo</h4>
+</div>
+<div>
+
+    <div class="modal-body">
+        <h5><strong>@MainMessages.rs_DocumentAdminInfo</strong></h5>
+        
+        @if (Model.DeliveryEMail != string.Empty)
+        {
+            @MainMessages.rs_DocumentDeliveryEMail <strong>@Html.DisplayFor(modelItem => modelItem.DeliveryEMail)</strong>
+        }
+        
+        @if (Model.DeliveryPhone != string.Empty)
+        {
+            @MainMessages.rs_DocumentDeliveryPhone <strong>@Html.DisplayFor(modelItem => modelItem.DeliveryPhone)</strong>
+        }
+        <div>
+            <h6><strong>@MainMessages.rs_DocumentLog</strong></h6>
+            <table class="table table-striped">
+                <tr>
+                    <th>
+                        @MainMessages.rs_DocumentOperationsOperationDate
+                    </th>
+                    <th>
+                        @MainMessages.rs_DocumentOperationsOperationType
+                    </th>
+                    <th>
+                        @MainMessages.rs_DocumentOperationsConnectionIpAddress
+                    </th>
+                    <th>
+                        @MainMessages.rs_DocumentOperationsInfo
+                    </th>
+                </tr>
+
+
+                @foreach (var item in Model.DocumentOperations.OrderByDescending(p => p.OperationDate))
+                {
+                    <tr>
+                        <td class="col-md-2">
+                            @Html.DisplayFor(modelItem => item.OperationDate)
+                        </td>
+                        <td class="col-md-3">
+                            @NeuronWebConverter.DocumentLogOperationTypeToSting(item.OperationType)
+                        </td>
+                        <td class="col-md-2">
+                            @Html.DisplayFor(modelItem => item.ConnectionIpAddress)
+                        </td>
+                        <td class="col-md-5">
+                            @Html.DisplayFor(modelItem => item.Info)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">@MainMessages.rs_Close</button>
+    </div>
+</div>

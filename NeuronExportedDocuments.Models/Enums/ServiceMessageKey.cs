@@ -6,6 +6,8 @@
         SendCredentialsEmailSubject = 2,
         HomeIndexHelloMessage = 3,
         HomeIndexHelloDescriptionMessage = 4,
-        GetDocumentWarningMessage = 5
+        GetDocumentWarningMessage = 5,
+        SendChangedCredentialsEmailMessage = 6,
+        SendChangedCredentialsEmailSubject = 7,
     }
 }

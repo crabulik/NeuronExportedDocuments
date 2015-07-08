@@ -29,7 +29,7 @@ namespace NeuronExportedDocuments.Infrastructure
             Config = config;
             ServicesMessages = servicesMessages;
         }
-        public bool SendEmail(ServiceDocument doc)
+        public bool SendEmail(ServiceDocument doc, string subject, string body)
         {
 
             try
@@ -46,9 +46,9 @@ namespace NeuronExportedDocuments.Infrastructure
                 // создаем объект сообщения
                 MailMessage m = new MailMessage(from, to);
                 // тема письма
-                m.Subject = ServicesMessages.FormatMessageByServiceDocument(ServiceMessageKey.SendCredentialsEmailSubject, doc);
+                m.Subject = subject;
                 // текст письма
-                m.Body = ServicesMessages.FormatMessageByServiceDocument(ServiceMessageKey.SendCredentialsEmailMessage, doc);
+                m.Body = body;
                 smtp.Send(m);
             }
             catch (Exception e)
@@ -65,7 +65,9 @@ namespace NeuronExportedDocuments.Infrastructure
             var result = false;
             if (doc.DeliveryEMail != string.Empty)
             {
-                if (SendEmail(doc))
+                if (SendEmail(doc,
+                    ServicesMessages.FormatMessageByServiceDocument(ServiceMessageKey.SendCredentialsEmailSubject, doc),
+                    ServicesMessages.FormatMessageByServiceDocument(ServiceMessageKey.SendCredentialsEmailMessage, doc)))
                 {
                     result = true;
                 }
@@ -129,6 +131,29 @@ namespace NeuronExportedDocuments.Infrastructure
             {
                 doc.PublishPassword = GetPass(Config.GeneralSettings.DocumentPassLength);
                 doc.Status = ExportedDocStatus.Published;
+            }
+            return result;
+        }
+
+        public bool RepublishDocument(ServiceDocument doc)
+        {
+            var result = true;
+            if (string.IsNullOrEmpty(doc.PublishId))
+              result = TrySetPublishId(doc);
+            if (result)
+            {
+                result = false;
+                doc.PublishPassword = GetPass(Config.GeneralSettings.DocumentPassLength);
+
+                if (doc.DeliveryEMail != string.Empty)
+                {
+                    if (SendEmail(doc,
+                        ServicesMessages.FormatMessageByServiceDocument(ServiceMessageKey.SendChangedCredentialsEmailSubject, doc),
+                        ServicesMessages.FormatMessageByServiceDocument(ServiceMessageKey.SendChangedCredentialsEmailMessage, doc)))
+                    {
+                        result = true;
+                    }
+                }
             }
             return result;
         } 

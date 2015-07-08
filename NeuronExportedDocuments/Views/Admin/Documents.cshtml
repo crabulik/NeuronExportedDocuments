@@ -1,6 +1,8 @@
 ﻿@using System.Globalization
+@using NeuronExportedDocuments.Models.Enums
 @using PagedList.Mvc;
 @using NeuronExportedDocuments.Resources
+@using NeuronExportedDocuments.Infrastructure
 @model NeuronExportedDocuments.Models.ViewModels.DocumentsViewModel
 
 @{
@@ -10,7 +12,7 @@
 
 @section Scripts {
     <script type="text/javascript">
-        $(function () {
+        $(function() {
             moment.locale('ru');
             $('#startCreateDate').datetimepicker({
                 format: 'DD.MM.YYYY'
@@ -18,21 +20,83 @@
             $('#endCreateDate').datetimepicker({
                 format: 'DD.MM.YYYY'
             });
-            $("#startCreateDate").on("dp.change", function (e) {
+            $("#startCreateDate").on("dp.change", function(e) {
                 $('#endCreateDate').data("DateTimePicker").minDate(e.date);
             });
-            $("#endCreateDate").on("dp.change", function (e) {
+            $("#endCreateDate").on("dp.change", function(e) {
                 $('#startCreateDate').data("DateTimePicker").maxDate(e.date);
             });
         });
     </script>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.info-doc').click(function() {
+                var id = $(this).attr('data-id');
+                $.ajax({
+                    url: '@Url.Action("DocumentAdminInfo")', // to get the right path to controller from TableRoutes of Asp.Net MVC
+                    dataType: "html",
+                    type: "GET", //to do a post request
+                    contentType: 'application/html; charset=utf-8',
+                    cache: false,
+                    data: { id: id }, // here you can pass arguments to your request if you need
+                    success: function(data) {
+                        $('#info-container').html(data);
+                        $('#modal-form').modal('show');
+                    },
+                    error: function(xhr, status) {
+                        alert(status);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.republish-doc').click(function() {
+                var confirmRoute = { id: $(this).attr('data-confirm-id'), action: $(this).attr('data-confirm-action'), controller: $(this).attr('data-confirm-controller') };
+                var confirmCaption = '@MainMessages.rs_ConfirmCaption';
+                var backUrl = '@Request.Url.PathAndQuery';
+                var confirmMessage;
+                if ($(this).attr('data-blocked') == "true") {
+                    confirmMessage = '@MainMessages.rs_UnblockAndRepublishDocumentConfirm';
+                } else {
+                    confirmMessage = '@MainMessages.rs_RepublishDocumentConfirm';
+                }
+                $.ajax({
+                    url: '@Url.Action("ConfirmDialog")', // to get the right path to controller from TableRoutes of Asp.Net MVC
+                    dataType: "html",
+                    type: "GET", //to do a post request
+                    contentType: 'application/html; charset=utf-8',
+                    cache: false,
+                    data: { confirmRoute: confirmRoute, confirmCaption: confirmCaption, confirmMessage: confirmMessage, backUrl: backUrl }, // here you can pass arguments to your request if you need
+                    success: function(data) {
+                        $('#info-container').html(data);
+                        $('#modal-form').modal('show');
+                    },
+                    error: function(xhr, status) {
+                        alert(status);
+                    }
+            });
+        });
+    });
+    </script>
+
+
+
 }
 @section Body {
-
+    <div class="modal fade" id="modal-form" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" id="info-container">
+            </div>
+        </div>
+    </div>  
     @using (Html.BeginForm("Documents", "Admin", FormMethod.Get))
     {
         <div class="">
-            <div class='col-lg-3'>
+            <div class='col-lg-2'>
                 <div class="form-group">
                     <div class='input-group date' id='startCreateDate'>
                         @Html.TextBoxFor(m => m.Filter.CreateDateStart, new { @class = "form-control", autocomplete = "off" })
@@ -42,7 +106,7 @@
                     </div>
                 </div>
             </div>
-            <div class='col-lg-3'>
+            <div class='col-lg-2'>
                 <div class="form-group">
                     <div class='input-group date' id='endCreateDate'>
                         @Html.TextBoxFor(m => m.Filter.CreateDateEnd, new { @class = "form-control", autocomplete = "off" })
@@ -52,22 +116,16 @@
                     </div>
                 </div>
             </div>
-            @*<div class="col-lg-3">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        @Html.CheckBoxFor(m => m.Filter.IsHostFilter, new { aria_label = "..." })
-                    </span>
-                    @Html.TextBoxFor(m => m.Filter.HostFilter, new { @class = "form-control", aria_label = "...", placeholder = MainMessages.rs_HostFilter })
-                </div>
+            
+            <div class="col-lg-2">
+                @Html.DropDownListFor(m => m.Filter.BlockFilter, Model.GetBlockFilterList(), new { @class = "form-control", aria_label = "..." })
             </div>
             <div class="col-lg-2">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        @Html.CheckBoxFor(m => m.Filter.IsLogLevelFilter, new { aria_label = "..." })
-                    </span>
-                    @Html.DropDownListFor(m => m.Filter.LogLevelFilter, Model.GetLogLevelsFilterList(), new { @class = "form-control", aria_label = "..." })
-                </div>
-            </div>*@
+                @Html.DropDownListFor(m => m.Filter.OpenFilter, Model.GetOpenFilterList(), new { @class = "form-control", aria_label = "..." })
+            </div>
+            <div class="col-lg-3">
+                @Html.TextBoxFor(m => m.Filter.PublishIdFilter, new { @class = "form-control", aria_label = "...", placeholder = MainMessages.rs_PublishIdFilter })
+            </div>
             <div class="col-lg-1">
                 <button type="submit" class="btn btn-default">@MainMessages.rs_Search</button>
             </div>
@@ -77,16 +135,25 @@
     <table class="table table-striped">
         <tr>
             <th>
-                @MainMessages.rs_NlogErrorRecordTime
+                @MainMessages.rs_DocumentCreatDate
             </th>
             <th>
-                @MainMessages.rs_NlogErrorRecordLevel
+                @MainMessages.rs_DocumentStatus
+            </th>
+            <th class="text-center">
+                @MainMessages.rs_DocumentIsBlocked
             </th>
             <th>
-                @MainMessages.rs_NlogErrorRecordHost
+                @MainMessages.rs_DocumentFailedTimes
+            </th>
+            <th class="text-center">
+                @MainMessages.rs_DocumentIsOpened
             </th>
             <th>
-                @MainMessages.rs_NlogErrorRecordMessage
+                @MainMessages.rs_DocumentOpenDate
+            </th>
+            <th>
+                @MainMessages.rs_DocumentPublishId
             </th>
             <th class="text-center"></th>
         </tr>
@@ -94,35 +161,38 @@
 
         @foreach (var item in Model.List)
         {
-            <tr>
-                <td class="col-md-2">
-                    @Html.DisplayFor(modelItem => item.CreatDate)
-                </td>
-                <td class="col-md-1">
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td class="col-md-1">
-                    @Html.DisplayFor(modelItem => item.IsBlocked)
-                </td>
-                <td class="col-md-1">
-                    @Html.DisplayFor(modelItem => item.FailedTimes)
-                </td>
-                <td class="col-md-1">
-                    @Html.DisplayFor(modelItem => item.IsOpened)
-                </td>
-                <td class="col-md-1">
-                    @Html.DisplayFor(modelItem => item.OpenDate)
-                </td>
-                <td class="col-md-2">
-                    @Html.DisplayFor(modelItem => item.PublishId)
-                </td>
-                
-                <td class="col-md-1 text-center">
-                    <a class="glyphicon glyphicon-info-sign btn btn-primary" role="button" href=@Url.Action("DocumentInfo", "Admin", new { id = item.ServiceDocumentId })></a>
+        <tr>
+            <td class="col-md-1">
+                @Html.DisplayFor(modelItem => item.CreatDate)
+            </td>
+            <td class="col-md-2">
+                @NeuronWebConverter.ExportedDocStatusToSting(item.Status)
+            </td>
+            <td class="col-md-1 text-center">
+                @Html.DisplayFor(modelItem => item.IsBlocked)
+            </td>
+            <td class="col-md-1">
+                @Html.DisplayFor(modelItem => item.FailedTimes)
+            </td>
+            <td class="col-md-1 text-center">
+                @Html.DisplayFor(modelItem => item.IsOpened)
+            </td>
+            <td class="col-md-1">
+                @Html.DisplayFor(modelItem => item.OpenDate)
+            </td>
+            <td class="col-md-1">
+                @Html.DisplayFor(modelItem => item.PublishId)
+            </td>
 
-                </td>
+            <td class="col-md-1 text-center">
+                <button class="glyphicon glyphicon-info-sign btn btn-primary info-doc" data-id="@item.ServiceDocumentId"></button>
+                @if (item.Status == ExportedDocStatus.InfoSented)
+                {
+                    <button class="glyphicon glyphicon-send btn btn-primary republish-doc" data-confirm-id=@item.ServiceDocumentId data-confirm-action="UnblockAndRepublishDocument" data-confirm-controller="Admin" data-blocked=@item.IsBlocked></button>
+                }
+            </td>
 
-            </tr>
+        </tr>
         }
 
     </table>
@@ -134,10 +204,9 @@
         @Html.PagedListPager(Model.List, page => Url.Action("Documents", new
    {
        page,
-       /*hostFilter = Model.Filter.HostFilter,
-       isHostFilter = Model.Filter.IsHostFilter,
-       logLevelFilter = Model.Filter.LogLevelFilter,
-       isLogLevelFilter = Model.Filter.IsLogLevelFilter,*/
+       blockFilter = (int)Model.Filter.BlockFilter,
+       openFilter = (int)Model.Filter.OpenFilter,
+       publishIdFilter = Model.Filter.PublishIdFilter,
        logStartDateTime = Model.Filter.CreateDateStart.ToString(CultureInfo.GetCultureInfo("ru-RU")),
        logEndDateTime = Model.Filter.CreateDateEnd.ToString(CultureInfo.GetCultureInfo("ru-RU"))
    }));

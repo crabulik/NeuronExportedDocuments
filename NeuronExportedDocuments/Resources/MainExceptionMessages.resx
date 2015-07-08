@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="rs_CantFindTheDocumentForOperation" xml:space="preserve">
+    <value>Cant Find the Document for the Operation</value>
+  </data>
+  <data name="rs_CantRepublishDocument" xml:space="preserve">
+    <value>The document, which info wasn't sent to user, is not been able to Republish.</value>
+  </data>
   <data name="rs_DocumentConvertError" xml:space="preserve">
     <value>Couldn't convert the exported document with Neuron ID {0}.</value>
   </data>
@@ -140,6 +146,9 @@
   </data>
   <data name="rs_DocumentWasntPublished" xml:space="preserve">
     <value>The Document was not published.</value>
+  </data>
+  <data name="rs_DocumentWasntRePublished" xml:space="preserve">
+    <value>The Document was not republished.</value>
   </data>
   <data name="rs_ErrorInPath" xml:space="preserve">
     <value>Error in Path : </value>

@@ -34,6 +34,16 @@ namespace NeuronExportedDocuments.DAL.Seeds
                 Key = ServiceMessageKey.GetDocumentWarningMessage,
                 IsDefault = true
             });
+            result.Add(new ServiceMessage
+            {
+                Key = ServiceMessageKey.SendChangedCredentialsEmailMessage,
+                IsDefault = true
+            });
+            result.Add(new ServiceMessage
+            {
+                Key = ServiceMessageKey.SendChangedCredentialsEmailSubject,
+                IsDefault = true
+            });
             return result;
         }
     }
