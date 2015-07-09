@@ -142,6 +142,15 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Document wasn&apos;t archived.
+        /// </summary>
+        public static string rs_DocumentWasntArchived {
+            get {
+                return ResourceManager.GetString("rs_DocumentWasntArchived", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The Document was not published..
         /// </summary>
         public static string rs_DocumentWasntPublished {

@@ -199,6 +199,46 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hello.
+        ///The access to tour document with ID: &quot;[@DOC_PUBLISHID]&quot; has been expired.
+        ///
+        ///For more information about our clinic go to the page: [@SETT_MAINSITEURL]
+        ///If you have any problems, write to our support: [@SETT_SUPPORTEMAIL].
+        /// </summary>
+        public static string rs_DefSendDocumentAccessExpiredMessage {
+            get {
+                return ResourceManager.GetString("rs_DefSendDocumentAccessExpiredMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template for Emails to users with the document&apos;s experied access info.
+        /// </summary>
+        public static string rs_DefSendDocumentAccessExpiredMessageDisplayName {
+            get {
+                return ResourceManager.GetString("rs_DefSendDocumentAccessExpiredMessageDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access to your document has been expired.
+        /// </summary>
+        public static string rs_DefSendDocumentAccessExpiredSubject {
+            get {
+                return ResourceManager.GetString("rs_DefSendDocumentAccessExpiredSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Caption for Emails to users with the document&apos;s experied access info.
+        /// </summary>
+        public static string rs_DefSendDocumentAccessExpiredSubjectDisplayName {
+            get {
+                return ResourceManager.GetString("rs_DefSendDocumentAccessExpiredSubjectDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The URL adress for getting the Neuron Document from the configuration file.
         /// </summary>
         public static string rs_GeneralSettingsGetDocumentUrlKeyInfo {

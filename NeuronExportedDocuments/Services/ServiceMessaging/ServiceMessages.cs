@@ -92,7 +92,10 @@ namespace NeuronExportedDocuments.Services.ServiceMessaging
                     return ServiceMessagesResources.rs_DefSendChangedCredentialsEmailMessageDisplayName;
                 case ServiceMessageKey.SendChangedCredentialsEmailSubject:
                     return ServiceMessagesResources.rs_DefSendChangedCredentialsEmailSubjectDisplayName;
-
+                case ServiceMessageKey.SendDocumentAccessExpiredSubject:
+                    return ServiceMessagesResources.rs_DefSendDocumentAccessExpiredSubjectDisplayName;
+                case ServiceMessageKey.SendDocumentAccessExpiredMessage:
+                    return ServiceMessagesResources.rs_DefSendDocumentAccessExpiredMessageDisplayName;
                 default:
                     throw new ArgumentOutOfRangeException("key");
             }
@@ -116,6 +119,10 @@ namespace NeuronExportedDocuments.Services.ServiceMessaging
                     return ServiceMessagesResources.rs_DefSendChangedCredentialsEmailMessage;
                 case ServiceMessageKey.SendChangedCredentialsEmailSubject:
                     return ServiceMessagesResources.rs_DefSendChangedCredentialsEmailSubject;
+                case ServiceMessageKey.SendDocumentAccessExpiredSubject:
+                    return ServiceMessagesResources.rs_DefSendDocumentAccessExpiredSubject;
+                case ServiceMessageKey.SendDocumentAccessExpiredMessage:
+                    return ServiceMessagesResources.rs_DefSendDocumentAccessExpiredMessage;
                 default:
                     throw new ArgumentOutOfRangeException("key");
             }

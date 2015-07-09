@@ -16,13 +16,17 @@ namespace NeuronExportedDocuments.Controllers
         private IDBUnitOfWork Database { get; set; }
         private IWebDocumentProcessor DocumentProcessor { get; set; }
         private IWebLogger Log { get; set; }
+
+        private IConfig Config { get; set; }
+
         static object _synclock = new object();
 
-        public DocumentPublisherController(IDBUnitOfWork database, IWebDocumentProcessor processor, IWebLogger logger)
+        public DocumentPublisherController(IDBUnitOfWork database, IWebDocumentProcessor processor, IWebLogger logger, IConfig config)
         {
             Database = database;
             DocumentProcessor = processor;
             Log = logger;
+            Config = config;
         }
 
 
@@ -83,6 +87,33 @@ namespace NeuronExportedDocuments.Controllers
                     {
                         Database.Save();
                         result = true;
+                    }
+
+                    changed = false;
+                    var currentDate = DateTime.Now.AddDays(-Config.GeneralSettings.DocumentAccessDaysCount);
+                    var docForDelete = Database.ServiceDocuments.GetQueryable().Where((document) => document.IsOpened && (document.OpenDate != null) &&
+                        (currentDate > document.OpenDate.Value) && (document.Status != ExportedDocStatus.InArchive));
+                    foreach (var doc in docForDelete)
+                    {
+                        if (DocumentProcessor.ArchiveDocument(doc))
+                        {
+                            doc.DocumentOperations.Add(
+                                new DocumentLogOperation
+                                {
+                                    OperationType = DocumentLogOperationType.Archived,
+                                    ConnectionIpAddress = Request.GetClientIpAddress()
+                                });
+                            Database.ServiceDocuments.Update(doc);
+                            changed = true;
+                        }
+                        else
+                        {
+                            Log.Warn(MainExceptionMessages.rs_DocumentWasntArchived, doc);
+                        }
+                    }
+                    if (changed)
+                    {
+                        Database.Save();
                     }
                 }
                 catch (Exception e)

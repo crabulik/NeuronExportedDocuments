@@ -9,5 +9,7 @@
         GetDocumentWarningMessage = 5,
         SendChangedCredentialsEmailMessage = 6,
         SendChangedCredentialsEmailSubject = 7,
+        SendDocumentAccessExpiredSubject = 8,
+        SendDocumentAccessExpiredMessage = 9
     }
 }

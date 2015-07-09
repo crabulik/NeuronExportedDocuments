@@ -71,6 +71,10 @@ namespace NeuronExportedDocuments.Controllers
 
                     ModelState.AddModelError("", ValidateMessages.rs_DocumentIdOrPasswordAreIncorrect);
                 }
+                else if (found.Status == ExportedDocStatus.InArchive)
+                {
+                    ModelState.AddModelError("", ValidateMessages.rs_DocumentIsInArchive);
+                }
                 else
                 {
                     Session[TryCounterName] = 0;
@@ -92,8 +96,15 @@ namespace NeuronExportedDocuments.Controllers
                 }
                 
             }
+
+            var tmpIndexVM = new HomeIndexViewModel
+            {
+                DocumentCredentials = doc,
+                HelloMessage = ServiceMessages.GetMessage(ServiceMessageKey.HomeIndexHelloMessage),
+                HelloDescriptionMessage = ServiceMessages.GetMessage(ServiceMessageKey.HomeIndexHelloDescriptionMessage)
+            };
             Session[TryCounterName] = tryCounter;
-            return View("Index");
+            return View("Index", tmpIndexVM);
         }
 
         private void SetDocumentFailAccess(ServiceDocument document)

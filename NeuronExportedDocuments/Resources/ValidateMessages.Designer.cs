@@ -97,6 +97,15 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The document access period has been expired.
+        /// </summary>
+        public static string rs_DocumentIsInArchive {
+            get {
+                return ResourceManager.GetString("rs_DocumentIsInArchive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Document Password must has not more than 8 characters.
         /// </summary>
         public static string rs_DocumentPasswordMustBe8 {

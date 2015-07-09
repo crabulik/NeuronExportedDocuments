@@ -1,4 +1,5 @@
-﻿using NeuronExportedDocuments.Models;
+﻿using NeuronExportedDocuments.DAL.Interfaces;
+using NeuronExportedDocuments.Models;
 
 namespace NeuronExportedDocuments.Interfaces
 {
@@ -11,5 +12,7 @@ namespace NeuronExportedDocuments.Interfaces
         bool PublishDocument(ServiceDocument doc);
 
         bool RepublishDocument(ServiceDocument doc);
+
+        bool ArchiveDocument(ServiceDocument doc, IDBUnitOfWork database = null);
     }
 }

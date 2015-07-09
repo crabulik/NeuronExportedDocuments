@@ -10,6 +10,7 @@
         Banned = 6,
         SetToArchive = 7,
         UnblockedByAdmin = 8,
-        Republished = 9
+        Republished = 9,
+        Archived = 10
     }
 }

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Threading;
 using NeuronExportedDocuments.DAL.Interfaces;
 using NeuronExportedDocuments.Interfaces;
 using NeuronExportedDocuments.Models;
@@ -16,6 +17,7 @@ namespace NeuronExportedDocuments.Infrastructure
     public class WebDocumentProcessor : IWebDocumentProcessor
     {
         static object _synclock = new object();
+        static object _changeSynclock = new object();
         private IDBUnitOfWork Database { get; set; }
         private IConfig Config { get; set; }
 
@@ -156,6 +158,32 @@ namespace NeuronExportedDocuments.Infrastructure
                 }
             }
             return result;
-        } 
+        }
+
+        public bool ArchiveDocument(ServiceDocument doc, IDBUnitOfWork database = null)
+        {
+
+            var workDb = database ?? Database;
+
+            foreach (var img in workDb.DocumentImages.GetQueryable().Where(p => p.ServiceDocumentId == doc.ServiceDocumentId))
+            {
+                workDb.DocumentImages.Delete(img.DocumentImageId);
+            }
+            if (database == null)
+                workDb.Save();
+            doc.PdfFileData = null;
+            doc.ImageData = null;
+            doc.ImagesInterpretation = null;
+            doc.Status = ExportedDocStatus.InArchive;
+
+            if (doc.DeliveryEMail != string.Empty)
+            {
+                SendEmail(doc,
+                    ServicesMessages.FormatMessageByServiceDocument(ServiceMessageKey.SendDocumentAccessExpiredSubject, doc),
+                    ServicesMessages.FormatMessageByServiceDocument(ServiceMessageKey.SendDocumentAccessExpiredMessage, doc));
+            }
+         
+            return true;
+        }
     }
 }

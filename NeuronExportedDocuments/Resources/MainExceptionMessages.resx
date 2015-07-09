@@ -144,6 +144,9 @@
   <data name="rs_DocumentLogOperationServiceDocumentId" xml:space="preserve">
     <value>ServiceDocument Id : </value>
   </data>
+  <data name="rs_DocumentWasntArchived" xml:space="preserve">
+    <value>The Document wasn't archived</value>
+  </data>
   <data name="rs_DocumentWasntPublished" xml:space="preserve">
     <value>The Document was not published.</value>
   </data>

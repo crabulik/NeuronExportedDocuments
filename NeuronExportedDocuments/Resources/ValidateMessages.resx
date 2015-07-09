@@ -129,6 +129,9 @@
   <data name="rs_DocumentIdOrPasswordAreIncorrect" xml:space="preserve">
     <value>The Document ID or Password are incorrect</value>
   </data>
+  <data name="rs_DocumentIsInArchive" xml:space="preserve">
+    <value>The document access period has been expired</value>
+  </data>
   <data name="rs_DocumentPasswordMustBe8" xml:space="preserve">
     <value>Document Password must has not more than 8 characters</value>
   </data>

@@ -171,6 +171,22 @@ If you have any problems, write to our support: [@SETT_SUPPORTEMAIL]</value>
   <data name="rs_DefSendCredentialsEmailSubjectDisplayName" xml:space="preserve">
     <value>Caption for Emails to users with credential information</value>
   </data>
+  <data name="rs_DefSendDocumentAccessExpiredMessage" xml:space="preserve">
+    <value>Hello.
+The access to tour document with ID: "[@DOC_PUBLISHID]" has been expired.
+
+For more information about our clinic go to the page: [@SETT_MAINSITEURL]
+If you have any problems, write to our support: [@SETT_SUPPORTEMAIL]</value>
+  </data>
+  <data name="rs_DefSendDocumentAccessExpiredMessageDisplayName" xml:space="preserve">
+    <value>Template for Emails to users with the document's experied access info</value>
+  </data>
+  <data name="rs_DefSendDocumentAccessExpiredSubject" xml:space="preserve">
+    <value>Access to your document has been expired</value>
+  </data>
+  <data name="rs_DefSendDocumentAccessExpiredSubjectDisplayName" xml:space="preserve">
+    <value>Caption for Emails to users with the document's experied access info</value>
+  </data>
   <data name="rs_GeneralSettingsGetDocumentUrlKeyInfo" xml:space="preserve">
     <value>The URL adress for getting the Neuron Document from the configuration file</value>
   </data>
