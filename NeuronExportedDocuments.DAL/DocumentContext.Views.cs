@@ -6,7 +6,7 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-[assembly: System.Data.Entity.Infrastructure.MappingViews.DbMappingViewCacheTypeAttribute(typeof(NeuronExportedDocuments.DAL.DocumentContext), typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySetsfc51774a883042a0b5ac61e089458943))]
+[assembly: System.Data.Entity.Infrastructure.MappingViews.DbMappingViewCacheTypeAttribute(typeof(NeuronExportedDocuments.DAL.DocumentContext), typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets62e67a7f087c4945bc0ab9ba130c8a8e))]
 namespace Edm_EntityMappingGeneratedViews
 {
 	using System.Collections.Generic;
@@ -19,17 +19,17 @@ namespace Edm_EntityMappingGeneratedViews
 	/// <Summary>
 	/// The type contains views for EntitySets and AssociationSets that were generated at design time.
 	/// </Summary>
-	public sealed class ViewsForBaseEntitySetsfc51774a883042a0b5ac61e089458943 : DbMappingViewCache
+	public sealed class ViewsForBaseEntitySets62e67a7f087c4945bc0ab9ba130c8a8e : DbMappingViewCache
 	{
 		private static Dictionary<string, DbMappingView> extentViews = null;
 		private readonly static object lockObject = new object();
 
-		public override string MappingHashValue { get { return "2699403dba180ff9d6e9d5cd601f8404c3efb51fd0dedd57c37f9bbef0066e36"; } }
+		public override string MappingHashValue { get { return "4a2becba28fa4390c68fab0ba7516e3ac72569d0ca4721257347cc61e2c64dd2"; } }
 
 		/// <Summary>
 		/// The constructor stores the views for the extents and also the hash values generated based on the metadata and mapping closure and views.
 		/// </Summary>
-		public ViewsForBaseEntitySetsfc51774a883042a0b5ac61e089458943()
+		public ViewsForBaseEntitySets62e67a7f087c4945bc0ab9ba130c8a8e()
 		{
 		}
 

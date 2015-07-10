@@ -96,6 +96,10 @@ namespace NeuronExportedDocuments.Services.ServiceMessaging
                     return ServiceMessagesResources.rs_DefSendDocumentAccessExpiredSubjectDisplayName;
                 case ServiceMessageKey.SendDocumentAccessExpiredMessage:
                     return ServiceMessagesResources.rs_DefSendDocumentAccessExpiredMessageDisplayName;
+                case ServiceMessageKey.SendDocumentAccessBlockedSubject:
+                    return ServiceMessagesResources.rs_DefSendDocumentAccessBlockedSubjectDisplayName;
+                case ServiceMessageKey.SendDocumentAccessBlockedMessage:
+                    return ServiceMessagesResources.rs_DefSendDocumentAccessBlockedMessageDisplayName;
                 default:
                     throw new ArgumentOutOfRangeException("key");
             }
@@ -123,6 +127,10 @@ namespace NeuronExportedDocuments.Services.ServiceMessaging
                     return ServiceMessagesResources.rs_DefSendDocumentAccessExpiredSubject;
                 case ServiceMessageKey.SendDocumentAccessExpiredMessage:
                     return ServiceMessagesResources.rs_DefSendDocumentAccessExpiredMessage;
+                case ServiceMessageKey.SendDocumentAccessBlockedSubject:
+                    return ServiceMessagesResources.rs_DefSendDocumentAccessBlockedSubject;
+                case ServiceMessageKey.SendDocumentAccessBlockedMessage:
+                    return ServiceMessagesResources.rs_DefSendDocumentAccessBlockedMessage;
                 default:
                     throw new ArgumentOutOfRangeException("key");
             }

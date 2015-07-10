@@ -7,7 +7,7 @@
         InfoSentedToUser = 3,
         SuccessAccess = 4,
         FailAccess = 5,
-        Banned = 6,
+        Blocked = 6,
         SetToArchive = 7,
         UnblockedByAdmin = 8,
         Republished = 9,

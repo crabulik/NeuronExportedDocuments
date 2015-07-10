@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
@@ -11,12 +14,20 @@ using NeuronExportedDocuments.Models.Enums;
 using NeuronExportedDocuments.Models.Interfaces;
 using NeuronExportedDocuments.Models.ViewModels;
 using NeuronExportedDocuments.Resources;
+using Newtonsoft.Json;
 
 namespace NeuronExportedDocuments.Controllers
 {
     public class HomeController : Controller
     {
-        protected const string TryCounterName = "TryCounterName";
+        enum CheckDocumentResult
+        {
+            Ok,
+            Blocked,
+            CaptchaError,
+            Error
+        }
+
         protected const string PngMimeName = "image/png";
         private IDBUnitOfWork Database { get; set; }
 
@@ -26,9 +37,10 @@ namespace NeuronExportedDocuments.Controllers
         private IConfig Config { get; set; }
         private IServiceMessages ServiceMessages { get; set; }
 
+        private IWebDocumentProcessor DocumentProcessor { get; set; }
         
         public HomeController(IDBUnitOfWork uow, IWebLogger logger, IDocumentOperationLogger documentLogger, IMappingEngine mapper,
-            IConfig config, IServiceMessages serviceMessages)
+            IConfig config, IServiceMessages serviceMessages, IWebDocumentProcessor documentProcessor)
         {
             Database = uow;
             Log = logger;
@@ -36,75 +48,200 @@ namespace NeuronExportedDocuments.Controllers
             ModelMapper = mapper;
             Config = config;
             ServiceMessages = serviceMessages;
+            DocumentProcessor = documentProcessor;
         }
-        public ActionResult Index()
+        public ActionResult Index(IUserData userData)
         {
             var tmpVM = new HomeIndexViewModel
             {
                 DocumentCredentials = new DocumentCredentials(),
                 HelloMessage = ServiceMessages.GetMessage(ServiceMessageKey.HomeIndexHelloMessage),
-                HelloDescriptionMessage = ServiceMessages.GetMessage(ServiceMessageKey.HomeIndexHelloDescriptionMessage)
+                HelloDescriptionMessage = ServiceMessages.GetMessage(ServiceMessageKey.HomeIndexHelloDescriptionMessage),
+                IsNeedCaptcha = (userData.FailTryCount >= Config.GeneralSettings.FailSiteAccessForCaptcha),
+                RecaptchaSiteKey = Config.GeneralSettings.RecaptchaSiteKey
             };
             return View(tmpVM);
         }
 
-        public ActionResult GetDocument(IUserData userData, DocumentCredentials doc)
+        public async Task<ActionResult> GetDocument(IUserData userData, DocumentCredentials doc)
         {
-            var tryCounter = 0;
-            if (Session[TryCounterName] != null)
-            {
-                tryCounter = (int)Session[TryCounterName];
-            }
-            tryCounter += 1;
+            bool? captchaCheck = null;
+            var tmpIsNeedCaptcha = false;
             if (ModelState.IsValid)
             {
-                var found = Database.ServiceDocuments.GetQueryable().FirstOrDefault(document => document.PublishId == doc.PublishId);
-                if (found == null)
-                {
-                    Log.Info(string.Format(MainMessages.rs_RequestForUnexistedDocument, doc.PublishId, Request.UserHostAddress));
-
-                    ModelState.AddModelError("", ValidateMessages.rs_DocumentIdOrPasswordAreIncorrect);
+                if (doc.IsWithCaptcha || (userData.FailTryCount >= Config.GeneralSettings.FailSiteAccessForCaptcha))
+                {                
+                    captchaCheck = await ValidateCaptcha();
                 }
-                else if (found.PublishPassword != doc.PublishPassword)
-                {
-                    SetDocumentFailAccess(found);                   
 
-                    ModelState.AddModelError("", ValidateMessages.rs_DocumentIdOrPasswordAreIncorrect);
-                }
-                else if (found.Status == ExportedDocStatus.InArchive)
+                if ((captchaCheck == null) || captchaCheck.Value)
                 {
-                    ModelState.AddModelError("", ValidateMessages.rs_DocumentIsInArchive);
+                    var found =
+                        Database.ServiceDocuments.GetQueryable()
+                            .FirstOrDefault(document => document.PublishId == doc.PublishId);
+                    var checkResult = CheckDocument(found, userData, doc.PublishPassword, captchaCheck);
+                    switch (checkResult)
+                    {
+                        case CheckDocumentResult.Ok:
+                        {
+                            SetDocumentOpened(found);
+                            var documentInfo = ModelMapper.Map<ServiceDocumentInfo>(found);
+                            if (userData.GetCache.ContainsKey(documentInfo.PublishId))
+                            {
+                                userData.GetCache[documentInfo.PublishId] = documentInfo;
+                            }
+                            else
+                            {
+                                userData.GetCache.Add(documentInfo.PublishId, documentInfo);
+                            }
+
+                            var tmpVm = new GetDocumentViewModel(documentInfo, Config.GeneralSettings.DocumentAccessDaysCount);
+                            tmpVm.WarningMessage =
+                                ServiceMessages.FormatMessageByGetDocumentViewModel(
+                                    ServiceMessageKey.GetDocumentWarningMessage, tmpVm);
+                            return View(tmpVm);
+                        }
+                        case CheckDocumentResult.Blocked:
+                            var blockVm = new BlockedViewModel(ModelMapper.Map<ServiceDocumentInfo>(found),
+                                Config.GeneralSettings.SupportEmail);
+                            return View("BlockedInfo", blockVm);
+                            break;
+                        case CheckDocumentResult.CaptchaError:
+                            tmpIsNeedCaptcha = true;
+                            break;
+                        case CheckDocumentResult.Error:
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+                    
                 }
                 else
                 {
-                    Session[TryCounterName] = 0;
-                    SetDocumentOpened(found);
-                    var documentInfo = ModelMapper.Map<ServiceDocumentInfo>(found);
-                    if (userData.GetCache.ContainsKey(documentInfo.PublishId))
-                    {
-
-                        userData.GetCache[documentInfo.PublishId] = documentInfo;
-                    }
-                    else
-                    {
-                        userData.GetCache.Add(documentInfo.PublishId, documentInfo);
-                    }
-
-                    var tmpVM = new GetDocumentViewModel(documentInfo, Config.GeneralSettings.DocumentAccessDaysCount);
-                    tmpVM.WarningMessage = ServiceMessages.FormatMessageByGetDocumentViewModel(ServiceMessageKey.GetDocumentWarningMessage, tmpVM);
-                    return View(tmpVM);
                 }
-                
-            }
 
+            }
+            else
+            {
+                ModelState.AddModelError("", ValidateMessages.rs_DocumentIsNotValid);
+            }
             var tmpIndexVM = new HomeIndexViewModel
             {
                 DocumentCredentials = doc,
                 HelloMessage = ServiceMessages.GetMessage(ServiceMessageKey.HomeIndexHelloMessage),
-                HelloDescriptionMessage = ServiceMessages.GetMessage(ServiceMessageKey.HomeIndexHelloDescriptionMessage)
+                HelloDescriptionMessage = ServiceMessages.GetMessage(ServiceMessageKey.HomeIndexHelloDescriptionMessage),
+                IsNeedCaptcha = tmpIsNeedCaptcha || (userData.FailTryCount >= Config.GeneralSettings.FailSiteAccessForCaptcha),
+                RecaptchaSiteKey = Config.GeneralSettings.RecaptchaSiteKey
             };
-            Session[TryCounterName] = tryCounter;
             return View("Index", tmpIndexVM);
+        }
+
+        private CheckDocumentResult CheckDocument(ServiceDocument doc, IUserData userData, string password, bool? captchaCheck)
+        {
+            var result = CheckDocumentResult.Error;
+            if (doc == null)
+            {
+                Log.Info(string.Format(MainMessages.rs_RequestForUnexistedDocument, doc.PublishId,
+                    Request.UserHostAddress));
+                userData.FailTryCount += 1;
+                ModelState.AddModelError("", ValidateMessages.rs_DocumentIdOrPasswordAreIncorrect);
+            }
+            else
+            {
+                if ((doc.FailedTimes > Config.GeneralSettings.FailDocumentAccessForCaptcha) &&
+                    ((captchaCheck == null) || !captchaCheck.Value))
+                {
+                    ModelState.AddModelError("", ValidateMessages.rs_CaptchaErrorValue);
+                    return CheckDocumentResult.CaptchaError;
+                }
+
+                if (doc.PublishPassword == password)
+                {
+                    if(doc.IsBlocked)
+                        return CheckDocumentResult.Blocked;
+                    if (doc.Status == ExportedDocStatus.InArchive)
+                    {
+                        ModelState.AddModelError("", ValidateMessages.rs_DocumentIsInArchive);
+                        return CheckDocumentResult.Error;
+                    }
+                    return CheckDocumentResult.Ok;
+                }
+                else
+                {
+                    SetDocumentFailAccess(doc);
+                    userData.FailTryCount += 1;
+                    if (doc.FailedTimes >= Config.GeneralSettings.FailAccessCountForBan)
+                    {
+                        if (!doc.IsBlocked)
+                            DocumentProcessor.BlockDocument(doc, Request.UserHostAddress);
+                        return CheckDocumentResult.Blocked;
+                    }
+                    ModelState.AddModelError("", ValidateMessages.rs_DocumentIdOrPasswordAreIncorrect);
+                }
+
+            }
+            return result;
+        }
+
+        private async Task<bool> ValidateCaptcha()
+        {
+            var response = Request["g-recaptcha-response"];
+
+            var secret = Config.GeneralSettings.RecaptchaSecretKey;
+
+            var requestUrl =
+            String.Format(
+                "https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}&remoteip={2}",
+                secret,
+                response,
+                Request.UserHostAddress);
+            string result;
+            using (var client = new HttpClient())
+            {
+                result = await client.GetStringAsync(requestUrl);
+            }
+
+            var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponse>(result);
+
+            if (!captchaResponse.Success)
+            {
+                if (captchaResponse.ErrorCodes.Count <= 0)
+                {
+                    ModelState.AddModelError("", ValidateMessages.rs_CaptchaErrorValue);
+                    return false;
+                }
+
+                ModelState.AddModelError("", ValidateMessages.rs_CaptchaErrorOccured);
+                var error = captchaResponse.ErrorCodes[0].ToLower();
+                string logError = string.Empty;
+                switch (error)
+                {
+                    case ("missing-input-secret"):
+                        logError = ValidateMessages.rs_CaptchaErrorSecretParameterIsMissing;
+                        break;
+                    case ("invalid-input-secret"):
+                        logError = ValidateMessages.rs_CaptchaErrorSecretParameterIsInvalid;
+                        break;
+
+                    case ("missing-input-response"):
+                        logError = ValidateMessages.rs_CaptchaErrorResponseParameterMissing;
+                        break;
+                    case ("invalid-input-response"):
+                        logError = ValidateMessages.rs_CaptchaErrorResponseParameterInvalid;
+                        break;
+
+                    default:
+                        logError = ValidateMessages.rs_CaptchaErrorUnknown;
+                        break;
+                }
+                Log.Fatal(string.Format(ValidateMessages.rs_CaptchaError, logError));
+            }
+            else
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private void SetDocumentFailAccess(ServiceDocument document)

@@ -316,6 +316,7 @@
     <Compile Include="Interfaces\IServiceMessages.cs" />
     <Compile Include="Interfaces\IUserData.cs" />
     <Compile Include="Interfaces\IWebDocumentProcessor.cs" />
+    <Compile Include="Models\CaptchaResponse.cs" />
     <Compile Include="Models\DocumentCredentials.cs" />
     <Compile Include="Models\DocumentsFilter.cs" />
     <Compile Include="Models\FormaterKey.cs" />
@@ -323,6 +324,7 @@
     <Compile Include="Models\ServiceDocumentInfo.cs" />
     <Compile Include="Models\UnblockAndRepublishDocumentResult.cs" />
     <Compile Include="Models\UserData.cs" />
+    <Compile Include="Models\ViewModels\BlockedViewModel.cs" />
     <Compile Include="Models\ViewModels\ConfirmDialogViewModel.cs" />
     <Compile Include="Models\ViewModels\DocumentsViewModel.cs" />
     <Compile Include="Models\ViewModels\EditServiceMessageViewModel.cs" />
@@ -397,6 +399,7 @@
     <Content Include="Views\Admin\_DocumentAdminInfoIdError.cshtml" />
     <Content Include="Views\Admin\_DocumentAdminInfo.cshtml" />
     <Content Include="Views\Admin\_ConfirmDialog.cshtml" />
+    <Content Include="Views\Home\BlockedInfo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

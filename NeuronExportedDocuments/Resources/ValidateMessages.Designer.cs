@@ -61,6 +61,78 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Errors in captcha system. Message: &quot;{0}&quot;.
+        /// </summary>
+        public static string rs_CaptchaError {
+            get {
+                return ResourceManager.GetString("rs_CaptchaError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Captcha error occured. Please try again.
+        /// </summary>
+        public static string rs_CaptchaErrorOccured {
+            get {
+                return ResourceManager.GetString("rs_CaptchaErrorOccured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The response parameter is invalid or malformed..
+        /// </summary>
+        public static string rs_CaptchaErrorResponseParameterInvalid {
+            get {
+                return ResourceManager.GetString("rs_CaptchaErrorResponseParameterInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The response parameter is missing..
+        /// </summary>
+        public static string rs_CaptchaErrorResponseParameterMissing {
+            get {
+                return ResourceManager.GetString("rs_CaptchaErrorResponseParameterMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The secret parameter is invalid or malformed..
+        /// </summary>
+        public static string rs_CaptchaErrorSecretParameterIsInvalid {
+            get {
+                return ResourceManager.GetString("rs_CaptchaErrorSecretParameterIsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The secret parameter is missing..
+        /// </summary>
+        public static string rs_CaptchaErrorSecretParameterIsMissing {
+            get {
+                return ResourceManager.GetString("rs_CaptchaErrorSecretParameterIsMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Unknown captcha error..
+        /// </summary>
+        public static string rs_CaptchaErrorUnknown {
+            get {
+                return ResourceManager.GetString("rs_CaptchaErrorUnknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The captcha check is fail. Please try again.
+        /// </summary>
+        public static string rs_CaptchaErrorValue {
+            get {
+                return ResourceManager.GetString("rs_CaptchaErrorValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Document ID must has not more than 12 characters.
         /// </summary>
         public static string rs_DocumentIdMustBe12 {
@@ -102,6 +174,15 @@ namespace NeuronExportedDocuments.Resources {
         public static string rs_DocumentIsInArchive {
             get {
                 return ResourceManager.GetString("rs_DocumentIsInArchive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The credential data for the document is not valid.
+        /// </summary>
+        public static string rs_DocumentIsNotValid {
+            get {
+                return ResourceManager.GetString("rs_DocumentIsNotValid", resourceCulture);
             }
         }
         

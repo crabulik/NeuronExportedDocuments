@@ -13,7 +13,14 @@ namespace NeuronExportedDocuments.Models
 
         [Display(Name = "rs_DocumentPublishPassword", ResourceType = typeof(MainMessages))]
         [Required(ErrorMessageResourceType = typeof(ValidateMessages), ErrorMessageResourceName = "rs_DocumentPasswordMustBeSet")]
-        [StringLength(8, ErrorMessageResourceType = typeof(ValidateMessages), ErrorMessageResourceName = "rs_DocumentPasswordMustBe8")]
-        public string PublishPassword { get; set; } 
+        //[StringLength(8, ErrorMessageResourceType = typeof(ValidateMessages), ErrorMessageResourceName = "rs_DocumentPasswordMustBe8")]
+        public string PublishPassword { get; set; }
+
+        public bool IsWithCaptcha { get; set; }
+
+        public DocumentCredentials()
+        {
+            IsWithCaptcha = false;
+        }
     }
 }

@@ -171,9 +171,25 @@ If you have any problems, write to our support: [@SETT_SUPPORTEMAIL]</value>
   <data name="rs_DefSendCredentialsEmailSubjectDisplayName" xml:space="preserve">
     <value>Caption for Emails to users with credential information</value>
   </data>
+  <data name="rs_DefSendDocumentAccessBlockedMessage" xml:space="preserve">
+    <value>Hello.
+The access to your document with ID: "[@DOC_PUBLISHID]" has been blocked.
+The NeuronDocument detected too much failed acesses to your document.
+
+Please, contact to our suppor to resolve the problem: [@SETT_SUPPORTEMAIL]</value>
+  </data>
+  <data name="rs_DefSendDocumentAccessBlockedMessageDisplayName" xml:space="preserve">
+    <value>Template for Emails to users with the document's blocked access info</value>
+  </data>
+  <data name="rs_DefSendDocumentAccessBlockedSubject" xml:space="preserve">
+    <value>Access to your document has been blocked</value>
+  </data>
+  <data name="rs_DefSendDocumentAccessBlockedSubjectDisplayName" xml:space="preserve">
+    <value>Caption for Emails to users with the document's blocked access info</value>
+  </data>
   <data name="rs_DefSendDocumentAccessExpiredMessage" xml:space="preserve">
     <value>Hello.
-The access to tour document with ID: "[@DOC_PUBLISHID]" has been expired.
+The access to your document with ID: "[@DOC_PUBLISHID]" has been expired.
 
 For more information about our clinic go to the page: [@SETT_MAINSITEURL]
 If you have any problems, write to our support: [@SETT_SUPPORTEMAIL]</value>

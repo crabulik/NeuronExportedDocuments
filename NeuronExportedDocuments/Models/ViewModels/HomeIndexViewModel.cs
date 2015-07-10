@@ -6,5 +6,10 @@
 
         public string HelloMessage { get; set; }
         public string HelloDescriptionMessage { get; set; }
+
+        public bool IsNeedCaptcha { get; set; }
+
+        public string RecaptchaSiteKey { get; set; }
+        
     }
 }

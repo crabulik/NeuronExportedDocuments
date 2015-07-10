@@ -200,7 +200,47 @@ namespace NeuronExportedDocuments.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to Hello.
-        ///The access to tour document with ID: &quot;[@DOC_PUBLISHID]&quot; has been expired.
+        ///The access to your document with ID: &quot;[@DOC_PUBLISHID]&quot; has been blocked.
+        ///The NeuronDocument detected too much failed acesses to your document.
+        ///
+        ///Please, contact to our suppor to resolve the problem: [@SETT_SUPPORTEMAIL].
+        /// </summary>
+        public static string rs_DefSendDocumentAccessBlockedMessage {
+            get {
+                return ResourceManager.GetString("rs_DefSendDocumentAccessBlockedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template for Emails to users with the document&apos;s blocked access info.
+        /// </summary>
+        public static string rs_DefSendDocumentAccessBlockedMessageDisplayName {
+            get {
+                return ResourceManager.GetString("rs_DefSendDocumentAccessBlockedMessageDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access to your document has been blocked.
+        /// </summary>
+        public static string rs_DefSendDocumentAccessBlockedSubject {
+            get {
+                return ResourceManager.GetString("rs_DefSendDocumentAccessBlockedSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Caption for Emails to users with the document&apos;s blocked access info.
+        /// </summary>
+        public static string rs_DefSendDocumentAccessBlockedSubjectDisplayName {
+            get {
+                return ResourceManager.GetString("rs_DefSendDocumentAccessBlockedSubjectDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hello.
+        ///The access to your document with ID: &quot;[@DOC_PUBLISHID]&quot; has been expired.
         ///
         ///For more information about our clinic go to the page: [@SETT_MAINSITEURL]
         ///If you have any problems, write to our support: [@SETT_SUPPORTEMAIL].

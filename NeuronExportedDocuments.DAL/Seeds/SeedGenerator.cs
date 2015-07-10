@@ -54,6 +54,16 @@ namespace NeuronExportedDocuments.DAL.Seeds
                 Key = ServiceMessageKey.SendDocumentAccessExpiredMessage,
                 IsDefault = true
             });
+            result.Add(new ServiceMessage
+            {
+                Key = ServiceMessageKey.SendDocumentAccessBlockedSubject,
+                IsDefault = true
+            });
+            result.Add(new ServiceMessage
+            {
+                Key = ServiceMessageKey.SendDocumentAccessBlockedMessage,
+                IsDefault = true
+            });
             return result;
         }
     }

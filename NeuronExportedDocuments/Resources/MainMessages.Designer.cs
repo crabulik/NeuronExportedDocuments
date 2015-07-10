@@ -79,6 +79,18 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sorry, but your document &lt;strong&gt;{0}&lt;/strong&gt; is blocked.
+        ///Your document was accessed with the wrong password too many times.
+        ///&lt;br/&gt;
+        ///Please, contact to our suppor to resolve the problem: {1}.
+        /// </summary>
+        public static string rs_BlockedDocumentInfo {
+            get {
+                return ResourceManager.GetString("rs_BlockedDocumentInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose document format:.
         /// </summary>
         public static string rs_ChooseDocumentFormat {
@@ -376,6 +388,15 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error:.
+        /// </summary>
+        public static string rs_Error {
+            get {
+                return ResourceManager.GetString("rs_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error ServiceMessage ID Value.
         /// </summary>
         public static string rs_ErrorIdForServiceMessage {
@@ -462,6 +483,15 @@ namespace NeuronExportedDocuments.Resources {
         public static string rs_More {
             get {
                 return ResourceManager.GetString("rs_More", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document Blocked Information.
+        /// </summary>
+        public static string rs_NeuronDocumentBlocked {
+            get {
+                return ResourceManager.GetString("rs_NeuronDocumentBlocked", resourceCulture);
             }
         }
         

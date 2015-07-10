@@ -11,6 +11,12 @@ namespace NeuronExportedDocuments.Services.Config
         private const string GetDocumentUrlPropertyName = "GetDocumentUrl";
         private const string SupportEmailPropertyName = "SupportEmail";
 
+        private const string RecaptchaSiteKeyName = "RecaptchaSiteKey";
+        private const string RecaptchaSecretKeyName = "RecaptchaSecretKey";
+        private const string FailSiteAccessForCaptchaName = "FailSiteAccessForCaptcha";
+        private const string FailDocumentAccessForCaptchaName = "FailDocumentAccessForCaptcha";
+        private const string FailAccessCountForBanName = "FailAccessCountForBan";
+
 
         [ConfigurationProperty(DocumentAccessDaysCountPropertyName, IsRequired = false, DefaultValue = "31")]
         public int DocumentAccessDaysCount
@@ -103,6 +109,89 @@ namespace NeuronExportedDocuments.Services.Config
             set
             {
                 this[SupportEmailPropertyName] = value;
+            }
+        }
+
+        [ConfigurationProperty(RecaptchaSiteKeyName, IsRequired = true)]
+        public string RecaptchaSiteKey
+        {
+            get
+            {
+                return (string)this[RecaptchaSiteKeyName];
+            }
+            set
+            {
+                this[RecaptchaSiteKeyName] = value;
+            }
+        }
+
+        [ConfigurationProperty(RecaptchaSecretKeyName, IsRequired = true)]
+        public string RecaptchaSecretKey
+        {
+            get
+            {
+                return (string)this[RecaptchaSecretKeyName];
+            }
+            set
+            {
+                this[RecaptchaSecretKeyName] = value;
+            }
+        }
+
+        [ConfigurationProperty(FailSiteAccessForCaptchaName, IsRequired = false, DefaultValue = "3")]
+        public int FailSiteAccessForCaptcha
+        {
+            get
+            {
+                return (int)this[FailSiteAccessForCaptchaName];
+            }
+            set
+            {
+                if (value < 1)
+                    this[FailSiteAccessForCaptchaName] = 3;
+                else
+                {
+                    this[FailSiteAccessForCaptchaName] = value;
+                }
+
+            }
+        }
+
+        [ConfigurationProperty(FailDocumentAccessForCaptchaName, IsRequired = false, DefaultValue = "3")]
+        public int FailDocumentAccessForCaptcha
+        {
+            get
+            {
+                return (int)this[FailDocumentAccessForCaptchaName];
+            }
+            set
+            {
+                if (value < 1)
+                    this[FailDocumentAccessForCaptchaName] = 3;
+                else
+                {
+                    this[FailDocumentAccessForCaptchaName] = value;
+                }
+
+            }
+        }
+
+        [ConfigurationProperty(FailAccessCountForBanName, IsRequired = false, DefaultValue = "8")]
+        public int FailAccessCountForBan
+        {
+            get
+            {
+                return (int)this[FailAccessCountForBanName];
+            }
+            set
+            {
+                if (value < 1)
+                    this[FailAccessCountForBanName] = 8;
+                else
+                {
+                    this[FailAccessCountForBanName] = value;
+                }
+
             }
         }
     }

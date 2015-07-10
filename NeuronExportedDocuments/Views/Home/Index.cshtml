@@ -7,7 +7,17 @@
 }
 
 @section Scripts {
-
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=onload" async defer></script>
+    <script type="text/javascript">
+        var onloadCallback = function () {
+            $("#g-recaptcha-response").rules("add", {
+                required: true,
+                messages: {
+                    required: "Required input"
+                }
+            });
+        };
+    </script>
 }
 @section Body {
     <div class="jumbotron">
@@ -15,7 +25,7 @@
         <p>@Html.Raw(Model.HelloDescriptionMessage)</p>
     </div>
     <div id="getter" class="section panel panel-primary">
-        @Html.Partial("DocumentGetter", Model.DocumentCredentials)
+        @Html.Partial("DocumentGetter", Model)
     </div>
 }
 

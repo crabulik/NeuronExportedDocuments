@@ -12,6 +12,7 @@ namespace NeuronExportedDocuments.Interfaces
         bool PublishDocument(ServiceDocument doc);
 
         bool RepublishDocument(ServiceDocument doc);
+        void BlockDocument(ServiceDocument doc, string userIpAddress);
 
         bool ArchiveDocument(ServiceDocument doc, IDBUnitOfWork database = null);
     }

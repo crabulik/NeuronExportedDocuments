@@ -333,4 +333,16 @@
   <data name="rs_Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="rs_BlockedDocumentInfo" xml:space="preserve">
+    <value>Sorry, but your document &lt;strong&gt;{0}&lt;/strong&gt; is blocked.
+Your document was accessed with the wrong password too many times.
+&lt;br/&gt;
+Please, contact to our suppor to resolve the problem: {1}</value>
+  </data>
+  <data name="rs_Error" xml:space="preserve">
+    <value>Error:</value>
+  </data>
+  <data name="rs_NeuronDocumentBlocked" xml:space="preserve">
+    <value>Document Blocked Information</value>
+  </data>
 </root>

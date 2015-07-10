@@ -117,6 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="rs_CaptchaError" xml:space="preserve">
+    <value>Errors in captcha system. Message: "{0}"</value>
+  </data>
+  <data name="rs_CaptchaErrorOccured" xml:space="preserve">
+    <value>Captcha error occured. Please try again</value>
+  </data>
+  <data name="rs_CaptchaErrorResponseParameterInvalid" xml:space="preserve">
+    <value>The response parameter is invalid or malformed.</value>
+  </data>
+  <data name="rs_CaptchaErrorResponseParameterMissing" xml:space="preserve">
+    <value>The response parameter is missing.</value>
+  </data>
+  <data name="rs_CaptchaErrorSecretParameterIsInvalid" xml:space="preserve">
+    <value>The secret parameter is invalid or malformed.</value>
+  </data>
+  <data name="rs_CaptchaErrorSecretParameterIsMissing" xml:space="preserve">
+    <value>The secret parameter is missing.</value>
+  </data>
+  <data name="rs_CaptchaErrorUnknown" xml:space="preserve">
+    <value>The Unknown captcha error.</value>
+  </data>
+  <data name="rs_CaptchaErrorValue" xml:space="preserve">
+    <value>The captcha check is fail. Please try again</value>
+  </data>
   <data name="rs_DocumentIdMustBe12" xml:space="preserve">
     <value>Document ID must has not more than 12 characters</value>
   </data>
@@ -131,6 +155,9 @@
   </data>
   <data name="rs_DocumentIsInArchive" xml:space="preserve">
     <value>The document access period has been expired</value>
+  </data>
+  <data name="rs_DocumentIsNotValid" xml:space="preserve">
+    <value>The credential data for the document is not valid</value>
   </data>
   <data name="rs_DocumentPasswordMustBe8" xml:space="preserve">
     <value>Document Password must has not more than 8 characters</value>

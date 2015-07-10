@@ -185,5 +185,29 @@ namespace NeuronExportedDocuments.Infrastructure
          
             return true;
         }
+
+        public void BlockDocument(ServiceDocument doc, string userIpAddress)
+        {
+            var editDoc = Database.ServiceDocuments.Get(doc.ServiceDocumentId);
+
+            if (!editDoc.IsBlocked)
+            {
+                editDoc.IsBlocked = true;
+                editDoc.DocumentOperations.Add(new DocumentLogOperation
+                {
+                    OperationType = DocumentLogOperationType.Blocked,
+                    ConnectionIpAddress = userIpAddress
+                });
+                Database.ServiceDocuments.Update(editDoc);
+                Database.Save();
+
+                if (doc.DeliveryEMail != string.Empty)
+                {
+                    SendEmail(doc,
+                        ServicesMessages.FormatMessageByServiceDocument(ServiceMessageKey.SendDocumentAccessBlockedSubject, doc),
+                        ServicesMessages.FormatMessageByServiceDocument(ServiceMessageKey.SendDocumentAccessBlockedMessage, doc));
+                }
+            }
+        }
     }
 }

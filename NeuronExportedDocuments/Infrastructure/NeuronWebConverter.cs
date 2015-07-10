@@ -38,7 +38,7 @@ namespace NeuronExportedDocuments.Infrastructure
                     return StringResources.rs_DocumentLogOperationTypeSuccessAccess;
                 case DocumentLogOperationType.FailAccess:
                     return StringResources.rs_DocumentLogOperationTypeFailAccess;
-                case DocumentLogOperationType.Banned:
+                case DocumentLogOperationType.Blocked:
                     return StringResources.rs_DocumentLogOperationTypeBanned;
                 case DocumentLogOperationType.SetToArchive:
                     return StringResources.rs_DocumentLogOperationTypeSetToArchive;

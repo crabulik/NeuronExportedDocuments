@@ -10,6 +10,9 @@
         SendChangedCredentialsEmailMessage = 6,
         SendChangedCredentialsEmailSubject = 7,
         SendDocumentAccessExpiredSubject = 8,
-        SendDocumentAccessExpiredMessage = 9
+        SendDocumentAccessExpiredMessage = 9,
+        SendDocumentAccessBlockedSubject = 10,
+        SendDocumentAccessBlockedMessage = 11
+
     }
 }
