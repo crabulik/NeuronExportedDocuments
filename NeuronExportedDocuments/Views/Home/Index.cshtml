@@ -7,17 +7,15 @@
 }
 
 @section Scripts {
-    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=onload" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
     <script type="text/javascript">
         var onloadCallback = function () {
-            $("#g-recaptcha-response").rules("add", {
-                required: true,
-                messages: {
-                    required: "Required input"
-                }
+            grecaptcha.render('g-recaptcha', {
+                'sitekey': '@Model.RecaptchaSiteKey'
             });
         };
     </script>
+
 }
 @section Body {
     <div class="jumbotron">
@@ -25,7 +23,7 @@
         <p>@Html.Raw(Model.HelloDescriptionMessage)</p>
     </div>
     <div id="getter" class="section panel panel-primary">
-        @Html.Partial("DocumentGetter", Model)
+        @Html.Partial("DocumentGetter", Model.DocumentCredentials)
     </div>
 }
 

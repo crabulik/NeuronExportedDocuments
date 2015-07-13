@@ -337,12 +337,15 @@
     <value>Sorry, but your document &lt;strong&gt;{0}&lt;/strong&gt; is blocked.
 Your document was accessed with the wrong password too many times.
 &lt;br/&gt;
-Please, contact to our suppor to resolve the problem: {1}</value>
+Please, contact to our suppor to resolve the problem: &lt;strong&gt;{1}&lt;/strong&gt;</value>
   </data>
   <data name="rs_Error" xml:space="preserve">
     <value>Error:</value>
   </data>
   <data name="rs_NeuronDocumentBlocked" xml:space="preserve">
     <value>Document Blocked Information</value>
+  </data>
+  <data name="rs_GetNeuronDocumentBlockedCaption" xml:space="preserve">
+    <value>Neuron Document is blocked</value>
   </data>
 </root>

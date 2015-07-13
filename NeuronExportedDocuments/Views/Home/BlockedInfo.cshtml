@@ -2,7 +2,7 @@
 @model NeuronExportedDocuments.Models.ViewModels.BlockedViewModel
 
 @{
-    ViewBag.Title = MainMessages.rs_GetNeuronDocument;
+    ViewBag.Title = MainMessages.rs_GetNeuronDocumentBlockedCaption;
     Layout = "~/Views/_Layout.cshtml";
 }
 
@@ -10,13 +10,10 @@
    
 }
 @section Body {
-    <h2>@MainMessages.rs_GetNeuronDocument</h2>
+    <h2>@MainMessages.rs_GetNeuronDocumentBlockedCaption</h2>
     <div class="alert alert-danger" role="alert">
         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
         <span class="sr-only">@MainMessages.rs_Error</span>
-        Enter a valid email address
-    </div>
-    <div class="alert alert-warning" role="alert">
         @Html.Raw(string.Format(MainMessages.rs_BlockedDocumentInfo, Model.ServiceDocumentInfo.PublishId, Model.SupportContact))
     </div>
     @Html.ActionLink(MainMessages.rs_GetNextDocument, "Index")

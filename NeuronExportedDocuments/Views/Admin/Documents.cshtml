@@ -57,7 +57,7 @@
             $('.republish-doc').click(function() {
                 var confirmRoute = { id: $(this).attr('data-confirm-id'), action: $(this).attr('data-confirm-action'), controller: $(this).attr('data-confirm-controller') };
                 var confirmCaption = '@MainMessages.rs_ConfirmCaption';
-                var backUrl = '@Request.Url.PathAndQuery';
+                var backUrl = '@Html.Raw(Request.Url.PathAndQuery)';
                 var confirmMessage;
                 if ($(this).attr('data-blocked') == "true") {
                     confirmMessage = '@MainMessages.rs_UnblockAndRepublishDocumentConfirm';

@@ -70,7 +70,7 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Captcha error occured. Please try again.
+        ///   Looks up a localized string similar to Incorrect Captcha value.
         /// </summary>
         public static string rs_CaptchaErrorOccured {
             get {
@@ -129,6 +129,15 @@ namespace NeuronExportedDocuments.Resources {
         public static string rs_CaptchaErrorValue {
             get {
                 return ResourceManager.GetString("rs_CaptchaErrorValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Captcha must be set.
+        /// </summary>
+        public static string rs_CaptchaMustBeSet {
+            get {
+                return ResourceManager.GetString("rs_CaptchaMustBeSet", resourceCulture);
             }
         }
         

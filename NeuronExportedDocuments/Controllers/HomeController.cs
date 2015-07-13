@@ -54,10 +54,12 @@ namespace NeuronExportedDocuments.Controllers
         {
             var tmpVM = new HomeIndexViewModel
             {
-                DocumentCredentials = new DocumentCredentials(),
+                DocumentCredentials = new DocumentCredentials
+                {
+                    IsWithCaptcha = (userData.FailTryCount >= Config.GeneralSettings.FailSiteAccessForCaptcha)
+                },
                 HelloMessage = ServiceMessages.GetMessage(ServiceMessageKey.HomeIndexHelloMessage),
                 HelloDescriptionMessage = ServiceMessages.GetMessage(ServiceMessageKey.HomeIndexHelloDescriptionMessage),
-                IsNeedCaptcha = (userData.FailTryCount >= Config.GeneralSettings.FailSiteAccessForCaptcha),
                 RecaptchaSiteKey = Config.GeneralSettings.RecaptchaSiteKey
             };
             return View(tmpVM);
@@ -79,7 +81,7 @@ namespace NeuronExportedDocuments.Controllers
                     var found =
                         Database.ServiceDocuments.GetQueryable()
                             .FirstOrDefault(document => document.PublishId == doc.PublishId);
-                    var checkResult = CheckDocument(found, userData, doc.PublishPassword, captchaCheck);
+                    var checkResult = CheckDocument(found, userData, doc.PublishId, doc.PublishPassword, captchaCheck);
                     switch (checkResult)
                     {
                         case CheckDocumentResult.Ok:
@@ -125,30 +127,31 @@ namespace NeuronExportedDocuments.Controllers
             {
                 ModelState.AddModelError("", ValidateMessages.rs_DocumentIsNotValid);
             }
-            var tmpIndexVM = new HomeIndexViewModel
+            doc.IsWithCaptcha = tmpIsNeedCaptcha ||
+                                (userData.FailTryCount >= Config.GeneralSettings.FailSiteAccessForCaptcha);
+            var tmpIndexVm = new HomeIndexViewModel
             {
                 DocumentCredentials = doc,
                 HelloMessage = ServiceMessages.GetMessage(ServiceMessageKey.HomeIndexHelloMessage),
                 HelloDescriptionMessage = ServiceMessages.GetMessage(ServiceMessageKey.HomeIndexHelloDescriptionMessage),
-                IsNeedCaptcha = tmpIsNeedCaptcha || (userData.FailTryCount >= Config.GeneralSettings.FailSiteAccessForCaptcha),
                 RecaptchaSiteKey = Config.GeneralSettings.RecaptchaSiteKey
             };
-            return View("Index", tmpIndexVM);
+            return View("Index", tmpIndexVm);
         }
 
-        private CheckDocumentResult CheckDocument(ServiceDocument doc, IUserData userData, string password, bool? captchaCheck)
+        private CheckDocumentResult CheckDocument(ServiceDocument doc, IUserData userData, string docId, string password, bool? captchaCheck)
         {
             var result = CheckDocumentResult.Error;
             if (doc == null)
             {
-                Log.Info(string.Format(MainMessages.rs_RequestForUnexistedDocument, doc.PublishId,
+                Log.Info(string.Format(MainMessages.rs_RequestForUnexistedDocument, docId,
                     Request.UserHostAddress));
                 userData.FailTryCount += 1;
                 ModelState.AddModelError("", ValidateMessages.rs_DocumentIdOrPasswordAreIncorrect);
             }
             else
             {
-                if ((doc.FailedTimes > Config.GeneralSettings.FailDocumentAccessForCaptcha) &&
+                if ((doc.FailedTimes >= Config.GeneralSettings.FailDocumentAccessForCaptcha) &&
                     ((captchaCheck == null) || !captchaCheck.Value))
                 {
                     ModelState.AddModelError("", ValidateMessages.rs_CaptchaErrorValue);

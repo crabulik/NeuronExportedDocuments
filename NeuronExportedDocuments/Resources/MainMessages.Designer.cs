@@ -82,7 +82,7 @@ namespace NeuronExportedDocuments.Resources {
         ///   Looks up a localized string similar to Sorry, but your document &lt;strong&gt;{0}&lt;/strong&gt; is blocked.
         ///Your document was accessed with the wrong password too many times.
         ///&lt;br/&gt;
-        ///Please, contact to our suppor to resolve the problem: {1}.
+        ///Please, contact to our suppor to resolve the problem: &lt;strong&gt;{1}&lt;/strong&gt;.
         /// </summary>
         public static string rs_BlockedDocumentInfo {
             get {
@@ -456,6 +456,15 @@ namespace NeuronExportedDocuments.Resources {
         public static string rs_GetNeuronDocument {
             get {
                 return ResourceManager.GetString("rs_GetNeuronDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neuron Document is blocked.
+        /// </summary>
+        public static string rs_GetNeuronDocumentBlockedCaption {
+            get {
+                return ResourceManager.GetString("rs_GetNeuronDocumentBlockedCaption", resourceCulture);
             }
         }
         

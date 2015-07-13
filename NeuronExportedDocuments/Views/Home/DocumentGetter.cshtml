@@ -1,37 +1,45 @@
 ﻿@using NeuronExportedDocuments.Resources
-@model NeuronExportedDocuments.Models.ViewModels.HomeIndexViewModel
+@model NeuronExportedDocuments.Models.DocumentCredentials
 
 <div class="panel-heading">
     @MainMessages.rs_GetNeuronDocument
 </div>
 <div class="panel-body">
-    @using (Html.BeginForm("GetDocument", "Home", new { @class = "navbar-form navbar-left" }))
+    @using (Html.BeginForm("GetDocument", "Home", new { IsWithCaptcha = Model.IsWithCaptcha }))
     {
         @Html.ValidationSummary(true);
         <div class="form-group">
-            @Html.LabelFor(model => model.DocumentCredentials.PublishId, new { @class = "control-label" })
+            @Html.LabelFor(model => model.PublishId, new { @class = "control-label" })
             
             <div class="control-group">
-                @Html.TextBox("PublishId", Model.DocumentCredentials.PublishId, new { @class = "form-control", autocomplete = "off" })
-                @Html.ValidationMessageFor(model => model.DocumentCredentials.PublishId, null, new { @class = "help-inline label label-danger" })
+                @Html.TextBox("PublishId", Model.PublishId, new { @class = "form-control", autocomplete = "off" })
+                @Html.ValidationMessageFor(model => model.PublishId, null, new { @class = "help-inline label label-danger" })
             </div>
         </div>
         
         <div class="form-group">
-            @Html.LabelFor(model => model.DocumentCredentials.PublishPassword, new { @class = "control-label" })
+            @Html.LabelFor(model => model.PublishPassword, new { @class = "control-label" })
             
             <div class="control-group">
-                @Html.TextBox("PublishPassword", Model.DocumentCredentials.PublishPassword, new { @class = "form-control", autocomplete = "off" })
-                @Html.ValidationMessageFor(model => model.DocumentCredentials.PublishPassword, null, new { @class = "help-inline label label-danger" })
+                @Html.TextBox("PublishPassword", Model.PublishPassword, new { @class = "form-control", autocomplete = "off" })
+                @Html.ValidationMessageFor(model => model.PublishPassword, null, new { @class = "help-inline label label-danger" })
             </div>
         </div>
         
-        @Html.Hidden("IsWithCaptcha", Model.IsNeedCaptcha)
-        if (Model.IsNeedCaptcha)
-         {
-             <div class="g-recaptcha" data-sitekey=@Model.RecaptchaSiteKey></div>
+        if (Model.IsWithCaptcha)
+        {
+            
+            <div class="control-group">
+                <div class="g-recaptcha" id="g-recaptcha"></div>
+                @Html.TextBox("GRecaptchaResponse", null, new { @class = "form-control", style = "display:none", autocomplete = "off" })
+            </div>
             <br/>
-         }
+
+        }
+        else
+        {
+
+        }
         <button type="submit" class="btn btn-primary">@MainMessages.rs_GetDocument</button>
     }
 </div>
