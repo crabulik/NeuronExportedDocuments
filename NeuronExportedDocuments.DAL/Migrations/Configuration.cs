@@ -1,4 +1,7 @@
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using NeuronExportedDocuments.DAL.Seeds;
+using NeuronExportedDocuments.Models.Identity;
 
 namespace NeuronExportedDocuments.DAL.Migrations
 {
@@ -30,6 +33,8 @@ namespace NeuronExportedDocuments.DAL.Migrations
             //    );
             //
 
+           
+
             var serviceMessages = SeedGenerator.ServiceMessageSeed();
 
             foreach (var serviceMessage in serviceMessages)
@@ -40,6 +45,10 @@ namespace NeuronExportedDocuments.DAL.Migrations
                     context.ServiceMessages.Add(serviceMessage);
                 }
             }
+
+            var identitySeed = new IdentitySeed();
+            identitySeed.InitializeIdentityForEf(context);
+
             context.SaveChanges();
         }
     }

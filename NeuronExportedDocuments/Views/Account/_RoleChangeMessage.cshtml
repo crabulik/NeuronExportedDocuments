@@ -1,0 +1,14 @@
+﻿@using NeuronExportedDocuments.Resources
+@model NeuronExportedDocuments.Models.ViewModels.ChangeUserRoleViewModel
+
+<div class="modal-header">
+    <a type="button" class="close" aria-label="@MainMessages.rs_Close" href="@Model.BackUrl"><span aria-hidden="true">&times;</span></a>
+    <h4 class="modal-title">@MainMessages.rs_ResultRoleInfo</h4>
+</div>
+
+<div class="modal-body">
+    <p>@Model.ResultMessage</p>
+</div>
+<div class="modal-footer">
+    <a type="button" class="btn btn-default" href="@Model.BackUrl">@MainMessages.rs_Close</a>
+</div>

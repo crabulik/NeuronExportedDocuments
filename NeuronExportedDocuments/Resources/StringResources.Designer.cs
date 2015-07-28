@@ -185,5 +185,32 @@ namespace NeuronExportedDocuments.Resources {
                 return ResourceManager.GetString("rs_ExportedDocStatusUnhandled", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your security code is: {0}.
+        /// </summary>
+        public static string rs_InitProtectionEmailCodeBodyFormat {
+            get {
+                return ResourceManager.GetString("rs_InitProtectionEmailCodeBodyFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Security Code.
+        /// </summary>
+        public static string rs_InitProtectionEmailCodeSubject {
+            get {
+                return ResourceManager.GetString("rs_InitProtectionEmailCodeSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your security code is: {0}.
+        /// </summary>
+        public static string rs_InitProtectionPhoneCode {
+            get {
+                return ResourceManager.GetString("rs_InitProtectionPhoneCode", resourceCulture);
+            }
+        }
     }
 }

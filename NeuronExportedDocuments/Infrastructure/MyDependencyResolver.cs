@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Web.Http.Dependencies;
 using AutoMapper;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using NeuronExportedDocuments.DAL.Interfaces;
 using NeuronExportedDocuments.DAL.Repositories;
 using NeuronExportedDocuments.Interfaces;
 using NeuronExportedDocuments.Models;
+using NeuronExportedDocuments.Models.Identity;
 using NeuronExportedDocuments.Models.Interfaces;
 using NeuronExportedDocuments.Services.AutoMapper;
 using NeuronExportedDocuments.Services.Config;
-using NeuronExportedDocuments.Services.Logging;
+using Ninject.Web.Common;
 using NeuronExportedDocuments.Services.Logging.DocumentOperation;
 using NeuronExportedDocuments.Services.Logging.NLog;
 using NeuronExportedDocuments.Services.ServiceMessaging;
@@ -31,16 +34,19 @@ namespace NeuronExportedDocuments.Infrastructure
 
         private void InitializeBindings()
         {
-            _kernel.Bind<WebDocumentConverter>().ToSelf().InSingletonScope();
+            _kernel.Bind<WebDocumentConverter>().ToSelf().InRequestScope();
             _kernel.Bind<IDBUnitOfWork>().To<EFUnitOfWork>();
-            _kernel.Bind<IWebDocumentProcessor>().To<WebDocumentProcessor>().InSingletonScope();
-            _kernel.Bind<IWebLogger>().To<NLogLogger>().InSingletonScope();
-            _kernel.Bind<IDocumentOperationLogger>().To<DocumentOperationLogger>().InSingletonScope();
-            _kernel.Bind<IConfig>().To<GeneralСonfig>().InSingletonScope();
-            _kernel.Bind<IServiceMessagesFormater>().To<ServiceMessagesFormater>().InSingletonScope();
+            _kernel.Bind<IWebDocumentProcessor>().To<WebDocumentProcessor>().InRequestScope();
+            _kernel.Bind<IWebLogger>().To<NLogLogger>().InRequestScope();
+            _kernel.Bind<IDocumentOperationLogger>().To<DocumentOperationLogger>().InRequestScope();
+            _kernel.Bind<IConfig>().To<GeneralСonfig>().InRequestScope();
+            _kernel.Bind<IServiceMessagesFormater>().To<ServiceMessagesFormater>().InRequestScope();
             _kernel.Bind<IUserData>().To<UserData>();
             _kernel.Bind<IServiceMessages>().To<ServiceMessages>();
             _kernel.Bind<UserDataBinder>().ToSelf();
+            _kernel.Bind<UserManager<ApplicationUser>>().To<ApplicationUserManager>().InRequestScope();
+            _kernel.Bind<RoleManager<IdentityRole>>().To<ApplicationRoleManager>().InRequestScope();
+            _kernel.Bind<EmailService>().ToSelf().InRequestScope();
 
             IAutoMapperConfiguration conf = new AutoMapperConfiguration();
             _kernel.Bind<IMappingEngine>().ToMethod(conf.Configure);

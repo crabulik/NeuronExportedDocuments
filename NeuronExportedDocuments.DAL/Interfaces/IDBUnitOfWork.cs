@@ -1,5 +1,7 @@
 ﻿using System;
+using Microsoft.AspNet.Identity.EntityFramework;
 using NeuronExportedDocuments.Models;
+using NeuronExportedDocuments.Models.Identity;
 
 namespace NeuronExportedDocuments.DAL.Interfaces
 {
@@ -12,5 +14,7 @@ namespace NeuronExportedDocuments.DAL.Interfaces
 
         IRepository<DocumentLogOperation> DocumentsLogs { get; }
         void Save();
+
+        IdentityDbContext<ApplicationUser> GetIdentityDbContext();
     }
 }

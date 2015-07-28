@@ -348,4 +348,25 @@ Please, contact to our suppor to resolve the problem: &lt;strong&gt;{1}&lt;/stro
   <data name="rs_GetNeuronDocumentBlockedCaption" xml:space="preserve">
     <value>Neuron Document is blocked</value>
   </data>
+  <data name="rs_AccountAccessFailedCount" xml:space="preserve">
+    <value>Access Failed Count</value>
+  </data>
+  <data name="rs_AccountEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="rs_AccountEmailConfirmed" xml:space="preserve">
+    <value>Email Confirmed</value>
+  </data>
+  <data name="rs_AccountRoles" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="rs_AccountsTitle" xml:space="preserve">
+    <value>Service Accounts</value>
+  </data>
+  <data name="rs_EmailFilter" xml:space="preserve">
+    <value>Email Filter ...</value>
+  </data>
+  <data name="rs_ResultRoleInfo" xml:space="preserve">
+    <value>Result Message</value>
+  </data>
 </root>

@@ -1,12 +1,14 @@
 ﻿using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using NeuronExportedDocuments.Models;
+using NeuronExportedDocuments.Models.Identity;
 
 namespace NeuronExportedDocuments.DAL
 {
-    public class DocumentContext : DbContext
+    public class DocumentContext : IdentityDbContext<ApplicationUser>
     {
         public DocumentContext()
-            : base("name=DocumentsDb")
+            : base("name=DocumentsDb", throwIfV1Schema: false)
         {
             
         }

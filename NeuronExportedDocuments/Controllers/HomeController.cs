@@ -107,7 +107,6 @@ namespace NeuronExportedDocuments.Controllers
                             var blockVm = new BlockedViewModel(ModelMapper.Map<ServiceDocumentInfo>(found),
                                 Config.GeneralSettings.SupportEmail);
                             return View("BlockedInfo", blockVm);
-                            break;
                         case CheckDocumentResult.CaptchaError:
                             tmpIsNeedCaptcha = true;
                             break;

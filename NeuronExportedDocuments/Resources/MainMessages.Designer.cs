@@ -61,6 +61,51 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Access Failed Count.
+        /// </summary>
+        public static string rs_AccountAccessFailedCount {
+            get {
+                return ResourceManager.GetString("rs_AccountAccessFailedCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string rs_AccountEmail {
+            get {
+                return ResourceManager.GetString("rs_AccountEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email Confirmed.
+        /// </summary>
+        public static string rs_AccountEmailConfirmed {
+            get {
+                return ResourceManager.GetString("rs_AccountEmailConfirmed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roles.
+        /// </summary>
+        public static string rs_AccountRoles {
+            get {
+                return ResourceManager.GetString("rs_AccountRoles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Service Accounts.
+        /// </summary>
+        public static string rs_AccountsTitle {
+            get {
+                return ResourceManager.GetString("rs_AccountsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Admin Panel.
         /// </summary>
         public static string rs_AdminPanel {
@@ -388,6 +433,15 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email Filter ....
+        /// </summary>
+        public static string rs_EmailFilter {
+            get {
+                return ResourceManager.GetString("rs_EmailFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error:.
         /// </summary>
         public static string rs_Error {
@@ -618,6 +672,15 @@ namespace NeuronExportedDocuments.Resources {
         public static string rs_RequestForUnexistedDocument {
             get {
                 return ResourceManager.GetString("rs_RequestForUnexistedDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Result Message.
+        /// </summary>
+        public static string rs_ResultRoleInfo {
+            get {
+                return ResourceManager.GetString("rs_ResultRoleInfo", resourceCulture);
             }
         }
         

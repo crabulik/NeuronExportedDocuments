@@ -1,0 +1,171 @@
+﻿@using NeuronExportedDocuments.Resources
+@using PagedList.Mvc
+@model NeuronExportedDocuments.Models.ViewModels.AccountsViewModel
+@{
+    ViewBag.Title = MainMessages.rs_AccountsTitle;
+    Layout = "~/Views/_AdminLayout.cshtml";
+}
+
+@section Style{
+    <style>
+        .filter-panel {
+            margin-bottom: 15px;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        var backUrl = window.location.href;
+        function successChangeRoles(data) {
+            $('#result-message-container').html(data);
+            $('#result-message').on('hidden.bs.modal', function (e) {
+                window.location.href = backUrl;
+            });
+            $('#result-message').modal('show');
+        }
+        function errorChangeRoles(xhr, status) {
+            alert(status);
+        }
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            $('.delete-role').click(function () {
+                var id = $(this).attr('data-id');
+                backUrl = $(this).attr('data-back-url');
+                $.ajax({
+                    url: '@Url.Action("DeleteRoles")', // to get the right path to controller from TableRoutes of Asp.Net MVC
+                    dataType: "html",
+                    type: "POST", //to do a post request
+                    contentType: "application/json",
+                    cache: false,
+                    data: JSON.stringify({ userId: id, backUrl: backUrl }), // here you can pass arguments to your request if you need
+                    success: successChangeRoles,
+                    error: errorChangeRoles
+                });
+            });
+
+            $('.set-admin-role').click(function () {
+                var id = $(this).attr('data-id');
+                backUrl = $(this).attr('data-back-url');
+                $.ajax({
+                    url: '@Url.Action("SetAdminRole")', // to get the right path to controller from TableRoutes of Asp.Net MVC
+                    dataType: "html",
+                    type: "POST", //to do a post request
+                    contentType: 'application/json',
+                    cache: false,
+                    data: JSON.stringify({ userId: id, backUrl: backUrl }), // here you can pass arguments to your request if you need
+                    success: successChangeRoles,
+                    error: errorChangeRoles
+                });
+            });
+
+            $('.set-sync-role').click(function () {
+                var id = $(this).attr('data-id');
+                backUrl = $(this).attr('data-back-url');
+                $.ajax({
+                    url: '@Url.Action("SetSyncServiceRole")', // to get the right path to controller from TableRoutes of Asp.Net MVC
+                    dataType: "html",
+                    type: "POST", //to do a post request
+                    contentType: 'application/json',
+                    cache: false,
+                    data: JSON.stringify({ userId: id, backUrl: backUrl }), // here you can pass arguments to your request if you need
+                    success: successChangeRoles,
+                    error: errorChangeRoles
+                });
+            });
+        });
+    </script>
+}
+
+
+@section Body {
+    <div class="modal fade" id="result-message" role="dialog">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content" id="result-message-container">
+            </div>
+        </div>
+    </div>
+    @using (Html.BeginForm("Index", "Account", FormMethod.Get))
+    {
+        <div class="">
+            <div class="col-lg-3 filter-panel">
+                @Html.TextBoxFor(m => m.Filter.AccountEmail, new { @class = "form-control", aria_label = "...", placeholder = MainMessages.rs_EmailFilter })
+            </div>
+            <div class="col-lg-1">
+                <button type="submit" class="btn btn-default">@MainMessages.rs_Search</button>
+            </div>
+            <div class="col-lg-1">
+                <a class="glyphicon glyphicon-plus-sign btn btn-primary" role="button" href=@Url.Action("Register", "Account")></a>
+            </div>
+        </div>
+    }
+
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @MainMessages.rs_AccountEmail
+            </th>
+            <th>
+                @MainMessages.rs_AccountEmailConfirmed
+            </th>
+            <th>
+                @MainMessages.rs_AccountAccessFailedCount
+            </th>
+            <th>
+                @MainMessages.rs_AccountRoles
+            </th>
+            <th class="text-center"></th>
+        </tr>
+
+
+        @foreach (var item in Model.List)
+        {
+            <tr>
+                <td class="col-md-2">
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td class="col-md-1">
+                    @Html.DisplayFor(modelItem => item.EmailConfirmed)
+                </td>
+                <td class="col-md-1">
+                    @Html.DisplayFor(modelItem => item.AccessFailedCount)
+                </td>
+                <td class="col-md-2">
+                    @Model.GetRoles(item.Id)
+                </td>
+                <td class="col-md-1 text-center">
+                    @if (Model.CurrentUserId != item.Id)
+                    {
+                        if (item.Roles.Count != 0)
+                        {
+                            <button class="glyphicon glyphicon-remove btn btn-primary delete-role" data-id="@item.Id" data-back-url="@Request.Url.PathAndQuery"
+                                    data-toggle="tooltip" data-placement="top" title="@IdentityResources.rs_DeleteUserRolesToolTip"></button>
+                        }
+                        else
+                        {
+                            <button class="glyphicon glyphicon-user btn btn-primary set-admin-role" data-id="@item.Id" data-back-url="@Request.Url.PathAndQuery"
+                                    data-toggle="tooltip" data-placement="top" title="@IdentityResources.rs_SetAdminUserRolesToolTip"></button>
+
+                            <button class="glyphicon glyphicon-transfer btn btn-primary set-sync-role" data-id="@item.Id" data-back-url="@Request.Url.PathAndQuery"
+                                    data-toggle="tooltip" data-placement="top" title="@IdentityResources.rs_SetSyncUserRolesToolTip"></button>
+                        }
+                    }
+
+                </td>
+
+            </tr>
+        }
+
+    </table>
+    @if (Model.List.PageCount > 1)
+    {
+        <br />
+        <div>@MainMessages.rs_Page @(Model.List.PageCount < Model.List.PageNumber ? 0 : Model.List.PageNumber) of @Model.List.PageCount</div>
+
+        @Html.PagedListPager(Model.List, page => Url.Action("Index", new
+   {
+       page,
+       accountEmail = Model.Filter.AccountEmail,
+   }));
+    }
+}

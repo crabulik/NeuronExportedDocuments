@@ -11,7 +11,7 @@
     @Scripts.Render("~/bundles/global")
     @Scripts.Render("~/bundles/globalLastFile")
     @RenderSection("Scripts")
-    
+    @RenderSection("Style", false)
     <script>
         Globalize.culture("ru-RU");
     </script>
@@ -33,9 +33,11 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@MainMessages.rs_More<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li class='@Html.IsActive("Admin", "Documents")'>@Html.ActionLink(MainMessages.rs_DocumentsInfo, "Documents", "Admin")</li>
+                            <li class='@Html.IsActive("Account", "Index")'>@Html.ActionLink(MainMessages.rs_AccountsTitle, "Index", "Account")</li>
                         </ul>
                     </li>
                 </ul>
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </nav>

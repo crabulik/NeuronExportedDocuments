@@ -9,6 +9,7 @@ using NeuronExportedDocuments.DAL.Interfaces;
 using NeuronExportedDocuments.Interfaces;
 using NeuronExportedDocuments.Models;
 using NeuronExportedDocuments.Models.Enums;
+using NeuronExportedDocuments.Models.Identity;
 using NeuronExportedDocuments.Models.Interfaces;
 using NeuronExportedDocuments.Models.ViewModels;
 using NeuronExportedDocuments.Resources;
@@ -16,6 +17,7 @@ using PagedList;
 
 namespace NeuronExportedDocuments.Controllers
 {
+    [Authorize(Roles = IdentityConstants.AdminRole)]
     public class AdminController : Controller
     {
         private const int LogErrorsPerPageCount = 10;

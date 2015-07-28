@@ -10,6 +10,7 @@
     Layout = "~/Views/_AdminLayout.cshtml";
 }
 
+
 @section Scripts {
     <script type="text/javascript">
         $(function() {
@@ -95,7 +96,7 @@
     </div>  
     @using (Html.BeginForm("Documents", "Admin", FormMethod.Get))
     {
-        <div class="">
+        <div class="" m>
             <div class='col-lg-2'>
                 <div class="form-group">
                     <div class='input-group date' id='startCreateDate'>
@@ -116,7 +117,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-lg-2">
                 @Html.DropDownListFor(m => m.Filter.BlockFilter, Model.GetBlockFilterList(), new { @class = "form-control", aria_label = "..." })
             </div>

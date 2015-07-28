@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<views MappingHash="4a2becba28fa4390c68fab0ba7516e3ac72569d0ca4721257347cc61e2c64dd2">
+<views MappingHash="0f5ea0c613ac8c3dd60396b8971ae7acc1ae50abe715f345f74c9953ac3eb447">
   <view extent="CodeFirstDatabase.DocumentImage"><![CDATA[
     SELECT VALUE -- Constructing DocumentImage
         [CodeFirstDatabaseSchema.DocumentImage](T1.DocumentImage_DocumentImageId, T1.DocumentImage_ServiceDocumentId, T1.DocumentImage_FileName, T1.DocumentImage_MimeType, T1.DocumentImage_ImageData)
@@ -139,6 +139,132 @@
             T.TimeStamp AS NLogError_TimeStamp, 
             True AS _from0
         FROM CodeFirstDatabase.NLogError AS T
+    ) AS T1]]></view>
+  <view extent="CodeFirstDatabase.IdentityRole"><![CDATA[
+    SELECT VALUE -- Constructing IdentityRole
+        [CodeFirstDatabaseSchema.IdentityRole](T1.IdentityRole_Id, T1.IdentityRole_Name)
+    FROM (
+        SELECT 
+            T.Id AS IdentityRole_Id, 
+            T.Name AS IdentityRole_Name, 
+            True AS _from0
+        FROM DocumentContext.Roles AS T
+    ) AS T1]]></view>
+  <view extent="CodeFirstDatabase.IdentityUserRole"><![CDATA[
+    SELECT VALUE -- Constructing IdentityUserRole
+        [CodeFirstDatabaseSchema.IdentityUserRole](T1.IdentityUserRole_UserId, T1.IdentityUserRole_RoleId)
+    FROM (
+        SELECT 
+            T.UserId AS IdentityUserRole_UserId, 
+            T.RoleId AS IdentityUserRole_RoleId, 
+            True AS _from0
+        FROM DocumentContext.IdentityUserRoles AS T
+    ) AS T1]]></view>
+  <view extent="CodeFirstDatabase.ApplicationUser"><![CDATA[
+    SELECT VALUE -- Constructing ApplicationUser
+        [CodeFirstDatabaseSchema.ApplicationUser](T1.ApplicationUser_Id, T1.ApplicationUser_Email, T1.ApplicationUser_EmailConfirmed, T1.ApplicationUser_PasswordHash, T1.ApplicationUser_SecurityStamp, T1.ApplicationUser_PhoneNumber, T1.ApplicationUser_PhoneNumberConfirmed, T1.ApplicationUser_TwoFactorEnabled, T1.ApplicationUser_LockoutEndDateUtc, T1.ApplicationUser_LockoutEnabled, T1.ApplicationUser_AccessFailedCount, T1.ApplicationUser_UserName)
+    FROM (
+        SELECT 
+            T.Id AS ApplicationUser_Id, 
+            T.Email AS ApplicationUser_Email, 
+            T.EmailConfirmed AS ApplicationUser_EmailConfirmed, 
+            T.PasswordHash AS ApplicationUser_PasswordHash, 
+            T.SecurityStamp AS ApplicationUser_SecurityStamp, 
+            T.PhoneNumber AS ApplicationUser_PhoneNumber, 
+            T.PhoneNumberConfirmed AS ApplicationUser_PhoneNumberConfirmed, 
+            T.TwoFactorEnabled AS ApplicationUser_TwoFactorEnabled, 
+            T.LockoutEndDateUtc AS ApplicationUser_LockoutEndDateUtc, 
+            T.LockoutEnabled AS ApplicationUser_LockoutEnabled, 
+            T.AccessFailedCount AS ApplicationUser_AccessFailedCount, 
+            T.UserName AS ApplicationUser_UserName, 
+            True AS _from0
+        FROM DocumentContext.Users AS T
+    ) AS T1]]></view>
+  <view extent="CodeFirstDatabase.IdentityUserClaim"><![CDATA[
+    SELECT VALUE -- Constructing IdentityUserClaim
+        [CodeFirstDatabaseSchema.IdentityUserClaim](T1.IdentityUserClaim_Id, T1.IdentityUserClaim_UserId, T1.IdentityUserClaim_ClaimType, T1.IdentityUserClaim_ClaimValue)
+    FROM (
+        SELECT 
+            T.Id AS IdentityUserClaim_Id, 
+            T.UserId AS IdentityUserClaim_UserId, 
+            T.ClaimType AS IdentityUserClaim_ClaimType, 
+            T.ClaimValue AS IdentityUserClaim_ClaimValue, 
+            True AS _from0
+        FROM DocumentContext.IdentityUserClaims AS T
+    ) AS T1]]></view>
+  <view extent="CodeFirstDatabase.IdentityUserLogin"><![CDATA[
+    SELECT VALUE -- Constructing IdentityUserLogin
+        [CodeFirstDatabaseSchema.IdentityUserLogin](T1.IdentityUserLogin_LoginProvider, T1.IdentityUserLogin_ProviderKey, T1.IdentityUserLogin_UserId)
+    FROM (
+        SELECT 
+            T.LoginProvider AS IdentityUserLogin_LoginProvider, 
+            T.ProviderKey AS IdentityUserLogin_ProviderKey, 
+            T.UserId AS IdentityUserLogin_UserId, 
+            True AS _from0
+        FROM DocumentContext.IdentityUserLogins AS T
+    ) AS T1]]></view>
+  <view extent="DocumentContext.Roles"><![CDATA[
+    SELECT VALUE -- Constructing Roles
+        [NeuronExportedDocuments.DAL.IdentityRole](T1.IdentityRole_Id, T1.IdentityRole_Name)
+    FROM (
+        SELECT 
+            T.Id AS IdentityRole_Id, 
+            T.Name AS IdentityRole_Name, 
+            True AS _from0
+        FROM CodeFirstDatabase.IdentityRole AS T
+    ) AS T1]]></view>
+  <view extent="DocumentContext.IdentityUserRoles"><![CDATA[
+    SELECT VALUE -- Constructing IdentityUserRoles
+        [NeuronExportedDocuments.DAL.IdentityUserRole](T1.IdentityUserRole_UserId, T1.IdentityUserRole_RoleId)
+    FROM (
+        SELECT 
+            T.UserId AS IdentityUserRole_UserId, 
+            T.RoleId AS IdentityUserRole_RoleId, 
+            True AS _from0
+        FROM CodeFirstDatabase.IdentityUserRole AS T
+    ) AS T1]]></view>
+  <view extent="DocumentContext.Users"><![CDATA[
+    SELECT VALUE -- Constructing Users
+        [NeuronExportedDocuments.DAL.ApplicationUser](T1.ApplicationUser_Id, T1.ApplicationUser_Email, T1.ApplicationUser_EmailConfirmed, T1.ApplicationUser_PasswordHash, T1.ApplicationUser_SecurityStamp, T1.ApplicationUser_PhoneNumber, T1.ApplicationUser_PhoneNumberConfirmed, T1.ApplicationUser_TwoFactorEnabled, T1.ApplicationUser_LockoutEndDateUtc, T1.ApplicationUser_LockoutEnabled, T1.ApplicationUser_AccessFailedCount, T1.ApplicationUser_UserName)
+    FROM (
+        SELECT 
+            T.Id AS ApplicationUser_Id, 
+            T.Email AS ApplicationUser_Email, 
+            T.EmailConfirmed AS ApplicationUser_EmailConfirmed, 
+            T.PasswordHash AS ApplicationUser_PasswordHash, 
+            T.SecurityStamp AS ApplicationUser_SecurityStamp, 
+            T.PhoneNumber AS ApplicationUser_PhoneNumber, 
+            T.PhoneNumberConfirmed AS ApplicationUser_PhoneNumberConfirmed, 
+            T.TwoFactorEnabled AS ApplicationUser_TwoFactorEnabled, 
+            T.LockoutEndDateUtc AS ApplicationUser_LockoutEndDateUtc, 
+            T.LockoutEnabled AS ApplicationUser_LockoutEnabled, 
+            T.AccessFailedCount AS ApplicationUser_AccessFailedCount, 
+            T.UserName AS ApplicationUser_UserName, 
+            True AS _from0
+        FROM CodeFirstDatabase.ApplicationUser AS T
+    ) AS T1]]></view>
+  <view extent="DocumentContext.IdentityUserClaims"><![CDATA[
+    SELECT VALUE -- Constructing IdentityUserClaims
+        [NeuronExportedDocuments.DAL.IdentityUserClaim](T1.IdentityUserClaim_Id, T1.IdentityUserClaim_UserId, T1.IdentityUserClaim_ClaimType, T1.IdentityUserClaim_ClaimValue)
+    FROM (
+        SELECT 
+            T.Id AS IdentityUserClaim_Id, 
+            T.UserId AS IdentityUserClaim_UserId, 
+            T.ClaimType AS IdentityUserClaim_ClaimType, 
+            T.ClaimValue AS IdentityUserClaim_ClaimValue, 
+            True AS _from0
+        FROM CodeFirstDatabase.IdentityUserClaim AS T
+    ) AS T1]]></view>
+  <view extent="DocumentContext.IdentityUserLogins"><![CDATA[
+    SELECT VALUE -- Constructing IdentityUserLogins
+        [NeuronExportedDocuments.DAL.IdentityUserLogin](T1.IdentityUserLogin_LoginProvider, T1.IdentityUserLogin_ProviderKey, T1.IdentityUserLogin_UserId)
+    FROM (
+        SELECT 
+            T.LoginProvider AS IdentityUserLogin_LoginProvider, 
+            T.ProviderKey AS IdentityUserLogin_ProviderKey, 
+            T.UserId AS IdentityUserLogin_UserId, 
+            True AS _from0
+        FROM CodeFirstDatabase.IdentityUserLogin AS T
     ) AS T1]]></view>
   <view extent="CodeFirstDatabase.ServiceMessage"><![CDATA[
     SELECT VALUE -- Constructing ServiceMessage

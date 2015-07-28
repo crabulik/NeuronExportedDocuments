@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Data.Entity.Validation;
 using System.Text;
+using Microsoft.AspNet.Identity.EntityFramework;
 using NeuronExportedDocuments.DAL.Interfaces;
 using NeuronExportedDocuments.Models;
+using NeuronExportedDocuments.Models.Identity;
 using NeuronExportedDocuments.Models.Interfaces;
 
 namespace NeuronExportedDocuments.DAL.Repositories
@@ -122,6 +124,11 @@ namespace NeuronExportedDocuments.DAL.Repositories
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        public IdentityDbContext<ApplicationUser> GetIdentityDbContext()
+        {
+            return _db;
         }
     }
 }

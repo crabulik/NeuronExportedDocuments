@@ -159,4 +159,13 @@
   <data name="rs_ExportedDocStatusUnhandled" xml:space="preserve">
     <value>Unhandled</value>
   </data>
+  <data name="rs_InitProtectionEmailCodeBodyFormat" xml:space="preserve">
+    <value>Your security code is: {0}</value>
+  </data>
+  <data name="rs_InitProtectionEmailCodeSubject" xml:space="preserve">
+    <value>Security Code</value>
+  </data>
+  <data name="rs_InitProtectionPhoneCode" xml:space="preserve">
+    <value>Your security code is: {0}</value>
+  </data>
 </root>
