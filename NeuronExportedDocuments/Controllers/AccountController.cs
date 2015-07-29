@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using NeuronExportedDocuments.Infrastructure.CustomAttributes;
+using NeuronExportedDocuments.Interfaces;
 using NeuronExportedDocuments.Models;
 using NeuronExportedDocuments.Models.Identity;
 using NeuronExportedDocuments.Models.ViewModels;
@@ -16,7 +18,7 @@ using PagedList;
 
 namespace NeuronExportedDocuments.Controllers
 {
-    [Authorize]
+    [CustomAuthorize]
     public class AccountController : Controller
     {
         private const int AccountsPerPageCount = 10;
@@ -25,17 +27,20 @@ namespace NeuronExportedDocuments.Controllers
         {
         }
 
-        public AccountController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public AccountController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager,
+            IConfig config)
         {
             UserManager = userManager;
             RoleManager = roleManager;
+            Config = config;
         }
 
         public UserManager<ApplicationUser> UserManager { get; private set; }
+        public IConfig Config { get; private set; }
 
         public RoleManager<IdentityRole> RoleManager { get; private set; }
 
-        [Authorize(Roles = IdentityConstants.AdminRole)]
+        [CustomAuthorizeAttribute(Roles = IdentityConstants.AdminRole)]
         public ActionResult Index(int? page, AccountsFilter filter)
         {
             int pageNumber = (page ?? 1);
@@ -54,7 +59,7 @@ namespace NeuronExportedDocuments.Controllers
             return View(vm);
         }
 
-        [Authorize(Roles = IdentityConstants.AdminRole)]
+        [CustomAuthorizeAttribute(Roles = IdentityConstants.AdminRole)]
         [HttpPost]
         public async Task<ActionResult> DeleteRoles(string userId, string backUrl )
         {
@@ -90,7 +95,7 @@ namespace NeuronExportedDocuments.Controllers
             return PartialView("_RoleChangeMessage", vm);
         }
 
-        [Authorize(Roles = IdentityConstants.AdminRole)]
+        [CustomAuthorizeAttribute(Roles = IdentityConstants.AdminRole)]
         [HttpPost]
         public async Task<ActionResult> SetAdminRole(string userId, string backUrl)
         {
@@ -125,7 +130,7 @@ namespace NeuronExportedDocuments.Controllers
             return PartialView("_RoleChangeMessage", vm);
         }
 
-        [Authorize(Roles = IdentityConstants.AdminRole)]
+        [CustomAuthorizeAttribute(Roles = IdentityConstants.AdminRole)]
         [HttpPost]
         public async Task<ActionResult> SetSyncServiceRole(string userId, string backUrl)
         {
@@ -573,6 +578,18 @@ namespace NeuronExportedDocuments.Controllers
         public ActionResult ExternalLoginFailure()
         {
             return View();
+        }
+
+        public ActionResult AccessDenied(string backAction = null, string backController = null)
+        {
+            var vm = new AccessDeniedViewModel{
+                SupportEmail = Config.GeneralSettings.SupportEmail,
+                BackAction = backAction,
+                BackController = backController
+            };
+            AuthenticationManager.SignOut();
+            Response.StatusCode = 403;
+            return View(vm);
         }
 
         [ChildActionOnly]

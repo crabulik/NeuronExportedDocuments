@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using NeuronExportedDocuments.Infrastructure.CustomAttributes;
 using NeuronExportedDocuments.Infrastructure.Extensions;
 using System.Web.Mvc;
 using AutoMapper;
@@ -17,7 +18,7 @@ using PagedList;
 
 namespace NeuronExportedDocuments.Controllers
 {
-    [Authorize(Roles = IdentityConstants.AdminRole)]
+    [CustomAuthorize(Roles = IdentityConstants.AdminRole)]
     public class AdminController : Controller
     {
         private const int LogErrorsPerPageCount = 10;

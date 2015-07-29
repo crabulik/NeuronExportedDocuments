@@ -61,6 +61,24 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Access denied.
+        /// </summary>
+        public static string rs_AccessDeniedCaption {
+            get {
+                return ResourceManager.GetString("rs_AccessDeniedCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You don&apos;t have rights to acces te page. &lt;br/&gt; For more information contact with our support: {0}.
+        /// </summary>
+        public static string rs_AccessDeniedMessage {
+            get {
+                return ResourceManager.GetString("rs_AccessDeniedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Associate your {0} account..
         /// </summary>
         public static string rs_AssociateYourProviderAccount {
@@ -491,6 +509,15 @@ namespace NeuronExportedDocuments.Resources {
         public static string rs_SetSyncUserRolesToolTip {
             get {
                 return ResourceManager.GetString("rs_SetSyncUserRolesToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Try again.
+        /// </summary>
+        public static string rs_TryAgainCaption {
+            get {
+                return ResourceManager.GetString("rs_TryAgainCaption", resourceCulture);
             }
         }
         

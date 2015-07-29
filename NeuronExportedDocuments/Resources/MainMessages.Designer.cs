@@ -532,6 +532,15 @@ namespace NeuronExportedDocuments.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Go to Main Page.
+        /// </summary>
+        public static string rs_GoToMainPageLinkName {
+            get {
+                return ResourceManager.GetString("rs_GoToMainPageLinkName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Host Filter ....
         /// </summary>
         public static string rs_HostFilter {

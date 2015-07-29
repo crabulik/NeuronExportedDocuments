@@ -369,4 +369,7 @@ Please, contact to our suppor to resolve the problem: &lt;strong&gt;{1}&lt;/stro
   <data name="rs_ResultRoleInfo" xml:space="preserve">
     <value>Result Message</value>
   </data>
+  <data name="rs_GoToMainPageLinkName" xml:space="preserve">
+    <value>Go to Main Page</value>
+  </data>
 </root>

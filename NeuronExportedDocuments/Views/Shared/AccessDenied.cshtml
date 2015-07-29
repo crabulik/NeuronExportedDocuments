@@ -1,0 +1,21 @@
+﻿@using NeuronExportedDocuments.Resources
+@model NeuronExportedDocuments.Models.ViewModels.AccessDeniedViewModel
+
+@{
+    ViewBag.Title = IdentityResources.rs_AccessDeniedCaption;
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+@section Scripts {
+
+}
+@section Body {
+    <h2>@IdentityResources.rs_AccessDeniedCaption</h2>
+    <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        @Html.Raw(string.Format(IdentityResources.rs_AccessDeniedMessage, Html.DisplayFor(model => model.SupportEmail)))
+    </div>
+    <p>@Html.ActionLink(IdentityResources.rs_TryAgainCaption, Model.BackAction, Model.BackController)</p>
+    <p>@Html.ActionLink(MainMessages.rs_GoToMainPageLinkName, "Index", "Home")</p>
+}
+

@@ -346,6 +346,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\CustomAttributes\CustomAuthorizeAttribute.cs" />
     <Compile Include="Infrastructure\DateTimeModelBinder.cs" />
     <Compile Include="Infrastructure\EmailService.cs" />
     <Compile Include="Infrastructure\Extensions\HtmlHelperExtensions.cs" />
@@ -373,6 +374,7 @@
     <Compile Include="Models\ServiceDocumentInfo.cs" />
     <Compile Include="Models\UnblockAndRepublishDocumentResult.cs" />
     <Compile Include="Models\UserData.cs" />
+    <Compile Include="Models\ViewModels\AccessDeniedViewModel.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ViewModels\BlockedViewModel.cs" />
     <Compile Include="Models\ViewModels\ChangeUserRoleViewModel.cs" />
@@ -476,6 +478,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\_RoleChangeMessage.cshtml" />
+    <Content Include="Views\Shared\AccessDenied.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
