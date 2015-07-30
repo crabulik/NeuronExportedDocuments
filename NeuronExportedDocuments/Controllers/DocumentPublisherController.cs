@@ -2,15 +2,18 @@
 using System.Linq;
 using System.Web.Http;
 using NeuronExportedDocuments.DAL.Interfaces;
+using NeuronExportedDocuments.Infrastructure.CustomAttributes;
 using NeuronExportedDocuments.Infrastructure.Extensions;
 using NeuronExportedDocuments.Interfaces;
 using NeuronExportedDocuments.Models;
 using NeuronExportedDocuments.Models.Enums;
+using NeuronExportedDocuments.Models.Identity;
 using NeuronExportedDocuments.Models.Interfaces;
 using NeuronExportedDocuments.Resources;
 
 namespace NeuronExportedDocuments.Controllers
 {
+    [Authorize(Roles = IdentityConstants.SyncServiceRole)]
     public class DocumentPublisherController : ApiController
     {
         private IDBUnitOfWork Database { get; set; }

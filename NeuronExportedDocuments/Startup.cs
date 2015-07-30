@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.OAuth;
+using NeuronExportedDocuments.Infrastructure.Providers;
 using NeuronExportedDocuments.Models.Identity;
 using Owin;
 
@@ -13,6 +16,9 @@ namespace NeuronExportedDocuments
 {
     public class Startup
     {
+        private const int TokenExpiredTimeHours = 6;
+        public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
+        public static string PublicClientId { get; private set; }
         public void Configuration(IAppBuilder app)
         {
             
@@ -28,6 +34,19 @@ namespace NeuronExportedDocuments
                     regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))}
  
             });
+
+            PublicClientId = "self";
+            OAuthOptions = new OAuthAuthorizationServerOptions
+            {
+                TokenEndpointPath = new PathString("/Token"),
+                Provider = new ApplicationOAuthProvider(PublicClientId, DependencyResolver.Current),
+                //AuthorizeEndpointPath = new PathString("/api/AccountApi/ExternalLogin"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromHours(TokenExpiredTimeHours),
+                AllowInsecureHttp = true
+            };
+
+            // Enable the application to use bearer tokens to authenticate users
+            app.UseOAuthBearerTokens(OAuthOptions);
         }
     }
 }

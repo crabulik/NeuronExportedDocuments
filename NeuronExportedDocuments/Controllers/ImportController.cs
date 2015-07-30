@@ -10,11 +10,13 @@ using NeuronExportedDocuments.Infrastructure;
 using NeuronExportedDocuments.Infrastructure.Extensions;
 using NeuronExportedDocuments.Models;
 using NeuronExportedDocuments.Models.Enums;
+using NeuronExportedDocuments.Models.Identity;
 using NeuronExportedDocuments.Models.Interfaces;
 using NeuronExportedDocuments.Resources;
 
 namespace NeuronExportedDocuments.Controllers
 {
+    [Authorize(Roles = IdentityConstants.SyncServiceRole)]
     public class ImportController : ApiController
     {
         private WebDocumentConverter _docConverter;
