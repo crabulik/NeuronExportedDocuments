@@ -4,6 +4,7 @@ using System.Web.Http.Dependencies;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using NeuronDocumentSync.Cypher;
 using NeuronExportedDocuments.DAL.Interfaces;
 using NeuronExportedDocuments.DAL.Repositories;
 using NeuronExportedDocuments.Interfaces;
@@ -34,6 +35,9 @@ namespace NeuronExportedDocuments.Infrastructure
 
         private void InitializeBindings()
         {
+            string publicKey;
+            var cyph = new RSACypher();
+            cyph.CreateKeys(out publicKey);
             _kernel.Bind<WebDocumentConverter>().ToSelf().InRequestScope();
             _kernel.Bind<IDBUnitOfWork>().To<EFUnitOfWork>();
             _kernel.Bind<IWebDocumentProcessor>().To<WebDocumentProcessor>().InRequestScope();
@@ -47,6 +51,7 @@ namespace NeuronExportedDocuments.Infrastructure
             _kernel.Bind<UserManager<ApplicationUser>>().To<ApplicationUserManager>().InRequestScope();
             _kernel.Bind<RoleManager<IdentityRole>>().To<ApplicationRoleManager>().InRequestScope();
             _kernel.Bind<EmailService>().ToSelf().InRequestScope();
+            _kernel.Bind<IRSACypher>().To<RSACypher>();
 
             IAutoMapperConfiguration conf = new AutoMapperConfiguration();
             _kernel.Bind<IMappingEngine>().ToMethod(conf.Configure);

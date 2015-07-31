@@ -3,7 +3,9 @@ using System;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Web.Http;
+using NeuronDocumentSync.Cypher;
 using NeuronDocumentSync.Models;
 using NeuronExportedDocuments.DAL.Interfaces;
 using NeuronExportedDocuments.Infrastructure;
@@ -17,6 +19,7 @@ using NeuronExportedDocuments.Resources;
 namespace NeuronExportedDocuments.Controllers
 {
     [Authorize(Roles = IdentityConstants.SyncServiceRole)]
+    [RoutePrefix("api/Import")]
     public class ImportController : ApiController
     {
         private WebDocumentConverter _docConverter;
@@ -24,25 +27,41 @@ namespace NeuronExportedDocuments.Controllers
 
         private IWebLogger Log { get; set; }
 
-        public ImportController(WebDocumentConverter docConverter, IDBUnitOfWork uow, IWebLogger logger)
+        private IRSACypher Cypher { get; set; }
+
+        public ImportController(WebDocumentConverter docConverter, IDBUnitOfWork uow, IWebLogger logger,
+            IRSACypher cypher)
         {
             _docConverter = docConverter;
             Database = uow;
             Log = logger;
+            Cypher = cypher;
         }
         // POST api/<controller>
-        public HttpResponseMessage Post([FromBody]ExportServiceDocument value)
+        public HttpResponseMessage Post([FromBody]CypheredDocument value)
         {
+            ExportServiceDocument decryptedData;
             try
             {
-                if((value.ImagesInterpretation.Count == 0) && (value.PdfFileData == null))
+                decryptedData = Cypher.DecryptAndDeserializeData<ExportServiceDocument>(value.CypheredData);
+            }
+            catch(Exception ex)
+            {
+                var response = Request.CreateResponse(HttpStatusCode.BadRequest);
+
+                return response;
+            }
+            
+            try
+            {
+                if ((decryptedData.ImagesInterpretation.Count == 0) && (decryptedData.PdfFileData == null))
                 {
-                    Log.Warn(string.Format(MainExceptionMessages.rs_ExportServiceDocumentHasNoData, value.NeuronDbDocumentId));
+                    Log.Warn(string.Format(MainExceptionMessages.rs_ExportServiceDocumentHasNoData, decryptedData.NeuronDbDocumentId));
                     return Request.CreateResponse(HttpStatusCode.NoContent, WebApiMessages.DataIsEmpty);
                 }
 
 
-                var document = _docConverter.Convert(value);
+                var document = _docConverter.Convert(decryptedData);
                 if (document != null)
                 {
                     var inDbDoc =
@@ -67,7 +86,7 @@ namespace NeuronExportedDocuments.Controllers
                 }
                 else
                 {
-                    Log.Error(string.Format(MainExceptionMessages.rs_DocumentConvertError, value.NeuronDbDocumentId));
+                    Log.Error(string.Format(MainExceptionMessages.rs_DocumentConvertError, decryptedData.NeuronDbDocumentId));
                     var response = Request.CreateResponse(HttpStatusCode.NotAcceptable);
 
                     return response;
@@ -86,5 +105,17 @@ namespace NeuronExportedDocuments.Controllers
             }
         }
 
+        [Route("GetPublicKey")]
+        public HttpResponseMessage GetPublicKey()
+        {
+            return new HttpResponseMessage()
+            {
+                Content = new StringContent(
+                    Cypher.GetCurrentPublicKey(),
+                    Encoding.UTF8,
+                    "text/html"
+                )
+            };
+        }
     }
 }
